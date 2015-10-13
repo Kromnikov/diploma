@@ -1,0 +1,14 @@
+c:\users\kromnikov\documents\visual studio 2012\Projects\C++\MPILab1\PGUTI\PGUTI\bin\Debug\PGUTI.exe.config
+c:\users\kromnikov\documents\visual studio 2012\Projects\C++\MPILab1\PGUTI\PGUTI\bin\Debug\PGUTI.exe
+c:\users\kromnikov\documents\visual studio 2012\Projects\C++\MPILab1\PGUTI\PGUTI\bin\Debug\PGUTI.pdb
+c:\users\kromnikov\documents\visual studio 2012\Projects\C++\MPILab1\PGUTI\PGUTI\obj\Debug\PGUTI.csprojResolveAssemblyReference.cache
+c:\users\kromnikov\documents\visual studio 2012\Projects\C++\MPILab1\PGUTI\PGUTI\obj\Debug\PGUTI.Properties.Resources.resources
+c:\users\kromnikov\documents\visual studio 2012\Projects\C++\MPILab1\PGUTI\PGUTI\obj\Debug\PGUTI.csproj.GenerateResource.Cache
+c:\users\kromnikov\documents\visual studio 2012\Projects\C++\MPILab1\PGUTI\PGUTI\obj\Debug\PGUTI.exe
+c:\users\kromnikov\documents\visual studio 2012\Projects\C++\MPILab1\PGUTI\PGUTI\obj\Debug\PGUTI.pdb
+c:\users\kromnikov\documents\visual studio 2012\Projects\C++\MPILab1\PGUTI\PGUTI\obj\Debug\PGUTI.mainForm.resources
+c:\users\kromnikov\documents\visual studio 2012\Projects\C++\MPILab1\PGUTI\PGUTI\obj\Debug\PGUTI.ReportsForm.resources
+C:\Users\Kromnikov\documents\visual studio 2012\Projects\C++\MPILab1\PGUTI\PGUTI\obj\Debug\PGUTI.editForm.resources
+C:\Users\Kromnikov\documents\visual studio 2012\Projects\C++\MPILab1\PGUTI\PGUTI\bin\Debug\DevAge.Core.dll
+C:\Users\Kromnikov\documents\visual studio 2012\Projects\C++\MPILab1\PGUTI\PGUTI\bin\Debug\DevAge.Windows.Forms.dll
+C:\Users\Kromnikov\documents\visual studio 2012\Projects\C++\MPILab1\PGUTI\PGUTI\obj\Debug\PGUTI.csproj.ResolveComReference.cache
