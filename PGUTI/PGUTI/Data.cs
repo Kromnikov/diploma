@@ -49,10 +49,16 @@ namespace PGUTI
                 return ds = NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
         }
+
+
+
+
+
+
         //ШТАТ
         public static class BasicStructure
         {
-            public static void getGroupBy(string dekan,string by)
+            public static void getGroupBy(string dekan, string by)
             {
                 string[] a = null;
                 string result = "select COUNT(*)  from dbo.Teachers where Dekan_Faculties " + dekan + " group by " + by;
@@ -62,7 +68,7 @@ namespace PGUTI
                 string b = "";
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
-                    b =ds.Tables[0].Rows[i].ItemArray[0].ToString();
+                    b = ds.Tables[0].Rows[i].ItemArray[0].ToString();
                 }
             }
             public static DataSet getDegreesAndTitle()
@@ -78,7 +84,7 @@ namespace PGUTI
             public static DataSet getQualification()
             {
                 string[] date = getPreviusDate();
-                string result = "SELECT COUNT(Training_dates) as Всего FROM    Teachers where terms_of_work like '%Штатный сотрудник%' and (Training_dates between "+date[0]+" and "+date[1]+") union all SELECT COUNT(Training_dates) FROM Teachers where Dekan_Faculties is not null and terms_of_work like '%Штатный сотрудник%'  and (Training_dates between "+date[0]+" and "+date[1]+") union all SELECT COUNT(Training_dates) as Всего FROM Teachers where Job_title = 1 and terms_of_work like '%Штатный сотрудник%'and (Training_dates between "+date[0]+" and "+date[1]+") union all SELECT COUNT(Training_dates) as Всего FROM    Teachers where Job_title = 2    and terms_of_work like '%Штатный сотрудник%' and (Training_dates between "+date[0]+" and "+date[1]+") union all SELECT COUNT(Training_dates) as Всего FROM    Teachers where Job_title = 3 and terms_of_work like '%Штатный сотрудник%'and (Training_dates between "+date[0]+" and "+date[1]+") union all SELECT COUNT(Training_dates) as Всего FROM Teachers where Job_title = 4 and terms_of_work like '%Штатный сотрудник%'and (Training_dates between "+date[0]+" and "+date[1]+") union all SELECT COUNT(Training_dates) as Всего FROM Teachers where (Job_title = 5 or Job_title = 6) and terms_of_work like '%Штатный сотрудник%'and (Training_dates between "+date[0]+" and "+date[1]+")";
+                string result = "SELECT COUNT(Training_dates) as Всего FROM    Teachers where terms_of_work like '%Штатный сотрудник%' and (Training_dates between " + date[0] + " and " + date[1] + ") union all SELECT COUNT(Training_dates) FROM Teachers where Dekan_Faculties is not null and terms_of_work like '%Штатный сотрудник%'  and (Training_dates between " + date[0] + " and " + date[1] + ") union all SELECT COUNT(Training_dates) as Всего FROM Teachers where Job_title = 1 and terms_of_work like '%Штатный сотрудник%'and (Training_dates between " + date[0] + " and " + date[1] + ") union all SELECT COUNT(Training_dates) as Всего FROM    Teachers where Job_title = 2    and terms_of_work like '%Штатный сотрудник%' and (Training_dates between " + date[0] + " and " + date[1] + ") union all SELECT COUNT(Training_dates) as Всего FROM    Teachers where Job_title = 3 and terms_of_work like '%Штатный сотрудник%'and (Training_dates between " + date[0] + " and " + date[1] + ") union all SELECT COUNT(Training_dates) as Всего FROM Teachers where Job_title = 4 and terms_of_work like '%Штатный сотрудник%'and (Training_dates between " + date[0] + " and " + date[1] + ") union all SELECT COUNT(Training_dates) as Всего FROM Teachers where (Job_title = 5 or Job_title = 6) and terms_of_work like '%Штатный сотрудник%'and (Training_dates between " + date[0] + " and " + date[1] + ")";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
 
@@ -90,35 +96,35 @@ namespace PGUTI
             }
             public static DataSet getProfessorsDoc(DateTime startDate, DateTime endDate)
             {
-                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Штатный сотрудник%' and f.Job_title =2 and f.degrees_id>10 and f.degrees_id<16 and (experience_date between '"+startDate+"' and '"+endDate+"') order by rate";
+                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Штатный сотрудник%' and f.Job_title =2 and f.degrees_id>10 and f.degrees_id<16 and (experience_date between '" + ReverseDateTime(startDate) + "' and '" + ReverseDateTime(endDate) + "') order by rate";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
             public static DataSet getProfessorsCand(DateTime startDate, DateTime endDate)
             {
-                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id  where f.terms_of_work like '%Штатный сотрудник%' and f.Job_title =2 and f.degrees_id>4 and f.degrees_id<11 and f.titles_id=1  and (experience_date between '"+startDate+"' and '"+endDate+"') order by rate";
+                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id  where f.terms_of_work like '%Штатный сотрудник%' and f.Job_title =2 and f.degrees_id>4 and f.degrees_id<11 and f.titles_id=1  and (experience_date between '" + ReverseDateTime(startDate) + "' and '" + ReverseDateTime(endDate) + "') order by rate";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
             //Доценты
             public static DataSet getDocentsCandAndOrDocent(DateTime startDate, DateTime endDate)
             {
-                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Штатный сотрудник%' and f.Job_title =3 and ((f.degrees_id>4 and f.degrees_id<11) or (f.titles_id=2) or(f.degrees_id>4 and f.degrees_id<11 and f.titles_id=2) ) and (experience_date between '"+startDate+"' and '"+endDate+"') order by rate";
+                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Штатный сотрудник%' and f.Job_title =3 and ((f.degrees_id>4 and f.degrees_id<11) or (f.titles_id=2) or(f.degrees_id>4 and f.degrees_id<11 and f.titles_id=2) ) and (experience_date between '" + ReverseDateTime(startDate) + "' and '" + ReverseDateTime(endDate) + "') order by rate";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
             public static DataSet getDocentsNull(DateTime startDate, DateTime endDate)
             {
-                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Штатный сотрудник%' and f.Job_title =3 and ((f.degrees_id=16) or (f.titles_id=3) or(f.degrees_id=16 and f.titles_id=3) ) and (experience_date between '"+startDate+"' and '"+endDate+"') order by rate";
+                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Штатный сотрудник%' and f.Job_title =3 and ((f.degrees_id=16) or (f.titles_id=3) or(f.degrees_id=16 and f.titles_id=3) ) and (experience_date between '" + ReverseDateTime(startDate) + "' and '" + ReverseDateTime(endDate) + "') order by rate";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
             //Старшие преп
             public static DataSet getSenior(DateTime startDate, DateTime endDate)
             {
-                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Штатный сотрудник%' and f.Job_title =4 and (experience_date between '"+startDate+"' and '"+endDate+"') order by rate";
+                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Штатный сотрудник%' and f.Job_title =4 and (experience_date between '" + ReverseDateTime(startDate) + "' and '" + ReverseDateTime(endDate) + "') order by rate";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
             //Ассистенты
             public static DataSet getAssist(DateTime startDate, DateTime endDate)
             {
-                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Штатный сотрудник%' and (f.Job_title =5 or f.Job_title=6) and (experience_date between '"+startDate+"' and '"+endDate+"') order by rate";
+                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Штатный сотрудник%' and (f.Job_title =5 or f.Job_title=6) and (experience_date between '" + ReverseDateTime(startDate) + "' and '" + ReverseDateTime(endDate) + "') order by rate";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
         }
@@ -145,40 +151,40 @@ namespace PGUTI
             //Профф
             public static DataSet getProfessors(DateTime startDate, DateTime endDate)
             {
-                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Штатные совместители %' and f.Job_title =2 and (experience_date between '"+startDate+"' and '"+endDate+"') order by rate";
+                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Штатные совместители %' and f.Job_title =2 and (experience_date between '" + ReverseDateTime(startDate) + "' and '" + ReverseDateTime(endDate) + "') order by rate";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
             public static DataSet getProfessorsDoc(DateTime startDate, DateTime endDate)
             {
-                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Штатные совместители %' and f.Job_title =2 and f.degrees_id>10 and f.degrees_id<16 and (experience_date between '"+startDate+"' and '"+endDate+"') order by rate";
+                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Штатные совместители %' and f.Job_title =2 and f.degrees_id>10 and f.degrees_id<16 and (experience_date between '" + ReverseDateTime(startDate) + "' and '" + ReverseDateTime(endDate) + "') order by rate";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
             public static DataSet getProfessorsCand(DateTime startDate, DateTime endDate)
             {
-                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id  where f.terms_of_work like '%Штатные совместители %' and f.Job_title =2 and f.degrees_id>4 and f.degrees_id<11 and f.titles_id=1  and (experience_date between '"+startDate+"' and '"+endDate+"') order by rate";
+                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id  where f.terms_of_work like '%Штатные совместители %' and f.Job_title =2 and f.degrees_id>4 and f.degrees_id<11 and f.titles_id=1  and (experience_date between '" + ReverseDateTime(startDate) + "' and '" + ReverseDateTime(endDate) + "') order by rate";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
             //Доценты
             public static DataSet getDocentsCandAndOrDocent(DateTime startDate, DateTime endDate)
             {
-                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Штатные совместители %' and f.Job_title =3 and ((f.degrees_id>4 and f.degrees_id<11) or (f.titles_id=2) or(f.degrees_id>4 and f.degrees_id<11 and f.titles_id=2) ) and (experience_date between '"+startDate+"' and '"+endDate+"') order by rate";
+                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Штатные совместители %' and f.Job_title =3 and ((f.degrees_id>4 and f.degrees_id<11) or (f.titles_id=2) or(f.degrees_id>4 and f.degrees_id<11 and f.titles_id=2) ) and (experience_date between '" + ReverseDateTime(startDate) + "' and '" + ReverseDateTime(endDate) + "') order by rate";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
             public static DataSet getDocentsNull(DateTime startDate, DateTime endDate)
             {
-                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Штатные совместители %' and f.Job_title =3 and ((f.degrees_id=16) or (f.titles_id=3) or(f.degrees_id=16 and f.titles_id=3) ) and (experience_date between '"+startDate+"' and '"+endDate+"') order by rate";
+                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Штатные совместители %' and f.Job_title =3 and ((f.degrees_id=16) or (f.titles_id=3) or(f.degrees_id=16 and f.titles_id=3) ) and (experience_date between '" + ReverseDateTime(startDate) + "' and '" + ReverseDateTime(endDate) + "') order by rate";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
             //Старшие преп
             public static DataSet getSenior(DateTime startDate, DateTime endDate)
             {
-                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Штатные совместители %' and f.Job_title =4 and (experience_date between '"+startDate+"' and '"+endDate+"') order by rate";
+                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Штатные совместители %' and f.Job_title =4 and (experience_date between '" + ReverseDateTime(startDate) + "' and '" + ReverseDateTime(endDate) + "') order by rate";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
             //Ассистенты
             public static DataSet getAssist(DateTime startDate, DateTime endDate)
             {
-                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Штатные совместители %' and (f.Job_title =5 or f.Job_title=6) and (experience_date between '"+startDate+"' and '"+endDate+"') order by rate";
+                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Штатные совместители %' and (f.Job_title =5 or f.Job_title=6) and (experience_date between '" + ReverseDateTime(startDate) + "' and '" + ReverseDateTime(endDate) + "') order by rate";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
         }//         %Штатные совместители %
@@ -206,40 +212,40 @@ namespace PGUTI
             //Профф
             public static DataSet getProfessors(DateTime startDate, DateTime endDate)
             {
-                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Сторонние (внешние) совместители%' and f.Job_title =2 and (experience_date between '"+startDate+"' and '"+endDate+"') order by rate";
+                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Сторонние (внешние) совместители%' and f.Job_title =2 and (experience_date between '" + ReverseDateTime(startDate) + "' and '" + ReverseDateTime(endDate) + "') order by rate";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
             public static DataSet getProfessorsDoc(DateTime startDate, DateTime endDate)
             {
-                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Сторонние (внешние) совместители%' and f.Job_title =2 and f.degrees_id>10 and f.degrees_id<16 and (experience_date between '"+startDate+"' and '"+endDate+"') order by rate";
+                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Сторонние (внешние) совместители%' and f.Job_title =2 and f.degrees_id>10 and f.degrees_id<16 and (experience_date between '" + ReverseDateTime(startDate) + "' and '" + ReverseDateTime(endDate) + "') order by rate";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
             public static DataSet getProfessorsCand(DateTime startDate, DateTime endDate)
             {
-                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id  where f.terms_of_work like '%Сторонние (внешние) совместители%' and f.Job_title =2 and f.degrees_id>4 and f.degrees_id<11 and f.titles_id=1  and (experience_date between '"+startDate+"' and '"+endDate+"') order by rate";
+                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id  where f.terms_of_work like '%Сторонние (внешние) совместители%' and f.Job_title =2 and f.degrees_id>4 and f.degrees_id<11 and f.titles_id=1  and (experience_date between '" + ReverseDateTime(startDate) + "' and '" + ReverseDateTime(endDate) + "') order by rate";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
             //Доценты
             public static DataSet getDocentsCandAndOrDocent(DateTime startDate, DateTime endDate)
             {
-                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Сторонние (внешние) совместители%' and f.Job_title =3 and ((f.degrees_id>4 and f.degrees_id<11) or (f.titles_id=2) or(f.degrees_id>4 and f.degrees_id<11 and f.titles_id=2) ) and (experience_date between '"+startDate+"' and '"+endDate+"') order by rate";
+                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Сторонние (внешние) совместители%' and f.Job_title =3 and ((f.degrees_id>4 and f.degrees_id<11) or (f.titles_id=2) or(f.degrees_id>4 and f.degrees_id<11 and f.titles_id=2) ) and (experience_date between '" + ReverseDateTime(startDate) + "' and '" + ReverseDateTime(endDate) + "') order by rate";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
             public static DataSet getDocentsNull(DateTime startDate, DateTime endDate)
             {
-                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Сторонние (внешние) совместители%' and f.Job_title =3 and ((f.degrees_id=16) or (f.titles_id=3) or(f.degrees_id=16 and f.titles_id=3) ) and (experience_date between '"+startDate+"' and '"+endDate+"') order by rate";
+                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Сторонние (внешние) совместители%' and f.Job_title =3 and ((f.degrees_id=16) or (f.titles_id=3) or(f.degrees_id=16 and f.titles_id=3) ) and (experience_date between '" + ReverseDateTime(startDate) + "' and '" + ReverseDateTime(endDate) + "') order by rate";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
             //Старшие преп
             public static DataSet getSenior(DateTime startDate, DateTime endDate)
             {
-                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Сторонние (внешние) совместители%' and f.Job_title =4 and (experience_date between '"+startDate+"' and '"+endDate+"') order by rate";
+                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Сторонние (внешние) совместители%' and f.Job_title =4 and (experience_date between '" + ReverseDateTime(startDate) + "' and '" + ReverseDateTime(endDate) + "') order by rate";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
             //Ассистенты
             public static DataSet getAssist(DateTime startDate, DateTime endDate)
             {
-                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Сторонние (внешние) совместители%' and (f.Job_title =5 or f.Job_title=6) and (experience_date between '"+startDate+"' and '"+endDate+"') order by rate";
+                string result = "select f.surname,f.name,f.middlename,w.name,c.second_name,s.name,a.second_name,f.rate,convert(VARCHAR(10),f.birthday,105) from dbo.Teachers as f left join dbo.Cairs as c on c.id=f.Cairs left join dbo.Working_positions as w on w.id=f.Job_title left join dbo.Degrees as a on a.id = f.degrees_id left join dbo.Titles as s on s.id = f.titles_id where f.terms_of_work like '%Сторонние (внешние) совместители%' and (f.Job_title =5 or f.Job_title=6) and (experience_date between '" + ReverseDateTime(startDate) + "' and '" + ReverseDateTime(endDate) + "') order by rate";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
         }//           %Сторонние (внешние) совместители%
@@ -262,9 +268,9 @@ namespace PGUTI
             public static void Add(int id, bool del, DateTime experienceDate)
             {
                 Object[] array = GetDataTeachers(id).Tables[0].Rows[0].ItemArray;//Объект строки запроса
-                string[] cairsandjob = new string[2],date= new string[2];//массивы для даты, названия кафедры и должности
+                string[] cairsandjob = new string[2], date = new string[2];//массивы для даты, названия кафедры и должности
                 if (array[6].ToString() == "3") date[0] = "null";//Если нету ученой степени то даты её получения тоже нету
-                else date[0] = "'"+array[7].ToString()+"'";
+                else date[0] = "'" + array[7].ToString() + "'";
                 if (array[8].ToString() == "16") date[1] = "null";//Если нету ученого звания то даты его получения тоже нету
                 else date[1] = "'" + array[9].ToString() + "'";
                 string result = "";
@@ -281,7 +287,7 @@ namespace PGUTI
                 {//нет
                     if (array[13].ToString() == "")//Если не декан
                         result = "INSERT INTO dbo.Records (id,Cairs,Job_title,surname,name,middlename,titles_id,titles_date,degrees_id,degress_date,terms_of_work,date)" +
-                        "VALUES(" + (int.Parse(Count()) + 1) + "," + (int)array[1] + "," + (int)array[2] + ",'" + array[3] + "','" + array[4] + "','" + array[5] + "'," + (int)array[6] + "," + date[0] + "," + (int)array[8] + "," + date[1] + ",'"+array[10]+"','" + experienceDate + "')";
+                        "VALUES(" + (int.Parse(Count()) + 1) + "," + (int)array[1] + "," + (int)array[2] + ",'" + array[3] + "','" + array[4] + "','" + array[5] + "'," + (int)array[6] + "," + date[0] + "," + (int)array[8] + "," + date[1] + ",'" + array[10] + "','" + experienceDate + "')";
                     else result = "INSERT INTO dbo.Records (id,surname,name,middlename,titles_id,titles_date,degrees_id,degress_date,terms_of_work,date)" +
                     "VALUES(" + (int.Parse(Count()) + 1) + ",'" + array[3] + "','" + array[4] + "','" + array[5] + "'," + (int)array[6] + "," + date[0] + "," + (int)array[8] + "," + date[1] + ",'" + array[10] + "','" + experienceDate + "')";
                 }
@@ -297,7 +303,7 @@ namespace PGUTI
             public static DataSet Show(DateTime startDate, DateTime endDate)
             {
                 //string result = "select f.id,w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,c.second_name as 'Кафедра',d.name as 'ученое звание',titles_date as 'Дата получения ученого звания',a.second_name as 'ученая степень',titles_date as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.' from Teachers as f left join  Working_positions as w on w.id=f.Job_title left join Titles as d on d.id=f.titles_id left join Degrees as a on a.id=f.degrees_id left join Cairs as c on c.id = f.Cairs    join Record as r on f.id = r.Teachers_id      where DATEDIFF(MONTH,r.date,'" + date + "')=0 ";
-                string result = "select f.id,c.second_name as 'Кафедра',w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,d.name as 'ученое звание',titles_date as 'Дата получения ученого звания',a.second_name as 'ученая степень',f.degress_date as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.' from Records as f  left join  Working_positions as w on w.id=f.Job_title left join Titles as d on d.id=f.titles_id left join Degrees as a on a.id=f.degrees_id left join Cairs as c on c.id = f.Cairs  where date between '"+startDate+"' and '"+endDate+"'";//where DATEDIFF(MONTH,date,GETDATE())=0 ";
+                string result = "select f.id,c.second_name as 'Кафедра',w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,d.name as 'ученое звание',titles_date as 'Дата получения ученого звания',a.second_name as 'ученая степень',f.degress_date as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.' from Records as f  left join  Working_positions as w on w.id=f.Job_title left join Titles as d on d.id=f.titles_id left join Degrees as a on a.id=f.degrees_id left join Cairs as c on c.id = f.Cairs  where date between '" + ReverseDateTime(startDate) + "' and '" + ReverseDateTime(endDate) + "'";//where DATEDIFF(MONTH,date,GETDATE())=0 ";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
             public static DataSet GetDataTeachers(int id)
@@ -315,7 +321,7 @@ namespace PGUTI
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
         }//Сведения об ученых степенях профессорско-преподавательского состава и научных работников
-        
+
         public static class ExperienceStructure
         {
             public static DataSet getExperience()
@@ -329,7 +335,7 @@ namespace PGUTI
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
         }//Распределение персонала по стажу работы 
-        
+
         public static class AgeStructure
         {
             public static DataSet getAge()
@@ -344,6 +350,14 @@ namespace PGUTI
             }
         }//Распределение персонала по полу и возрасту 
         
+
+
+
+
+
+
+
+
         public static class Teachers
         {
             public static DataSet getCair(int cair)

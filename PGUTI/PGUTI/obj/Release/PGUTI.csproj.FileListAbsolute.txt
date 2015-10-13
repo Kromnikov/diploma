@@ -34,3 +34,15 @@ E:\googledrive\Универ\msqlServer+C#-Дилом\Диплом\PGUTI\PGUTI\ob
 E:\googledrive\Универ\msqlServer+C#-Дилом\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.csproj.GenerateResource.Cache
 E:\googledrive\Универ\msqlServer+C#-Дилом\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.exe
 E:\googledrive\Универ\msqlServer+C#-Дилом\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.pdb
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.csprojResolveAssemblyReference.cache
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.csproj.ResolveComReference.cache
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.EditForm.resources
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.mainForm.resources
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.Properties.Resources.resources
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.ReportsForm.resources
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.csproj.GenerateResource.Cache
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.exe
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\bin\Release\PGUTI.exe.config
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\bin\Release\PGUTI.exe
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\bin\Release\PGUTI.pdb
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.pdb
