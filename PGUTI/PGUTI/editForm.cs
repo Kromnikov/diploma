@@ -30,8 +30,157 @@ namespace PGUTI
             InitializeComponent();
         }
 
+        //private string copyText = "";
+        public void TextGotFocus(object sender , EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            //if (tb.Text == "Телефон...")
+           if (tb.Text.Contains("..."))
+            {
+                //copyText = tb.Text;
+                tb.Text = "";
+                tb.ForeColor = Color.Black;
+            }
+        }
+        public void TelephoneLostFocus(object sender , EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            if (tb.Text == "")
+            {
+                //tb.Text = copyText;
+                tb.Text = "Телефон...";
+                tb.ForeColor = Color.DimGray;
+            }
+            //MessageBox.Show(sender.ToString());
+        }
+        public void EducationaLostFocus(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            if (tb.Text == "")
+            {
+                tb.Text = "Учреждение...";
+                tb.ForeColor = Color.DimGray;
+            }
+        }
+        public void SpecialtyLostFocus(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            if (tb.Text == "")
+            {
+                tb.Text = "Специальность...";
+                tb.ForeColor = Color.DimGray;
+            }
+        }
+        public void SerialLostFocus(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            if (tb.Text == "")
+            {
+                tb.Text = "Серия...";
+                tb.ForeColor = Color.DimGray;
+            }
+        }
+        public void NumberLostFocus(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            if (tb.Text == "")
+            {
+                tb.Text = "Номер...";
+                tb.ForeColor = Color.DimGray;
+            }
+        }
+        public void PasportDataLostFocus(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            if (tb.Text == "")
+            {
+                tb.Text = "Кем выдан паспорт...";
+                tb.ForeColor = Color.DimGray;
+            }
+        }
+        public void SurnameDataLostFocus(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            if (tb.Text == "")
+            {
+                tb.Text = "Фамилия...";
+                tb.ForeColor = Color.DimGray;
+            }
+        }
+        public void NameLostFocus(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            if (tb.Text == "")
+            {
+                tb.Text = "Имя...";
+                tb.ForeColor = Color.DimGray;
+            }
+        }
+        public void MiddleNameLostFocus(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            if (tb.Text == "")
+            {
+                tb.Text = "Отчество...";
+                tb.ForeColor = Color.DimGray;
+            }
+        }
+        public void RegistrationLostFocus(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            if (tb.Text == "")
+            {
+                tb.Text = "Прописка...";
+                tb.ForeColor = Color.DimGray;
+            }
+        }
+        public void RateLostFocus(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            if (tb.Text == "")
+            {
+                tb.Text = "Ставка...";
+                tb.ForeColor = Color.DimGray;
+            }
+        }
+
         private void editForm_Load(object sender, EventArgs e)
         {
+            TelephoneTextBox.GotFocus += new EventHandler(this.TextGotFocus);
+            TelephoneTextBox.LostFocus += new EventHandler(this.TelephoneLostFocus);
+
+            EducationalInstitutionTextBox.GotFocus += new EventHandler(this.TextGotFocus);
+            EducationalInstitutionTextBox.LostFocus += new EventHandler(this.EducationaLostFocus);
+
+            SpecialtyDiplomTextBox.GotFocus += new EventHandler(this.TextGotFocus);
+            SpecialtyDiplomTextBox.LostFocus += new EventHandler(this.SpecialtyLostFocus);
+
+            SerialTextBox.GotFocus += new EventHandler(this.TextGotFocus);
+            SerialTextBox.LostFocus += new EventHandler(this.SerialLostFocus);
+
+            NumberTextBox.GotFocus += new EventHandler(this.TextGotFocus);
+            NumberTextBox.LostFocus += new EventHandler(this.NumberLostFocus);
+
+            PasportDataTextBox.GotFocus += new EventHandler(this.TextGotFocus);
+            PasportDataTextBox.LostFocus += new EventHandler(this.PasportDataLostFocus);
+
+            SurnameTextBox.GotFocus += new EventHandler(this.TextGotFocus);
+            SurnameTextBox.LostFocus += new EventHandler(this.SurnameDataLostFocus);
+
+            NameTextBox.GotFocus += new EventHandler(this.TextGotFocus);
+            NameTextBox.LostFocus += new EventHandler(this.NameLostFocus);
+
+            MiddleNameTextBox.GotFocus += new EventHandler(this.TextGotFocus);
+            MiddleNameTextBox.LostFocus += new EventHandler(this.MiddleNameLostFocus);
+
+            RegistrationTextBox.GotFocus += new EventHandler(this.TextGotFocus);
+            RegistrationTextBox.LostFocus += new EventHandler(this.RegistrationLostFocus);
+
+            Rate.GotFocus += new EventHandler(this.TextGotFocus);
+            Rate.LostFocus += new EventHandler(this.RateLostFocus);
+            
+
+
             //Заполняем все ComboBox'ы
             CairComboBox.DataSource = Data.Teachers.getSecondNameCairs().Tables[0];
             CairComboBox.DisplayMember = "second_name";
@@ -358,6 +507,11 @@ namespace PGUTI
                 CairComboBox.Visible = true;
                 FacultiesComboBox.Visible = false;
             }
+        }
+
+        private void EducationalInstitutionTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

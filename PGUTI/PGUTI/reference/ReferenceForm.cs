@@ -122,7 +122,7 @@ namespace PGUTI
 
             for (int i = 1; i < GridView1.CurrentRow.Cells.Count; i++)
             {
-                sb.Append(",");
+                sb.Append(", ");
                 sb.Append(GridView1.CurrentRow.Cells[i].Value.ToString());
             }
             if (MessageBox.Show(sb.ToString(), "Удалить?", MessageBoxButtons.OKCancel, MessageBoxIcon.Stop) == DialogResult.OK)
