@@ -29,7 +29,7 @@ namespace PGUTI
             this.edit = edit;
             InitializeComponent();
         }
-
+        #region plaseholders
         //private string copyText = "";
         public void TextGotFocus(object sender , EventArgs e)
         {
@@ -143,7 +143,7 @@ namespace PGUTI
                 tb.ForeColor = Color.DimGray;
             }
         }
-
+        #endregion
         private void editForm_Load(object sender, EventArgs e)
         {
             TelephoneTextBox.GotFocus += new EventHandler(this.TextGotFocus);
@@ -275,19 +275,22 @@ namespace PGUTI
                 TotalExperienceDateTimePicker.Value = (DateTime)person.Tables[0].Rows[0].ItemArray[24];
 
                 TrainingDatesTimePicker.Value = (DateTime)person.Tables[0].Rows[0].ItemArray[27];
+
+                if (person.Tables[0].Rows[0].ItemArray[28].ToString() != "")
+                    education_dateTimePicker1.Value = (DateTime)person.Tables[0].Rows[0].ItemArray[28];
             }
 
         }
 
         private void ChangeButton_Click(object sender, EventArgs e)
         {
-            if (Correct())//Проверяем корректность введённых данных
-            {
+            //if (Correct())//Проверяем корректность введённых данных
+            //{
                 if (edit) updatePerson();//Метод редактирования
                 else insertPerson();//Метод добавления в базу
                 this.Close();//Закрываем форму
-            }
-            else { MessageBox.Show("Не все поля заполнены правильно"); }
+            //}
+            //else { MessageBox.Show("Не все поля заполнены правильно"); }
         }
 
         private static string[] rates;string rate;//Переменные ставок
@@ -300,18 +303,17 @@ namespace PGUTI
             SplitAndCheck();//Метод для коррекции введённого значения ставки и даты
             if (DekanСheckBox.Checked)//Если добавляем декана
             {
-                head = "id,surname,name,middlename,gender,birthday,passport_serial,passport_number,passport_gives,passport_create,registration,telephone,educational_institution,specialty_of_diplom,titles_id,titles_date,degrees_id,degress_date,terms_of_work,competitive_selection_start_date,competitive_selection_end_date,rate,experience_date,Training_dates,total_experience_date,Dekan_Faculties";
+                head = "id,surname,name,middlename,gender,birthday,passport_serial,passport_number,passport_gives,passport_create,registration,telephone,educational_institution,specialty_of_diplom,titles_id,titles_date,degrees_id,degress_date,terms_of_work,competitive_selection_start_date,competitive_selection_end_date,rate,experience_date,Training_dates,total_experience_date,Dekan_Faculties,education_date";
                 result = "INSERT INTO dbo.Teachers (" + head + ") values " + getValuesInsertPersonDekan();
             }
             else//Иначе
             {
-                head = "id,Cairs,Job_title,surname,name,middlename,gender,birthday,passport_serial,passport_number,passport_gives,passport_create,registration,telephone,educational_institution,specialty_of_diplom,titles_id,titles_date,degrees_id,degress_date,terms_of_work,competitive_selection_start_date,competitive_selection_end_date,rate,experience_date,Training_dates,total_experience_date";
+                head = "id,Cairs,Job_title,surname,name,middlename,gender,birthday,passport_serial,passport_number,passport_gives,passport_create,registration,telephone,educational_institution,specialty_of_diplom,titles_id,titles_date,degrees_id,degress_date,terms_of_work,competitive_selection_start_date,competitive_selection_end_date,rate,experience_date,Training_dates,total_experience_date,education_date";
                 //Строка запроса
                     result = "INSERT INTO dbo.Teachers (" + head + ") values " + getValuesInsertPerson();
-                //textBox1.Text = result;
             }
             Data.Teachers.InsertTeachers(result.ToString());//Метод для вставки записей в таблицу Teachers
-            recordAdd(id);//Метод добавления в таблицу Records
+            //recordAdd(id);//Метод добавления в таблицу Records
         }
         private void updatePerson()
         {
@@ -322,12 +324,11 @@ namespace PGUTI
                 result = "UPDATE dbo.Teachers SET " + getValuesUpdatePersonDekan() + " where id = " + id;
             }else
             result = "UPDATE dbo.Teachers SET " + getValuesUpdatePerson() + " where id = " + id;
-            //textBox1.Text = result;
             Data.Teachers.InsertTeachers(result.ToString());//Метод для вставки записей в таблицу Teachers
-            if (AcceptedComboBox.SelectedIndex == 2)
-                recordDel();
-            else
-                recordAdd(id);//Метод добавления в таблицу Records
+            //if (AcceptedComboBox.SelectedIndex == 2)
+            //    recordDel();
+            //else
+            //    recordAdd(id);//Метод добавления в таблицу Records
         }
         private void SplitAndCheck()//Метод для коррекции введённого значения ставки и даты
         {
@@ -370,7 +371,8 @@ namespace PGUTI
                 + "',rate=" + rate
                 + ",experience_date='" + ExperienceDate.Value.Date
                 + "',Training_dates='" + TrainingDatesTimePicker.Value.Date
-                + "',total_experience_date='" + TotalExperienceDateTimePicker.Value.Date + "'";
+                + "',total_experience_date='" + TotalExperienceDateTimePicker.Value.Date
+                + "',education_date='" + education_dateTimePicker1.Value.Date + "'";
         }
         //Метод редактирования декана
         private string getValuesUpdatePersonDekan()
@@ -400,6 +402,7 @@ namespace PGUTI
                 + ",experience_date='" + ExperienceDate.Value.Date
                 + "',Training_dates='" + TrainingDatesTimePicker.Value.Date
                 + "',total_experience_date='" + TotalExperienceDateTimePicker.Value.Date
+                + "',education_date='" + education_dateTimePicker1.Value.Date
                 + "',Dekan_Faculties=" + (FacultiesComboBox.SelectedIndex+1);
         }
         //Метод добавления декана
@@ -431,7 +434,8 @@ namespace PGUTI
                 + ",'" + ExperienceDate.Value.Date
                 + "','" + TrainingDatesTimePicker.Value.Date
                 + "','" + TotalExperienceDateTimePicker.Value.Date
-                + "'," + (FacultiesComboBox.SelectedIndex + 1) + ")";
+                + "'," + (FacultiesComboBox.SelectedIndex + 1) + "','" +
+                education_dateTimePicker1.Value.Date + "')";
             return val;
 
         }
@@ -465,7 +469,8 @@ namespace PGUTI
                 + "'," + rate
                 + ",'" + ExperienceDate.Value.Date + "','" +
                 TrainingDatesTimePicker.Value.Date + "','" +
-                TotalExperienceDateTimePicker.Value.Date + "')";
+                TotalExperienceDateTimePicker.Value.Date + "','" +
+                education_dateTimePicker1.Value.Date+ "')";
         }
 
         private bool Correct()//Метод проверки корректности введённых сначений
@@ -510,6 +515,11 @@ namespace PGUTI
         }
 
         private void EducationalInstitutionTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void education_dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
 
         }
