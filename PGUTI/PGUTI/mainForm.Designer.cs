@@ -43,6 +43,7 @@
             this.PPCaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DekansbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ChairsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.справочникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.FacultyGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -82,6 +83,7 @@
             this.FacultyGridView1.Location = new System.Drawing.Point(0, 31);
             this.FacultyGridView1.Name = "FacultyGridView1";
             this.FacultyGridView1.ReadOnly = true;
+            this.FacultyGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.FacultyGridView1.Size = new System.Drawing.Size(754, 304);
             this.FacultyGridView1.TabIndex = 5;
             this.FacultyGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.FacultyGridView1_CellContentClick);
@@ -108,6 +110,7 @@
             this.добавитьToolStripMenuItem,
             this.изменитьToolStripMenuItem,
             this.таблицыОтчётаToolStripMenuItem,
+            this.справочникиToolStripMenuItem,
             this.печатьToolStripMenuItem});
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -179,6 +182,13 @@
             this.ChairsToolStripMenuItem.Text = "Кафедры";
             this.ChairsToolStripMenuItem.Click += new System.EventHandler(this.кафедрыToolStripMenuItem_Click);
             // 
+            // справочникиToolStripMenuItem
+            // 
+            this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
+            this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.справочникиToolStripMenuItem.Text = "Справочники";
+            this.справочникиToolStripMenuItem.Click += new System.EventHandler(this.справочникиToolStripMenuItem_Click);
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -216,6 +226,7 @@
         private System.Windows.Forms.ToolStripMenuItem PPCaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DekansbToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ChairsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem справочникиToolStripMenuItem;
     }
 }
 

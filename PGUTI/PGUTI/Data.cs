@@ -52,7 +52,157 @@ namespace PGUTI
 
 
 
+        //Справочники
+        public static class Reference
+        {
+            //Faculties
+            public static DataSet getFaculties()
+            {
+                string result = "SELECT  id,name as 'Полное название',second_name as 'Сокращённое название'  FROM [PGUTI_faculty].[dbo].[Faculties]";
+                return NDataAccess.DataAccess.GetDataSet(@result, "Faculties", connectionString);
+            }
+            public static DataSet getFaculties(int id)
+            {
+                string result = "SELECT  id,name as 'Полное название',second_name as 'Сокращённое название'   FROM [PGUTI_faculty].[dbo].[Faculties] where id=" + id;
+                return NDataAccess.DataAccess.GetDataSet(@result, "Faculties", connectionString);
+            }
+            public static void editFaculties(int id, string name, string secondName)
+            {
+                string result = "UPDATE [PGUTI_faculty].[dbo].[Faculties] SET name='" + name + "' , second_name='"+secondName+"' where id=" + id;
+                //return NDataAccess.DataAccess.GetDataSet(@result, "Faculties", connectionString);
+                NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
+            }
+            public static void addFaculties(int id, string name, string secondName)
+            {
+                string result = "INSERT INTO [PGUTI_faculty].[dbo].[Faculties] (id,name,second_name) VALUES ((select max(id)+1 from [PGUTI_faculty].[dbo].[Faculties]),'" + name + "','" + secondName + "') ";
+                NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
+            }
+            public static void dellFaculties(int id)
+            {
+                string result = "DELETE FROM [dbo].[Faculties] where id=" + id;
+                NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
+            }
 
+
+            //Cairs
+            public static DataSet getCairs()
+            {
+                string result = "SELECT id,name as 'Полное название',second_name as 'Сокращённое название'  FROM [PGUTI_faculty].[dbo].[Cairs]";
+                return NDataAccess.DataAccess.GetDataSet(@result, "Cairs", connectionString);
+            }
+            public static DataSet getCairs(int id)
+            {
+                string result = "SELECT  id,name as 'Полное название',second_name as 'Сокращённое название'   FROM [PGUTI_faculty].[dbo].[Cairs] where id=" + id;
+                return NDataAccess.DataAccess.GetDataSet(@result, "Cairs", connectionString);
+            }
+            public static void editCair(int id, string name, string secondName)
+            {
+                string result = "UPDATE [PGUTI_faculty].[dbo].[Cairs] SET name='" + name + "' , second_name='" + secondName + "' where id=" + id;
+                //return NDataAccess.DataAccess.GetDataSet(@result, "Cairs", connectionString);
+                NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
+            }
+            public static void addCair(int id, string name, string secondName)
+            {
+                string result = "INSERT INTO [PGUTI_faculty].[dbo].[Cairs] (id,name,second_name) VALUES ((select max(id)+1 from [PGUTI_faculty].[dbo].[Cairs]),'" + name + "','" + secondName + "') ";
+                NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
+            }
+            public static void dellCairs(int id)
+            {
+                string result = "DELETE FROM [dbo].[Cairs] where id=" + id;
+                NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
+            }
+
+            //Degrees
+            public static DataSet getDegrees()
+            {
+                string result = "SELECT  id,name as 'Полное название',second_name as 'Сокращённое название'   FROM [PGUTI_faculty].[dbo].[Degrees]";
+                return NDataAccess.DataAccess.GetDataSet(@result, "Degrees", connectionString);
+            }
+            public static DataSet getDegrees(int id)
+            {
+                string result = "SELECT  id,name as 'Полное название',second_name as 'Сокращённое название'   FROM [PGUTI_faculty].[dbo].[Degrees] where id=" + id;
+                return NDataAccess.DataAccess.GetDataSet(@result, "Degrees", connectionString);
+            }
+            public static void editDegrees(int id, string name, string secondName)
+            {
+                string result = "UPDATE [PGUTI_faculty].[dbo].[Degrees] SET name='" + name + "' , second_name='" + secondName + "' where id=" + id;
+                //return NDataAccess.DataAccess.GetDataSet(@result, "Degrees", connectionString);
+                NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
+            }
+            public static void addDegrees(int id, string name, string secondName)
+            {
+                string result = "INSERT INTO [PGUTI_faculty].[dbo].[Degrees] (id,name,second_name) VALUES ((select max(id)+1 from [PGUTI_faculty].[dbo].[Degrees]),'" + name + "','" + secondName + "') ";
+                NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
+            }
+            public static void dellDegrees(int id)
+            {
+                string result = "DELETE FROM [dbo].[Degrees] where id=" + id;
+                NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
+            }
+
+
+            //Titles
+            public static DataSet getTitles()
+            {
+                string result = "SELECT  id,name as 'Звание'  FROM [PGUTI_faculty].[dbo].[Titles]";
+                return NDataAccess.DataAccess.GetDataSet(@result, "Titles", connectionString);
+            }
+            public static DataSet getTitles(int id)
+            {
+                string result = "SELECT  id,name as 'Звание'   FROM [PGUTI_faculty].[dbo].[Titles] where id=" + id;
+                return NDataAccess.DataAccess.GetDataSet(@result, "Titles", connectionString);
+            }
+            public static void editTitles(int id, string name)
+            {
+                string result = "UPDATE [PGUTI_faculty].[dbo].[Titles] SET name='" + name + "' where id=" + id;
+                //return NDataAccess.DataAccess.GetDataSet(@result, "Titles", connectionString);
+                NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
+            }
+            public static void addTitles(int id, string name)
+            {
+                string result = "INSERT INTO [PGUTI_faculty].[dbo].[Titles] (id,name) VALUES ((select max(id)+1 from [PGUTI_faculty].[dbo].[Titles]),'" + name + "') ";
+                NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
+            }
+            public static void dellTitles(int id)
+            {
+                string result = "DELETE FROM [dbo].[Titles] where id=" + id;
+                NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
+            }
+
+
+            //WorkingPositions
+            public static DataSet getWorkingPositions()
+            {
+                string result = "SELECT  id,name as 'Должность'   FROM [PGUTI_faculty].[dbo].[Working_positions]";
+                return NDataAccess.DataAccess.GetDataSet(@result, "WorkingPositions", connectionString);
+            }
+            public static DataSet getWorkingPositions(int id)
+            {
+                string result = "SELECT  id,name as 'Должность'   FROM [PGUTI_faculty].[dbo].[Working_positions] where id=" + id;
+                return NDataAccess.DataAccess.GetDataSet(@result, "WorkingPositions", connectionString);
+            }
+            public static void editWorkingPositions(int id, string name)
+            {
+                string result = "UPDATE [PGUTI_faculty].[dbo].[Working_positions] SET name='" + name + "' where id=" + id;
+                //return NDataAccess.DataAccess.GetDataSet(@result, "Working_positions", connectionString);
+                NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
+            }
+            public static void addWorkingPositions(int id, string name)
+            {
+                string result = "INSERT INTO [PGUTI_faculty].[dbo].[Working_positions] (id,name) VALUES ((select max(id)+1 from [PGUTI_faculty].[dbo].[Working_positions]),'" + name + "') ";
+                NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
+            }
+            public static void dellWorkingPositions(int id)
+            {
+                string result = "DELETE FROM [dbo].[Working_positions] where id="+id;
+                NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
+            }
+
+            //public static void Add(string result)
+            //{
+            //    NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
+            //}
+        }
 
 
         //ШТАТ

@@ -46,3 +46,5 @@ E:\googledrive\Универ\Диплом\PGUTI\PGUTI\bin\Release\PGUTI.exe.confi
 E:\googledrive\Универ\Диплом\PGUTI\PGUTI\bin\Release\PGUTI.exe
 E:\googledrive\Универ\Диплом\PGUTI\PGUTI\bin\Release\PGUTI.pdb
 E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.pdb
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.ReferenceForm.resources
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.reference.EditReferenceForm.resources

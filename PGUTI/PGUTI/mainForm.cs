@@ -242,10 +242,19 @@ namespace PGUTI
             UpdateFacultyGridView();//Обновляем таблицу
         }
 
+        private void справочникиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (ReferenceForm form = new ReferenceForm())//using автоматически отчистить таблицу из памяти 
+            {
+                form.ShowDialog();
+            }
+        }
+
         private void FacultyGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
+
 
     }
 }
