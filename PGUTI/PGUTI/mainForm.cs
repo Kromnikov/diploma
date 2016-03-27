@@ -255,6 +255,27 @@ namespace PGUTI
 
         }
 
+        private void FacultyGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                bool dekan = false;
+                if (DekansbToolStripMenuItem.Checked) dekan = true;//Если выбран декан , то будем менять декана
+                //using для того чтобы объект формы сам уничтожился после закрытия
+                //В конструкторе передаём true(bool переменная котороя означает кнопку редактирования) и строку запроса из базы (select * from faculty) 
+                using (EditForm editform = new EditForm(true, Data.EditForm.getTeachers(int.Parse(FacultyGridView1.CurrentRow.Cells[0].Value.ToString())), dekan))
+                {
+                    editform.Closing += (sender_1, e_1) =>//Передаём объект события
+                    {
+                        UpdateFacultyGridView();//обнавляем после закрытия
+                    };
+                    editform.ShowDialog();
+                }
+            }
+            catch (Exception err) { MessageBox.Show("Выберите сотрудника", "Сотрудник не выбран", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+
+        }
+
 
     }
 }

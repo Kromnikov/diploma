@@ -38,12 +38,12 @@
             this.добавитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.изменитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.таблицыОтчётаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.справочникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.печатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.PPCaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DekansbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ChairsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.справочникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.FacultyGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -87,6 +87,7 @@
             this.FacultyGridView1.Size = new System.Drawing.Size(754, 304);
             this.FacultyGridView1.TabIndex = 5;
             this.FacultyGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.FacultyGridView1_CellContentClick);
+            this.FacultyGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.FacultyGridView1_CellDoubleClick);
             // 
             // printDocument1
             // 
@@ -139,6 +140,13 @@
             this.таблицыОтчётаToolStripMenuItem.Text = "Таблицы отчёта";
             this.таблицыОтчётаToolStripMenuItem.Click += new System.EventHandler(this.таблицыОтчётаToolStripMenuItem_Click);
             // 
+            // справочникиToolStripMenuItem
+            // 
+            this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
+            this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.справочникиToolStripMenuItem.Text = "Справочники";
+            this.справочникиToolStripMenuItem.Click += new System.EventHandler(this.справочникиToolStripMenuItem_Click);
+            // 
             // печатьToolStripMenuItem
             // 
             this.печатьToolStripMenuItem.Name = "печатьToolStripMenuItem";
@@ -181,13 +189,6 @@
             this.ChairsToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.ChairsToolStripMenuItem.Text = "Кафедры";
             this.ChairsToolStripMenuItem.Click += new System.EventHandler(this.кафедрыToolStripMenuItem_Click);
-            // 
-            // справочникиToolStripMenuItem
-            // 
-            this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
-            this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.справочникиToolStripMenuItem.Text = "Справочники";
-            this.справочникиToolStripMenuItem.Click += new System.EventHandler(this.справочникиToolStripMenuItem_Click);
             // 
             // mainForm
             // 

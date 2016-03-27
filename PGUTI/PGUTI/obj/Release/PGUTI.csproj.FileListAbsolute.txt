@@ -48,3 +48,17 @@ E:\googledrive\Универ\Диплом\PGUTI\PGUTI\bin\Release\PGUTI.pdb
 E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.pdb
 E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.ReferenceForm.resources
 E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.reference.EditReferenceForm.resources
+C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\bin\Release\PGUTI.exe.config
+C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\bin\Release\PGUTI.exe
+C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\bin\Release\PGUTI.pdb
+C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.csprojResolveAssemblyReference.cache
+C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.csproj.ResolveComReference.cache
+C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.EditForm.resources
+C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.mainForm.resources
+C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.Properties.Resources.resources
+C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.reference.EditReferenceForm.resources
+C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.ReferenceForm.resources
+C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.ReportsForm.resources
+C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.csproj.GenerateResource.Cache
+C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.exe
+C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.pdb

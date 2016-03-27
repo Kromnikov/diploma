@@ -458,7 +458,7 @@ namespace PGUTI
             }
             public static DataSet GetDataTeachers(int id)
             {
-                string result = "select id,Cairs,Job_title,surname,name,middlename,titles_id,titles_date,degrees_id,degress_date,terms_of_work,rate,experience_date,Dekan_Faculties from Teachers where id = " + id;
+                string result = "select id,Cairs,Job_title,surname,name,middlename,titles_id,titles_date,degrees_id,degress_date,terms_of_work,rate,experience_date,Dekan_Faculties,education_date from Teachers where id = " + id ;
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
         }
@@ -513,19 +513,19 @@ namespace PGUTI
             public static DataSet getCair(int cair)
             {
                 //string result = "select f.id,w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,birthday as 'Дата рождения',telephone as Телефон,d.name as 'ученое звание',titles_date as 'Дата получения ученого звания',a.second_name as 'ученая степень',degress_date as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.' from Teachers as f , Working_positions as w,Titles as d,Degrees as a  where f.Job_title = w.id and f.titles_id=d.id and f.degrees_id = a.id and Cairs =" + cair;
-                string result = "select f.id,w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,convert(VARCHAR(10),birthday,105) as 'Дата рождения',d.name as 'ученое звание',convert(VARCHAR(10),titles_date,105) as 'Дата получения ученого звания',a.second_name as 'ученая степень',convert(VARCHAR(10),degress_date,105) as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.' from Teachers as f  left join  Working_positions as w on w.id=f.Job_title  left join  Titles as d on d.id = f.titles_id  left join  Degrees as a on a.id = f.degrees_id  where Cairs =" + cair;
+                string result = "select f.id,w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,convert(VARCHAR(10),birthday,105) as 'Дата рождения',d.name as 'ученое звание',convert(VARCHAR(10),titles_date,105) as 'Дата получения ученого звания',a.second_name as 'ученая степень',convert(VARCHAR(10),degress_date,105) as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.' from Teachers as f  left join  Working_positions as w on w.id=f.Job_title  left join  Titles as d on d.id = f.titles_id  left join  Degrees as a on a.id = f.degrees_id  where Cairs =" + cair + " and f.enable > 0";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
             public static DataSet getTeachers()//Главная таблица
             {
                 //string result = "select f.id,c.name as Кафедра,w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,gender as Пол,birthday as 'Дата рождения',passport_serial as 'Серия паспорта',passport_number as 'Номер паспорта',passport_gives as 'Кем выдан',passport_create as 'Когда выдан',registration as 'Прописка',telephone as Телефон,educational_institution as 'Образовательное учреждение',specialty_of_diplom as 'Специальность по диплому',d.name as 'ученое звание',degress_date as 'Дата получения ученого звания',a.second_name as 'ученая степень',titles_date as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.',competitive_selection_start_date as 'Начало кон. отб',competitive_selection_end_date as 'Окончание кон. отб.',Training_dates as 'Повышения квалификации',rate as 'Ставка',total_experience_date as 'Стаж',experience_date as 'Дата, педагогический стаж' from Teachers as f , cairs as c, Working_positions as w,Titles as d,Degrees as a where f.cairs = c.id and f.Job_title = w.id and f.titles_id=d.id and f.degrees_id = a.id";
-                string result = "select f.id,c.name as Кафедра,w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,gender as Пол,convert(VARCHAR(10),birthday,105) as 'Дата рождения',passport_serial as 'Серия паспорта',passport_number as 'Номер паспорта',passport_gives as 'Кем выдан',convert(VARCHAR(10),passport_create,105) as 'Когда выдан',registration as 'Прописка',telephone as Телефон,educational_institution as 'Образовательное учреждение',specialty_of_diplom as 'Специальность по диплому', d.name as 'ученое звание',convert(VARCHAR(10),titles_date,105) as 'Дата получения ученого звания',a.second_name as 'ученая степень',convert(VARCHAR(10),degress_date,105) as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.',convert(VARCHAR(10),competitive_selection_start_date,105) as 'Начало кон. отб',convert(VARCHAR(10),competitive_selection_end_date,105) as 'Окончание кон. отб.',convert(VARCHAR(10),Training_dates,105) as 'Повышения квалификации',rate as 'Ставка',convert(VARCHAR(10),total_experience_date,105) as 'Стаж',convert(VARCHAR(10),experience_date,105) as 'Дата, педагогический стаж' ,convert(VARCHAR(10),education_date,105) as 'Дата трудоустройства' from Teachers as f left join cairs as c on c.id=f.Cairs left join  Working_positions as w on w.id=f.Job_title left join Titles as d on d.id=f.titles_id left join Degrees as a on a.id = f.degrees_id where f.Cairs is not null ";
+                string result = "select f.id,c.name as Кафедра,w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,gender as Пол,convert(VARCHAR(10),birthday,105) as 'Дата рождения',passport_serial as 'Серия паспорта',passport_number as 'Номер паспорта',passport_gives as 'Кем выдан',convert(VARCHAR(10),passport_create,105) as 'Когда выдан',registration as 'Прописка',telephone as Телефон,educational_institution as 'Образовательное учреждение',specialty_of_diplom as 'Специальность по диплому', d.name as 'ученое звание',convert(VARCHAR(10),titles_date,105) as 'Дата получения ученого звания',a.second_name as 'ученая степень',convert(VARCHAR(10),degress_date,105) as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.',convert(VARCHAR(10),competitive_selection_start_date,105) as 'Начало кон. отб',convert(VARCHAR(10),competitive_selection_end_date,105) as 'Окончание кон. отб.',convert(VARCHAR(10),Training_dates,105) as 'Повышения квалификации',rate as 'Ставка',convert(VARCHAR(10),total_experience_date,105) as 'Стаж',convert(VARCHAR(10),experience_date,105) as 'Дата, педагогический стаж' ,convert(VARCHAR(10),education_date,105) as 'Дата трудоустройства' from Teachers as f left join cairs as c on c.id=f.Cairs left join  Working_positions as w on w.id=f.Job_title left join Titles as d on d.id=f.titles_id left join Degrees as a on a.id = f.degrees_id where f.Cairs is not null and f.enable > 0";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
             public static DataSet getTeachersDekans()//Главная таблица
             {
                 //string result = "select f.id,dek.second_name as Факультет,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,gender as Пол,birthday as 'Дата рождения',passport_serial as 'Серия паспорта',passport_number as 'Номер паспорта',passport_gives as 'Кем выдан',passport_create as 'Когда выдан',registration as 'Прописка',telephone as Телефон,educational_institution as 'Образовательное учреждение',specialty_of_diplom as 'Специальность по диплому',d.name as 'ученое звание',degress_date as 'Дата получения ученого звания',a.second_name as 'ученая степень',convert(VARCHAR(10),titles_date,105) as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.',competitive_selection_start_date as 'Начало кон. отб',competitive_selection_end_date as 'Окончание кон. отб.',Training_dates as 'Повышения квалификации',rate as 'Ставка',total_experience_date as 'Стаж',experience_date as 'Дата, педагогический стаж' from Teachers as f , Faculties as dek,Titles as d,Degrees as a where f.Dekan_Faculties = dek.id  and f.titles_id=d.id and f.degrees_id = a.id";
-                string result = "select f.id,dek.second_name as Факультет,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,gender as Пол,convert(VARCHAR(10),birthday,105) as 'Дата рождения',passport_serial as 'Серия паспорта',passport_number as 'Номер паспорта',passport_gives as 'Кем выдан',convert(VARCHAR(10),passport_create,105) as 'Когда выдан',registration as 'Прописка',telephone as Телефон,educational_institution as 'Образовательное учреждение',specialty_of_diplom as 'Специальность по диплому',d.name as 'ученое звание',convert(VARCHAR(10),titles_date,105) as 'Дата получения ученого звания',a.second_name as 'ученая степень',convert(VARCHAR(10),degress_date,105) as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.',convert(VARCHAR(10),competitive_selection_start_date,105) as 'Начало кон. отб',convert(VARCHAR(10),competitive_selection_end_date,105) as 'Окончание кон. отб.',convert(VARCHAR(10),Training_dates,105) as 'Повышения квалификации',rate as 'Ставка',convert(VARCHAR(10),total_experience_date,105) as 'Стаж',convert(VARCHAR(10),experience_date,105) as 'Дата, педагогический стаж' from Teachers as f  left join dbo.Faculties as dek on dek.id = f.Dekan_Faculties left join Titles as d on d.id=f.titles_id left join Degrees as a on a.id = f.degrees_id where f.Cairs is null";
+                string result = "select f.id,dek.second_name as Факультет,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,gender as Пол,convert(VARCHAR(10),birthday,105) as 'Дата рождения',passport_serial as 'Серия паспорта',passport_number as 'Номер паспорта',passport_gives as 'Кем выдан',convert(VARCHAR(10),passport_create,105) as 'Когда выдан',registration as 'Прописка',telephone as Телефон,educational_institution as 'Образовательное учреждение',specialty_of_diplom as 'Специальность по диплому',d.name as 'ученое звание',convert(VARCHAR(10),titles_date,105) as 'Дата получения ученого звания',a.second_name as 'ученая степень',convert(VARCHAR(10),degress_date,105) as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.',convert(VARCHAR(10),competitive_selection_start_date,105) as 'Начало кон. отб',convert(VARCHAR(10),competitive_selection_end_date,105) as 'Окончание кон. отб.',convert(VARCHAR(10),Training_dates,105) as 'Повышения квалификации',rate as 'Ставка',convert(VARCHAR(10),total_experience_date,105) as 'Стаж',convert(VARCHAR(10),experience_date,105) as 'Дата, педагогический стаж' from Teachers as f  left join dbo.Faculties as dek on dek.id = f.Dekan_Faculties left join Titles as d on d.id=f.titles_id left join Degrees as a on a.id = f.degrees_id where f.Cairs is null and f.enable > 0";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
             //public static DataSet getTeachersEdit()//Главная таблица
@@ -559,6 +559,29 @@ namespace PGUTI
                 if(result=="")result= "0";
                 return (result);
             }
+            public static void insertPerson(string values)//Добавление преподователя
+            {
+                string head = "id,Cairs,Job_title,surname,name,middlename,gender,birthday,passport_serial,passport_number,passport_gives,passport_create,registration,telephone,educational_institution,specialty_of_diplom,titles_id,titles_date,degrees_id,degress_date,terms_of_work,competitive_selection_start_date,competitive_selection_end_date,rate,experience_date,Training_dates,total_experience_date,education_date,enable";
+                string result = "INSERT INTO dbo.Teachers (" + head + ") values " + values;
+                NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
+            }
+            public static void updatePerson(string values, int id)//Добавление преподователя
+            {
+                string result = "UPDATE dbo.Teachers SET " + values + " where id = " + id;
+                NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
+            }
+            public static void insertDecan(string values)//Добавление преподователя
+            {
+                string head = "id,surname,name,middlename,gender,birthday,passport_serial,passport_number,passport_gives,passport_create,registration,telephone,educational_institution,specialty_of_diplom,titles_id,titles_date,degrees_id,degress_date,terms_of_work,competitive_selection_start_date,competitive_selection_end_date,rate,experience_date,Training_dates,total_experience_date,Dekan_Faculties,education_date,enable";
+                string result = "INSERT INTO dbo.Teachers (" + head + ") values " + values;
+                NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
+            }
+            public static void updateDecan(string values,int id)//Добавление преподователя
+            {
+                string result = "UPDATE dbo.Teachers SET " + values + " where id = " + id;
+                NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
+            }
+
             public static void InsertTeachers(string result)//Добавление преподователя
             {
                 NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
@@ -572,6 +595,10 @@ namespace PGUTI
                 string result = "select id from dbo.Cairs where second_name = '" + cair + "'";
                 ds = NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
                 return int.Parse(ds.Tables[0].Rows[0].ItemArray[0].ToString());
+            }
+            public static void disableRow(int id)//Удалим преподавателя(строку)
+            {
+                NDataAccess.DataAccess.ExecuteNonQuery2("UPDATE dbo.Teachers SET enable = 0 where id = " + id, connectionString);
             }
             public static void dellRow(int id)//Удалим преподавателя(строку)
             {

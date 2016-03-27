@@ -43,6 +43,7 @@
             this.AcceptedComboBox = new System.Windows.Forms.ComboBox();
             this.TermWorksComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.education_dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.EducationalInstitutionTextBox = new System.Windows.Forms.TextBox();
             this.SpecialtyDiplomTextBox = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -67,7 +68,6 @@
             this.NumberTextBox = new System.Windows.Forms.TextBox();
             this.SerialTextBox = new System.Windows.Forms.TextBox();
             this.DekanСheckBox = new System.Windows.Forms.CheckBox();
-            this.education_dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -229,6 +229,14 @@
             this.groupBox3.TabIndex = 24;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Образование";
+            // 
+            // education_dateTimePicker1
+            // 
+            this.education_dateTimePicker1.Location = new System.Drawing.Point(6, 71);
+            this.education_dateTimePicker1.Name = "education_dateTimePicker1";
+            this.education_dateTimePicker1.Size = new System.Drawing.Size(124, 20);
+            this.education_dateTimePicker1.TabIndex = 13;
+            this.education_dateTimePicker1.ValueChanged += new System.EventHandler(this.education_dateTimePicker1_ValueChanged);
             // 
             // EducationalInstitutionTextBox
             // 
@@ -476,19 +484,11 @@
             this.DekanСheckBox.UseVisualStyleBackColor = true;
             this.DekanСheckBox.CheckedChanged += new System.EventHandler(this.DekanСheckBox_CheckedChanged);
             // 
-            // education_dateTimePicker1
-            // 
-            this.education_dateTimePicker1.Location = new System.Drawing.Point(6, 71);
-            this.education_dateTimePicker1.Name = "education_dateTimePicker1";
-            this.education_dateTimePicker1.Size = new System.Drawing.Size(124, 20);
-            this.education_dateTimePicker1.TabIndex = 13;
-            this.education_dateTimePicker1.ValueChanged += new System.EventHandler(this.education_dateTimePicker1_ValueChanged);
-            // 
             // EditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(651, 384);
+            this.ClientSize = new System.Drawing.Size(651, 385);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.DekanСheckBox);
             this.Controls.Add(this.groupBox9);
