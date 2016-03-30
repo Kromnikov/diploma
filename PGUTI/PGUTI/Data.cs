@@ -19,9 +19,9 @@ namespace PGUTI
         
         //private static Hashtable ht = new Hashtable();
 
-        private static string ReverseDateTime(DateTime date)
+        public static string ReverseDateTime(DateTime date)
         {
-            return date.ToString("yyyy.MM.dd");
+            return date.ToString("yyyy.MM.dd hh:mm:ss");
         }
 
         private static string[] getPreviusDate()//Получаем предыдущий учебный год

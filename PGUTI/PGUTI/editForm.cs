@@ -347,11 +347,11 @@ namespace PGUTI
                 + "',name='" + NameTextBox.Text
                 + "',middlename='" + MiddleNameTextBox.Text
                 + "',gender='" + GenderComboBox.Text
-                + "',birthday='" + birthdayTimePicker.Value.Date
+                + "',birthday='" + Data.ReverseDateTime(birthdayTimePicker.Value.Date)
                 + "',passport_serial=" + SerialTextBox.Text
                 + ",passport_number=" + NumberTextBox.Text
                 + ",passport_gives='" + PasportDataTextBox.Text
-                + "',passport_create='" + PasportDateTimePicker.Value.Date
+                + "',passport_create='" + Data.ReverseDateTime(PasportDateTimePicker.Value.Date)
                 + "',registration='" + RegistrationTextBox.Text
                 + "',telephone='" + TelephoneTextBox.Text
                 + "',educational_institution='" + EducationalInstitutionTextBox.Text
@@ -361,13 +361,13 @@ namespace PGUTI
                 + ",degrees_id=" + (AcademicTitleComboBox.SelectedIndex + 1)
                 + ",degress_date=" + degressDate
                 + ",terms_of_work='" + TermWorksComboBox.Text + "-" + Rate.Text + "-" + AcceptedComboBox.Text + "(" + ExperienceDate.Value.Day + "." + ExperienceDate.Value.Month + "." + ExperienceDate.Value.Year + ")"
-                + "',competitive_selection_start_date='" + CompetitiveSelectionStartDate.Value.Date
-                + "',competitive_selection_end_date='" + CompetitiveSelectionEndDate.Value.Date
+                + "',competitive_selection_start_date='" + Data.ReverseDateTime(CompetitiveSelectionStartDate.Value.Date)
+                + "',competitive_selection_end_date='" + Data.ReverseDateTime(CompetitiveSelectionEndDate.Value.Date)
                 + "',rate=" + rate
-                + ",experience_date='" + ExperienceDate.Value.Date
-                + "',Training_dates='" + TrainingDatesTimePicker.Value.Date
-                + "',total_experience_date='" + TotalExperienceDateTimePicker.Value.Date
-                + "',education_date='" + education_dateTimePicker1.Value.Date + "'";
+                + ",experience_date='" + Data.ReverseDateTime(ExperienceDate.Value.Date)
+                + "',Training_dates='" + Data.ReverseDateTime(TrainingDatesTimePicker.Value.Date)
+                + "',total_experience_date='" + Data.ReverseDateTime(TotalExperienceDateTimePicker.Value.Date)
+                + "',education_date='" + Data.ReverseDateTime(education_dateTimePicker1.Value.Date) + "'";
         }
         //Метод редактирования декана
         private string getValuesUpdatePersonDekan()
@@ -377,11 +377,11 @@ namespace PGUTI
                 + "',name='" + NameTextBox.Text
                 + "',middlename='" + MiddleNameTextBox.Text
                 + "',gender='" + GenderComboBox.Text
-                + "',birthday='" + birthdayTimePicker.Value.Date
+                + "',birthday='" + Data.ReverseDateTime(birthdayTimePicker.Value.Date)
                 + "',passport_serial=" + SerialTextBox.Text
                 + ",passport_number=" + NumberTextBox.Text
                 + ",passport_gives='" + PasportDataTextBox.Text
-                + "',passport_create='" + PasportDateTimePicker.Value.Date
+                + "',passport_create='" + Data.ReverseDateTime(PasportDateTimePicker.Value.Date)
                 + "',registration='" + RegistrationTextBox.Text
                 + "',telephone='" + TelephoneTextBox.Text
                 + "',educational_institution='" + EducationalInstitutionTextBox.Text
@@ -391,13 +391,13 @@ namespace PGUTI
                 + ",degrees_id=" + (AcademicTitleComboBox.SelectedIndex + 1)
                 + ",degress_date=" + degressDate
                 + ",terms_of_work='" + TermWorksComboBox.Text + "-" + Rate.Text + "-" + AcceptedComboBox.Text + "(" + ExperienceDate.Value.Day + "." + ExperienceDate.Value.Month + "." + ExperienceDate.Value.Year + ")"
-                + "',competitive_selection_start_date='" + CompetitiveSelectionStartDate.Value.Date
-                + "',competitive_selection_end_date='" + CompetitiveSelectionEndDate.Value.Date
+                + "',competitive_selection_start_date='" + Data.ReverseDateTime(CompetitiveSelectionStartDate.Value.Date)
+                + "',competitive_selection_end_date='" + Data.ReverseDateTime(CompetitiveSelectionEndDate.Value.Date)
                 + "',rate=" + rate
-                + ",experience_date='" + ExperienceDate.Value.Date
-                + "',Training_dates='" + TrainingDatesTimePicker.Value.Date
-                + "',total_experience_date='" + TotalExperienceDateTimePicker.Value.Date
-                + "',education_date='" + education_dateTimePicker1.Value.Date
+                + ",experience_date='" + Data.ReverseDateTime(ExperienceDate.Value.Date)
+                + "',Training_dates='" + Data.ReverseDateTime(TrainingDatesTimePicker.Value.Date)
+                + "',total_experience_date='" + Data.ReverseDateTime(TotalExperienceDateTimePicker.Value.Date)
+                + "',education_date='" + Data.ReverseDateTime(education_dateTimePicker1.Value.Date)
                 + "',Dekan_Faculties=" + (FacultiesComboBox.SelectedIndex+1);
         }
         //Метод добавления декана
@@ -409,11 +409,11 @@ namespace PGUTI
                 + "','" + NameTextBox.Text
                 + "','" + MiddleNameTextBox.Text
                 + "','" + GenderComboBox.Text
-                + "','" + birthdayTimePicker.Value.Date
+                + "','" + Data.ReverseDateTime(birthdayTimePicker.Value.Date)
                 + "'," + SerialTextBox.Text
                 + "," + NumberTextBox.Text
                 + ",'" + PasportDataTextBox.Text
-                + "','" + PasportDateTimePicker.Value.Date
+                + "','" + Data.ReverseDateTime(PasportDateTimePicker.Value.Date)
                 + "','" + RegistrationTextBox.Text
                 + "','" + TelephoneTextBox.Text
                 + "','" + EducationalInstitutionTextBox.Text
@@ -423,14 +423,14 @@ namespace PGUTI
                 + "," + (AcademicTitleComboBox.SelectedIndex + 1)
                 + "," +degressDate
                 + ",'" + TermWorksComboBox.Text + "-" + Rate.Text + "-" + AcceptedComboBox.Text + "(" + ExperienceDate.Value.Day + "." + ExperienceDate.Value.Month + "." + ExperienceDate.Value.Year + ")"
-                + "','" + CompetitiveSelectionStartDate.Value.Date
-                + "','" + CompetitiveSelectionEndDate.Value.Date
+                + "','" + Data.ReverseDateTime(CompetitiveSelectionStartDate.Value.Date)
+                + "','" + Data.ReverseDateTime(CompetitiveSelectionEndDate.Value.Date)
                 + "'," + rate
-                + ",'" + ExperienceDate.Value.Date
-                + "','" + TrainingDatesTimePicker.Value.Date
-                + "','" + TotalExperienceDateTimePicker.Value.Date
+                + ",'" + Data.ReverseDateTime(ExperienceDate.Value.Date)
+                + "','" + Data.ReverseDateTime(TrainingDatesTimePicker.Value.Date)
+                + "','" + Data.ReverseDateTime(TotalExperienceDateTimePicker.Value.Date)
                 + "'," + (FacultiesComboBox.SelectedIndex + 1) + "','" +
-                education_dateTimePicker1.Value.Date + "','" +
+                Data.ReverseDateTime(education_dateTimePicker1.Value.Date) + "','" +
                 1 + "')";
             return val;
 
@@ -446,11 +446,11 @@ namespace PGUTI
                 + "','" + NameTextBox.Text
                 + "','" + MiddleNameTextBox.Text
                 + "','" + GenderComboBox.Text
-                + "','" + birthdayTimePicker.Value.Date
+                + "','" + Data.ReverseDateTime(birthdayTimePicker.Value.Date)
                 + "'," + SerialTextBox.Text
                 + "," + NumberTextBox.Text
                 + ",'" + PasportDataTextBox.Text
-                + "','" + PasportDateTimePicker.Value.Date
+                + "','" + Data.ReverseDateTime(PasportDateTimePicker.Value.Date)
                 + "','" + RegistrationTextBox.Text
                 + "','" + TelephoneTextBox.Text
                 + "','" + EducationalInstitutionTextBox.Text
@@ -460,13 +460,13 @@ namespace PGUTI
                 + "," + (AcademicTitleComboBox.SelectedIndex + 1)
                 + "," + degressDate
                 + ",'" + TermWorksComboBox.Text + "-" + Rate.Text + "-" + AcceptedComboBox.Text + "(" + ExperienceDate.Value.Day + "." + ExperienceDate.Value.Month + "." + ExperienceDate.Value.Year + ")"
-                + "','" + CompetitiveSelectionStartDate.Value.Date
-                + "','" + CompetitiveSelectionEndDate.Value.Date
+                + "','" + Data.ReverseDateTime(CompetitiveSelectionStartDate.Value.Date)
+                + "','" + Data.ReverseDateTime(CompetitiveSelectionEndDate.Value.Date)
                 + "'," + rate
-                + ",'" + ExperienceDate.Value.Date + "','" +
-                TrainingDatesTimePicker.Value.Date + "','" +
-                TotalExperienceDateTimePicker.Value.Date + "','" +
-                education_dateTimePicker1.Value.Date + "','" +
+                + ",'" + Data.ReverseDateTime(ExperienceDate.Value.Date) + "','" +
+                Data.ReverseDateTime(TrainingDatesTimePicker.Value.Date) + "','" +
+                Data.ReverseDateTime(TotalExperienceDateTimePicker.Value.Date) + "','" +
+                Data.ReverseDateTime(education_dateTimePicker1.Value.Date) + "','" +
                 1 + "')";
         }
 

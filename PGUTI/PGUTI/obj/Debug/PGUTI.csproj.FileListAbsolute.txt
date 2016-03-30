@@ -12,3 +12,17 @@ C:\Users\Kromnikov\documents\visual studio 2012\Projects\C++\MPILab1\PGUTI\PGUTI
 C:\Users\Kromnikov\documents\visual studio 2012\Projects\C++\MPILab1\PGUTI\PGUTI\bin\Debug\DevAge.Core.dll
 C:\Users\Kromnikov\documents\visual studio 2012\Projects\C++\MPILab1\PGUTI\PGUTI\bin\Debug\DevAge.Windows.Forms.dll
 C:\Users\Kromnikov\documents\visual studio 2012\Projects\C++\MPILab1\PGUTI\PGUTI\obj\Debug\PGUTI.csproj.ResolveComReference.cache
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\bin\Debug\PGUTI.exe.config
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.csproj.ResolveComReference.cache
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.exe
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.pdb
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\bin\Debug\PGUTI.exe
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\bin\Debug\PGUTI.pdb
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.csprojResolveAssemblyReference.cache
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.EditForm.resources
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.mainForm.resources
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.Properties.Resources.resources
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.reference.EditReferenceForm.resources
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.ReferenceForm.resources
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.ReportsForm.resources
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.csproj.GenerateResource.Cache
