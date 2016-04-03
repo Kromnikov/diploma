@@ -365,7 +365,7 @@ namespace PGUTI
         private void basicData()
         {
             initBasic();//Рисуем табличку
-            ds = Data.BasicStructure.getDegreesAndTitle();//Получаем объект DataSet для заполнения таблички
+            ds = Data.BasicStructure.getDegreesAndTitle(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);//Получаем объект DataSet для заполнения таблички
 
             for (int i = 0; i < 7; i++)//Заполняем первую часть таблички, заполняем каждую строку
             {
@@ -374,12 +374,12 @@ namespace PGUTI
                     dataGridView1[j, i].Value = ds.Tables[0].Rows[i].ItemArray[j - 1].ToString();//ds.Tables[0].Rows[i].ItemArray[j-1] Достаём из объекта DataSet таблицу 0 , в ней строку i , а в этой строке стобец j-1 т.к. мы начинаем заполнение со второго столбца а нам нужен первый
                 }
             }
-            ds = Data.BasicStructure.getQualification();//Заполняем столбец с квалификациями
+            ds = Data.BasicStructure.getQualification(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);//Заполняем столбец с квалификациями
             for (int i = 0; i < 7; i++)
             {
                 dataGridView1[9, i].Value = ds.Tables[0].Rows[i].ItemArray[0];//Начинаем от 9
             }
-            ds = Data.BasicStructure.getRate();//Заполняем ставки
+            ds = Data.BasicStructure.getRate(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);//Заполняем ставки
             for (int i = 0; i < 7; i++)
             {
                 for (int j = 10; j < 20; j++)//Начинаем от 10
@@ -391,7 +391,7 @@ namespace PGUTI
         private void internalData()
         {
             initBasic();
-            ds = Data.InternalStructure.getDegreesAndTitle();
+            ds = Data.InternalStructure.getDegreesAndTitle(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);
 
             for (int i = 0; i < 7; i++)
             {
@@ -400,12 +400,12 @@ namespace PGUTI
                     dataGridView1[j, i].Value = ds.Tables[0].Rows[i].ItemArray[j - 1].ToString();
                 }
             }
-            ds = Data.InternalStructure.getQualification();
+            ds = Data.InternalStructure.getQualification(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);
             for (int i = 0; i < 7; i++)
             {
                 dataGridView1[9, i].Value = ds.Tables[0].Rows[i].ItemArray[0];
             }
-            ds = Data.InternalStructure.getRate();
+            ds = Data.InternalStructure.getRate(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);
             for (int i = 0; i < 7; i++)
             {
                 for (int j = 10; j < 20; j++)
@@ -417,7 +417,7 @@ namespace PGUTI
         private void externalData()
         {
             initBasic();
-            ds = Data.ExternalStructure.getDegreesAndTitle();
+            ds = Data.ExternalStructure.getDegreesAndTitle(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);
 
             for (int i = 0; i < 7; i++)
             {
@@ -426,12 +426,12 @@ namespace PGUTI
                     dataGridView1[j, i].Value = ds.Tables[0].Rows[i].ItemArray[j - 1].ToString();
                 }
             }
-            ds = Data.ExternalStructure.getQualification();
+            ds = Data.ExternalStructure.getQualification(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);
             for (int i = 0; i < 7; i++)
             {
                 dataGridView1[9, i].Value = ds.Tables[0].Rows[i].ItemArray[0];
             }
-            ds = Data.ExternalStructure.getRate();
+            ds = Data.ExternalStructure.getRate(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);
             for (int i = 0; i < 7; i++)
             {
                 for (int j = 10; j < 20; j++)
