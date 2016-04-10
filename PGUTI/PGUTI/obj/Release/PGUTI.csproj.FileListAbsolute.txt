@@ -62,3 +62,4 @@ C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.ReportsForm.
 C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.csproj.GenerateResource.Cache
 C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.exe
 C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.pdb
+C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.reference.TestForm.resources

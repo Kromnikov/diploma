@@ -202,7 +202,7 @@ namespace PGUTI
         private void ageData()
         {
             initAge();
-            ds = Data.AgeStructure.getAge();
+            ds = Data.AgeStructure.getAge(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {

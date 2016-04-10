@@ -85,6 +85,13 @@
     <Compile Include="reference\ReferenceForm.Designer.cs">
       <DependentUpon>ReferenceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TEST\TESTData.cs" />
+    <Compile Include="TEST\TestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TEST\TestForm.Designer.cs">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="reports\ReportsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="reference\ReferenceForm.resx">
       <DependentUpon>ReferenceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TEST\TestForm.resx">
+      <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="reports\ReportsForm.resx">
       <DependentUpon>ReportsForm.cs</DependentUpon>

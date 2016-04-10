@@ -321,7 +321,10 @@ namespace PGUTI
                 Data.Teachers.updatePerson(getValuesUpdatePerson(), id);
             //Data.Teachers.InsertTeachers(result.ToString());//Метод для вставки записей в таблицу Teachers
             if (AcceptedComboBox.SelectedIndex == 2)
+            {
                 recordDel();
+                Data.Teachers.updateEndDate(Data.ReverseDateTime(ExperienceDate.Value.Date), id);
+            }
             else
                 recordAdd(id);//Метод добавления в таблицу Records
         }
@@ -431,7 +434,8 @@ namespace PGUTI
                 + "','" + Data.ReverseDateTime(TotalExperienceDateTimePicker.Value.Date)
                 + "'," + (FacultiesComboBox.SelectedIndex + 1) + "','" +
                 Data.ReverseDateTime(education_dateTimePicker1.Value.Date) + "','" +
-                1 + "')";
+                1 + "','" +
+                Data.ReverseDateTime(ExperienceDate.Value.Date) + "')";
             return val;
 
         }
@@ -467,7 +471,8 @@ namespace PGUTI
                 Data.ReverseDateTime(TrainingDatesTimePicker.Value.Date) + "','" +
                 Data.ReverseDateTime(TotalExperienceDateTimePicker.Value.Date) + "','" +
                 Data.ReverseDateTime(education_dateTimePicker1.Value.Date) + "','" +
-                1 + "')";
+                1 + "','" +
+                Data.ReverseDateTime(ExperienceDate.Value.Date) + "')";
         }
 
         private bool Correct()//Метод проверки корректности введённых сначений
