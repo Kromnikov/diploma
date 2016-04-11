@@ -15,6 +15,7 @@ namespace PGUTI
     public partial class ReportsForm : Form
     {
         private static DataSet ds = null;
+        private static string dsNum="0";
         private static string tableName = "";//Название таблиц при выводе в Excel
 
         public ReportsForm()
@@ -48,55 +49,107 @@ namespace PGUTI
         {
             ds = null;//Создадим объект DataSet
             //dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
-            initOrderByRate();//Визуализация таблицы
+            
+            dsNum = num;
             switch (num)//Выбор запроса
             {
+                case "0.0.1":
+                    basicData();
+                    return;
+                case "0.0.2":
+                    internalData();
+                    return;
+                case "0.0.3":
+                    externalData();
+                    return;
+                case "0.1.0":
+                    degreesData();
+                    return;
+                case "0.1.1":
+                    experienceData();
+                    return;
+                case "0.1.2":
+                    ageData();
+                    return;
+                case "0.2.0":
+                    showDissertations();
+                    return;
+                case "0.2.1":
+                    showRecord();
+                    return;
+
+
                     //штат
                 case "1.1.1":
+                    initOrderByRate();//Визуализация таблицы
                     ds = Data.BasicStructure.getProfessorsDoc(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
                 case "1.1.2":
+                    initOrderByRate();//Визуализация таблицы
                     ds = Data.BasicStructure.getProfessorsCand(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
                 case "1.1.3":
+                    initOrderByRate();//Визуализация таблицы
                     ds = Data.BasicStructure.getProfessors(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date);break;
                 case "1.2.1":
+                    initOrderByRate();//Визуализация таблицы
                     ds = Data.BasicStructure.getDocentsCandAndOrDocent(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
                 case "1.2.2":
+                    initOrderByRate();//Визуализация таблицы
                     ds = Data.BasicStructure.getDocentsNull(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
                 case "1.3":
+                    initOrderByRate();//Визуализация таблицы
                     ds = Data.BasicStructure.getSenior(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
                 case "1.4":
+                    initOrderByRate();//Визуализация таблицы
                     ds = Data.BasicStructure.getAssist(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
                 //Внутр
                 case "2.1.1":
+                    initOrderByRate();//Визуализация таблицы
                     ds = Data.InternalStructure.getProfessorsDoc(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
                 case "2.1.2":
+                    initOrderByRate();//Визуализация таблицы
                     ds = Data.InternalStructure.getProfessorsCand(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
                 case "2.1.3":
+                    initOrderByRate();//Визуализация таблицы
                     ds = Data.InternalStructure.getProfessors(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
                 case "2.2.1":
+                    initOrderByRate();//Визуализация таблицы
                     ds = Data.InternalStructure.getDocentsCandAndOrDocent(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
                 case "2.2.2":
+                    initOrderByRate();//Визуализация таблицы
                     ds = Data.InternalStructure.getDocentsNull(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
                 case "2.3":
+                    initOrderByRate();//Визуализация таблицы
                     ds = Data.InternalStructure.getSenior(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
                 case "2.4":
+                    initOrderByRate();//Визуализация таблицы
                     ds = Data.InternalStructure.getAssist(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
                 //Внешние
                 case "3.1.1":
+                    initOrderByRate();//Визуализация таблицы
                     ds = Data.ExternalStructure.getProfessorsDoc(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
                 case "3.1.2":
+                    initOrderByRate();//Визуализация таблицы
                     ds = Data.ExternalStructure.getProfessorsCand(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
                 case "3.1.3":
+                    initOrderByRate();//Визуализация таблицы
                     ds = Data.ExternalStructure.getProfessors(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
                 case "3.2.1":
+                    initOrderByRate();//Визуализация таблицы
                     ds = Data.ExternalStructure.getDocentsCandAndOrDocent(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
                 case "3.2.2":
+                    initOrderByRate();//Визуализация таблицы
                     ds = Data.ExternalStructure.getDocentsNull(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
                 case "3.3":
+                    initOrderByRate();//Визуализация таблицы
                     ds = Data.ExternalStructure.getSenior(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
                 case "3.4":
+                    initOrderByRate();//Визуализация таблицы
                     ds = Data.ExternalStructure.getAssist(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
             }//Получаем таблицу из базы
+            additional();
+        }//Дополнительные таблицы , сортировка по ставкам
+        private void additional()
+        {
             if (ds.Tables[0].Rows.Count != 0)
             {
                 double previusRate = (double)ds.Tables[0].Rows[0].ItemArray[7], nextRate = 0;//Начальное значение ставки и текущее
@@ -152,7 +205,7 @@ namespace PGUTI
                 dataGridView1[6, dataGridView1.Rows.Count - 1].Value = sumcountTitle;
                 dataGridView1[7, dataGridView1.Rows.Count - 1].Value = sumrate;
             }
-        }//Дополнительные таблицы , сортировка по ставкам
+        }
 
         private void showDissertations()
         {
@@ -452,9 +505,13 @@ namespace PGUTI
         {
             try
             {
+                //dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+                //orderByRate("0.0.1");
                 tableName = "Распределение численности основного персонала по уровню образования (без внешних совместителей)";
+                dsNum = "0.0.1";
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 basicData();
+
             }
             catch(Exception ee)
             {
@@ -468,6 +525,7 @@ namespace PGUTI
             try
             {
                 tableName = "Распределение численности внутренние совместителей по уровню образования ";
+                dsNum = "0.0.2";
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 internalData();
             }
@@ -479,6 +537,7 @@ namespace PGUTI
             try
             {
                 tableName = "Распределение численности внешних совместителей по уровню образования";
+                dsNum = "0.0.3";
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 externalData();
             }
@@ -490,6 +549,7 @@ namespace PGUTI
             try
             {
                 tableName = "Сведения об ученых степенях профессорско-преподавательского состава и научных работников";
+                dsNum = "0.1.0";
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 degreesData();
             }
@@ -501,6 +561,7 @@ namespace PGUTI
             try
             {
                 tableName = "Распределение персонала по стажу работы (Основного персонала, Штатных совместителей, Внешних совместителей)";
+                dsNum = "0.1.1";
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 experienceData();
             }
@@ -512,6 +573,7 @@ namespace PGUTI
             try
             {
                 tableName = "Распределение персонала по полу и возрасту (Основного персонала, Штатных совместителей, Внешних совместителей)";
+                dsNum = "0.1.2";
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 ageData();
             }
@@ -527,7 +589,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС с ученой степенью доктора наук(Штатные сотрудники)  с " + StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
+                tableName = "Численность ППС с ученой степенью доктора наук(Штатные сотрудники)  с " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("1.1.1");
             }
@@ -538,7 +600,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС с ученой степенью кандидата наук и ученым званием профессора (Штатные сотрудники)  с " + StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
+                tableName = "Численность ППС с ученой степенью кандидата наук и ученым званием профессора (Штатные сотрудники)  с " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("1.1.2");
             }
@@ -549,7 +611,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС на должности профессора(Штатные сотрудники)  с " + StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
+                tableName = "Численность ППС на должности профессора(Штатные сотрудники)  с " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("1.1.3");
             }
@@ -560,7 +622,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС с ученой степенью кандидата наук и/или званием доцента(Штатные сотрудники)  с " + StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
+                tableName = "Численность ППС с ученой степенью кандидата наук и/или званием доцента(Штатные сотрудники)  с " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("1.2.1");
             }
@@ -571,7 +633,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС доцентов (без ученой степени и/или звания)(Штатные сотрудники)  с " + StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
+                tableName = "Численность ППС доцентов (без ученой степени и/или звания)(Штатные сотрудники)  с " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("1.2.2");
             }
@@ -582,7 +644,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС старших преподавателей (Штатные сотрудники)  с " + StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
+                tableName = "Численность ППС старших преподавателей (Штатные сотрудники)  с " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("1.3");
             }
@@ -593,7 +655,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС преподавателей и ассистентов(Штатные сотрудники)  с " + StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
+                tableName = "Численность ППС преподавателей и ассистентов(Штатные сотрудники)  с " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("1.4");
             }
@@ -604,7 +666,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС с ученой степенью доктора наук (Внутренние совместители)  с " + StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
+                tableName = "Численность ППС с ученой степенью доктора наук (Внутренние совместители)  с " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("2.1.1");
             }
@@ -615,7 +677,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС с ученой степенью кандидата наук и ученым званием профессора (Внутренние совместители)  с " + StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
+                tableName = "Численность ППС с ученой степенью кандидата наук и ученым званием профессора (Внутренние совместители)  с " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("2.1.2");
             }
@@ -626,7 +688,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС на должности профессора(Внутренние совместители)  с " + StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
+                tableName = "Численность ППС на должности профессора(Внутренние совместители)  с " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("2.1.3");
             }
@@ -637,7 +699,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС с ученой степенью кандидата наук и/или званием доцента(Внутренние совместители)  с " + StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
+                tableName = "Численность ППС с ученой степенью кандидата наук и/или званием доцента(Внутренние совместители)  с " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("2.2.1");
             }
@@ -648,7 +710,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС доцентов (без ученой степени и/или звания)(Внутренние совместители)  с " + StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
+                tableName = "Численность ППС доцентов (без ученой степени и/или звания)(Внутренние совместители)  с " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("2.2.2");
             }
@@ -659,7 +721,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС старших преподавателей (Внутренние совместители)  с " + StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
+                tableName = "Численность ППС старших преподавателей (Внутренние совместители)  с " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("2.3");
             }
@@ -670,7 +732,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС преподавателей и ассистентов(Внутренние совместители)  с " + StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
+                tableName = "Численность ППС преподавателей и ассистентов(Внутренние совместители)  с " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("2.4");
             }
@@ -681,7 +743,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС с ученой степенью доктора наук(Внешние совместители)  с " + StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
+                tableName = "Численность ППС с ученой степенью доктора наук(Внешние совместители)  с " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("3.1.1");
             }
@@ -692,7 +754,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС с ученой степенью кандидата наук и ученым званием профессора (Внешние совместители)  с " + StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
+                tableName = "Численность ППС с ученой степенью кандидата наук и ученым званием профессора (Внешние совместители)  с " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("3.1.2");
             }
@@ -703,7 +765,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС на должности профессора(Внешние совместители)  с " + StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
+                tableName = "Численность ППС на должности профессора(Внешние совместители)  с " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("3.1.3");
             }
@@ -714,7 +776,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС с ученой степенью кандидата наук и/или званием доцента(Внешние совместители)  с " + StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
+                tableName = "Численность ППС с ученой степенью кандидата наук и/или званием доцента(Внешние совместители)  с " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("3.2.1");
             }
@@ -725,7 +787,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС доцентов (без ученой степени и/или звания(Внешние совместители)  с " + StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
+                tableName = "Численность ППС доцентов (без ученой степени и/или звания(Внешние совместители)  с " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("3.2.2");
             }
@@ -736,7 +798,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС старших преподавателей (Внешние совместители)  с " + StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
+                tableName = "Численность ППС старших преподавателей (Внешние совместители)  с " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("3.3");
             }
@@ -747,7 +809,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС преподавателей и ассистентов(Внешние совместители)  с " + StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
+                tableName = "Численность ППС преподавателей и ассистентов(Внешние совместители)  с " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("3.4");
             }
@@ -758,7 +820,8 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Защита диссертаций с " + StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
+                tableName = "Защита диссертаций с " + getDateString();
+                dsNum = "0.2.0";
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 showDissertations();
             }
@@ -769,11 +832,17 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Учёт сотрудников с " + StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
+                tableName = "Учёт сотрудников с " + getDateString();
+                dsNum = "0.2.1";
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 showRecord();
             }
             catch { this.Close(); }
+        }
+
+        private string getDateString()
+        {
+            return StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
         }
 
         private void печатьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -840,11 +909,25 @@ namespace PGUTI
         private void button2_Click(object sender, EventArgs e)
         {
             dateGroupBox1.Visible = false;//Скрываем выбор дат
+            //dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            //orderByRate(dsNum);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             dateGroupBox1.Visible = true;//Показываем выбор дат
+        }
+
+        private void EndMonthCalendar2_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            orderByRate(dsNum);
+        }
+
+        private void StartMonthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            orderByRate(dsNum);
         }        
 
 
