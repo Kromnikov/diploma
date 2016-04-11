@@ -41,3 +41,4 @@ C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.ReferenceForm.
 C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.reference.TestForm.resources
 C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.ReportsForm.resources
 C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.csproj.GenerateResource.Cache
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.reference.TestForm.resources

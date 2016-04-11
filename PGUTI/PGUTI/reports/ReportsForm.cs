@@ -211,7 +211,7 @@ namespace PGUTI
                     dataGridView1[j, i].Value = ds.Tables[0].Rows[i].ItemArray[j - 1].ToString();
                 }
             }
-            ds = Data.AgeStructure.getAgeFemale();
+            ds = Data.AgeStructure.getAgeFemale(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
@@ -256,7 +256,7 @@ namespace PGUTI
         private void experienceData()
         {
             initExperience();
-            ds = Data.ExperienceStructure.getTotalExperience();
+            ds = Data.ExperienceStructure.getTotalExperience(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
@@ -265,7 +265,7 @@ namespace PGUTI
                     dataGridView1[j, i].Value = ds.Tables[0].Rows[i].ItemArray[j - 1].ToString();
                 }
             }
-            ds = Data.ExperienceStructure.getExperience();
+            ds = Data.ExperienceStructure.getExperience(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
@@ -311,7 +311,7 @@ namespace PGUTI
         private void degreesData()
         {
             initDegrees();
-            ds = Data.DegreesStructure.getRate();
+            ds = Data.DegreesStructure.getRate(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
