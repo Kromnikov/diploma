@@ -981,9 +981,49 @@ namespace PGUTI
 
         public static class Users
         {
+            public static bool hasLogin(string login)
+            {
+                ds = NDataAccess.DataAccess.GetDataSet(@"SELECT COUNT(*) from Users where login="+login, "Table1", connectionString);
+                if (int.Parse(ds.Tables[0].Rows[0].ItemArray[0].ToString()) > 0)
+                    return true;
+                else return false;
+            }
+            public static bool insert(string login,string pass,string role)
+            {
+                if (!hasLogin(login))
+                {
+                    NDataAccess.DataAccess.ExecuteNonQuery2(@"INSERT INTO Users  (login,password) VALUES   ('" + login + "','" + pass + "')", connectionString);
+
+                    int id = 0;
+                    ds = NDataAccess.DataAccess.GetDataSet(@"Select Max(id) from Roles", "Table1", connectionString);
+                    if (ds.Tables[0].Rows[0].ItemArray[0].ToString() == "") id = 1;
+                    else id = (int)ds.Tables[0].Rows[0].ItemArray[0];
+                    id++;
+
+                    NDataAccess.DataAccess.ExecuteNonQuery2(@"INSERT INTO Roles    (id,role,login) VALUES   ('" + id + "','" + role + "','" + login + "')", connectionString);
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            public static void update(string oldLogin,string login, string pass, string role)
+            {
+                NDataAccess.DataAccess.ExecuteNonQuery2(@"UPDATE Users  SET login='" + login + "',password='" + pass + "' where login =" + oldLogin, connectionString);
+                NDataAccess.DataAccess.ExecuteNonQuery2(@"UPDATE Roles  SET login='" + login + "',role='" + role + "' where login =" + oldLogin, connectionString);
+            }
+
+            public static void dell(string login)
+            {
+                NDataAccess.DataAccess.ExecuteNonQuery2("DELETE FROM Users WHERE login =" + login, connectionString);
+                NDataAccess.DataAccess.ExecuteNonQuery2("DELETE FROM Roles WHERE login =" + login, connectionString);
+            }
+
             public static DataSet users()
             {
-                return NDataAccess.DataAccess.GetDataSet(@"SELECT r.role,u.login,u.password FROM Users as u join Roles as r on r.login=u.login", "Table1", connectionString);
+                return NDataAccess.DataAccess.GetDataSet(@"SELECT u.login as 'Имя пользователя',u.password as 'Пароль',r.role as 'Роль' FROM Users as u join Roles as r on r.login=u.login", "Table1", connectionString);
             }
             public static string role(string login, string pass)
             {

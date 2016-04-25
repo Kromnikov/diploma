@@ -66,3 +66,5 @@ C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.reference.Te
 E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.reference.TestForm.resources
 C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.EditUsers.resources
 C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.Users.resources
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.EditUsers.resources
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.Users.resources
