@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cryptography.cs" />
     <Compile Include="DataGridViewPrinter.cs" />
     <Compile Include="editForm.cs">
       <SubType>Form</SubType>
@@ -105,6 +106,7 @@
       <DependentUpon>ReportsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="reports\Staffer.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="Users.cs">
       <SubType>Form</SubType>
     </Compile>

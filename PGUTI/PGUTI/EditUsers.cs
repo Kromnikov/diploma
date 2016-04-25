@@ -22,15 +22,15 @@ namespace PGUTI
         }
         private void UpdateTable()
         {
-            ds = Data.Users1.getUsersTable();
-            UsersdataGridView1.DataSource = ds;//Заполняем таблицу
-            UsersdataGridView1.DataMember = ds.Tables[0].TableName;//Имя таблицы
-            //UsersdataGridView1.Columns["id"].Visible = false;//Скрываем поле id
+            //ds = Data.Users1.getUsersTable();
+            //UsersdataGridView1.DataSource = ds;//Заполняем таблицу
+            //UsersdataGridView1.DataMember = ds.Tables[0].TableName;//Имя таблицы
+            ////UsersdataGridView1.Columns["id"].Visible = false;//Скрываем поле id
 
-            ds = Data.Users1.getAdminsTable();
-            AdminsdataGridView2.DataSource = ds;
-            AdminsdataGridView2.DataMember = ds.Tables[0].TableName;//Имя таблицы
-            AdminsdataGridView2.Columns["id"].Visible = false;//Скрываем поле id
+            //ds = Data.Users1.getAdminsTable();
+            //AdminsdataGridView2.DataSource = ds;
+            //AdminsdataGridView2.DataMember = ds.Tables[0].TableName;//Имя таблицы
+            //AdminsdataGridView2.Columns["id"].Visible = false;//Скрываем поле id
         }
 
         private void cleanTextBox()
@@ -53,7 +53,7 @@ namespace PGUTI
             insert = false;
             try
             {
-                ds = Data.Users1.getAdminsLogAndPass(int.Parse(AdminsdataGridView2.CurrentRow.Cells[0].Value.ToString()));
+                //ds = Data.Users1.getAdminsLogAndPass(int.Parse(AdminsdataGridView2.CurrentRow.Cells[0].Value.ToString()));
                 loginTextBox1.Text = ds.Tables[0].Rows[0].ItemArray[0].ToString();
                 passwordTextBox2.Text = ds.Tables[0].Rows[0].ItemArray[1].ToString();
             }
@@ -65,14 +65,14 @@ namespace PGUTI
         {
             try
             {
-                if (MessageBox.Show("Удалить пользователя?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    if (Data.Users1.getIdAdmins() > 2)
-                        Data.Users1.dellAdmins(int.Parse(AdminsdataGridView2.CurrentRow.Cells[0].Value.ToString()));
-                    else
-                    {
-                        MessageBox.Show("Остался 1 администратор , его нельзя удалить!");
-                    }
-                else return;
+                //if (MessageBox.Show("Удалить пользователя?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                //    if (Data.Users1.getIdAdmins() > 2)
+                //        Data.Users1.dellAdmins(int.Parse(AdminsdataGridView2.CurrentRow.Cells[0].Value.ToString()));
+                //    else
+                //    {
+                //        MessageBox.Show("Остался 1 администратор , его нельзя удалить!");
+                //    }
+                //else return;
             }
             catch { MessageBox.Show("Выберите пользователя для редактирования"); return; }
             UpdateTable();
@@ -92,7 +92,7 @@ namespace PGUTI
             insert = false;
             try
             {
-                ds = Data.Users1.getUsersLogAndPass(int.Parse(UsersdataGridView1.CurrentRow.Cells[0].Value.ToString()));
+                //ds = Data.Users1.getUsersLogAndPass(int.Parse(UsersdataGridView1.CurrentRow.Cells[0].Value.ToString()));
                 loginTextBox1.Text = ds.Tables[0].Rows[0].ItemArray[0].ToString();
                 passwordTextBox2.Text = ds.Tables[0].Rows[0].ItemArray[1].ToString();
             }
@@ -107,7 +107,7 @@ namespace PGUTI
                 if (MessageBox.Show("Удалить пользователя?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
 
-                    Data.Users1.dellUsers(int.Parse(UsersdataGridView1.CurrentRow.Cells[0].Value.ToString()));
+                    //Data.Users1.dellUsers(int.Parse(UsersdataGridView1.CurrentRow.Cells[0].Value.ToString()));
                 }
                 else return;
             }
@@ -126,26 +126,26 @@ namespace PGUTI
         {
             if (insert)
             {
-                if (Data.Users1.extists(loginTextBox1.Text)) { MessageBox.Show("Логин уже существует"); return; }
-                if (admin)
-                {
-                    Data.Users1.addAdmins(loginTextBox1.Text, passwordTextBox2.Text);
-                }
-                else
-                {
-                    Data.Users1.addUsers(loginTextBox1.Text, passwordTextBox2.Text);
-                }
+                //if (Data.Users1.extists(loginTextBox1.Text)) { MessageBox.Show("Логин уже существует"); return; }
+                //if (admin)
+                //{
+                //    Data.Users1.addAdmins(loginTextBox1.Text, passwordTextBox2.Text);
+                //}
+                //else
+                //{
+                //    Data.Users1.addUsers(loginTextBox1.Text, passwordTextBox2.Text);
+                //}
             }
             else
             {
-                if (admin)
-                {
-                    Data.Users1.updateAdmins(int.Parse(AdminsdataGridView2.CurrentRow.Cells[0].Value.ToString()), loginTextBox1.Text, passwordTextBox2.Text);
-                }
-                else
-                {
-                    Data.Users1.updateUsers(int.Parse(UsersdataGridView1.CurrentRow.Cells[0].Value.ToString()), loginTextBox1.Text, passwordTextBox2.Text);
-                }
+                //if (admin)
+                //{
+                //    Data.Users1.updateAdmins(int.Parse(AdminsdataGridView2.CurrentRow.Cells[0].Value.ToString()), loginTextBox1.Text, passwordTextBox2.Text);
+                //}
+                //else
+                //{
+                //    Data.Users1.updateUsers(int.Parse(UsersdataGridView1.CurrentRow.Cells[0].Value.ToString()), loginTextBox1.Text, passwordTextBox2.Text);
+                //}
             }
             UpdateTable();
             editGroupBox1.Visible = false;

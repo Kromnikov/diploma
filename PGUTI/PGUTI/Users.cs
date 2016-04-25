@@ -16,6 +16,26 @@ namespace PGUTI
         {
             InitializeComponent();
             loadGrid();
+            passwordTextBox2.GotFocus += new EventHandler(this.TextGotFocus);
+            passwordTextBox2.LostFocus += new EventHandler(this.PasswordLostFocus);
+        }
+        public void TextGotFocus(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            if (tb.Text.Contains("*"))
+            {
+                tb.Text = "";
+                tb.ForeColor = Color.Black;
+            }
+        }
+        public void PasswordLostFocus(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            if (tb.Text == "")
+            {
+                tb.Text = "*****";
+                tb.ForeColor = Color.DimGray;
+            }
         }
 
         private void loadGrid()
@@ -60,16 +80,24 @@ namespace PGUTI
             }
 
         }
-
+        private User user = new User();
         private void edit()
         {
             try
             {
                 addButton.Visible =false ;
                 saveButton.Visible = true;
-                loginTextBox1.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-                passwordTextBox2.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-                roleComboBox.SelectedIndex = roleComboBox.FindStringExact(dataGridView1.CurrentRow.Cells[2].Value.ToString());
+                user = Data.Users.user(dataGridView1.CurrentRow.Cells[0].Value.ToString());
+
+                //loginTextBox1.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                //passwordTextBox2.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                //roleComboBox.SelectedIndex = roleComboBox.FindStringExact(dataGridView1.CurrentRow.Cells[2].Value.ToString());
+
+
+                loginTextBox1.Text = user.login;
+                passwordTextBox2.Text = "*****";
+                roleComboBox.SelectedIndex = roleComboBox.FindStringExact(user.role);
+
                 enterGroupBox1.Visible = true;
             }
             catch (Exception err) { MessageBox.Show("Выберите сотрудника", "Сотрудник не выбран", MessageBoxButtons.OK, MessageBoxIcon.Error); }
@@ -95,7 +123,7 @@ namespace PGUTI
 
             try
             {
-                Data.Users.update(dataGridView1.CurrentRow.Cells[0].Value.ToString(), loginTextBox1.Text, passwordTextBox2.Text, roleComboBox.SelectedItem.ToString());
+                Data.Users.update(dataGridView1.CurrentRow.Cells[0].Value.ToString(), loginTextBox1.Text, user.password, roleComboBox.SelectedItem.ToString());
                 loadGrid();
                 enterGroupBox1.Visible = false;
             }
@@ -121,6 +149,7 @@ namespace PGUTI
             }
             catch (Exception ex)
             {
+                //MessageBox.Show(ex.Message);
             }
         }
 
@@ -129,5 +158,11 @@ namespace PGUTI
         {
 
         }
+
+        private void passwordTextBox2_KeyUp(object sender, KeyEventArgs e)
+        {
+            user.password = passwordTextBox2.Text;
+        }
+        //user.password = passwordTextBox2.Text;
     }
 }

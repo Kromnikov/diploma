@@ -159,13 +159,18 @@
             // passwordTextBox2
             // 
             this.passwordTextBox2.Location = new System.Drawing.Point(277, 163);
+            this.passwordTextBox2.MaxLength = 12;
             this.passwordTextBox2.Name = "passwordTextBox2";
+            this.passwordTextBox2.PasswordChar = '*';
             this.passwordTextBox2.Size = new System.Drawing.Size(237, 20);
             this.passwordTextBox2.TabIndex = 1;
+            this.passwordTextBox2.Text = "*****";
+            this.passwordTextBox2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.passwordTextBox2_KeyUp);
             // 
             // loginTextBox1
             // 
             this.loginTextBox1.Location = new System.Drawing.Point(277, 137);
+            this.loginTextBox1.MaxLength = 20;
             this.loginTextBox1.Name = "loginTextBox1";
             this.loginTextBox1.Size = new System.Drawing.Size(237, 20);
             this.loginTextBox1.TabIndex = 0;
