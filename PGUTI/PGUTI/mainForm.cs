@@ -277,5 +277,66 @@ namespace PGUTI
         }
 
 
+
+
+
+
+        private void enterButton1_Click(object sender, EventArgs e)
+        {
+            //if (isAdmin() || isUser()) enterGroupBox1.Visible = false;
+            //else MessageBox.Show("Неверный логин/пароль");
+
+            string role = Data.Users.role(loginTextBox1.Text, passwordTextBox2.Text);
+            if (role.Equals("USER"))
+            {
+                enterGroupBox1.Visible = false;
+            }
+            else
+            {
+                if (role.Equals("ADMIN")) 
+                { 
+                    enterGroupBox1.Visible = false;
+                    редактироватьПользователейToolStripMenuItem.Visible = true;
+                }
+                else MessageBox.Show("Неверный логин/пароль");
+            }
+        }
+
+        //private bool isUser()
+        //{
+        //    return (Data.Users.hasUser(loginTextBox1.Text, passwordTextBox2.Text));
+        //}
+        //private bool isAdmin()
+        //{
+        //    if (Data.Users.hasAdmin(loginTextBox1.Text, passwordTextBox2.Text))
+        //    {
+        //        редактироватьПользователейToolStripMenuItem.Visible = true;
+        //        return true;
+        //    }
+        //    else return false;
+
+        //}
+
+        private void редактироватьПользователейToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (Users form = new Users())
+            {
+                form.ShowDialog();
+            }
+        }
+
+        private void cleanTextBox()
+        {
+            loginTextBox1.Text = "";
+            passwordTextBox2.Text = "";
+        }
+
+        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cleanTextBox();
+            enterGroupBox1.Visible = true;
+            редактироватьПользователейToolStripMenuItem.Visible = false;
+        }
+
     }
 }

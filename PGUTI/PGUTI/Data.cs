@@ -756,14 +756,6 @@ namespace PGUTI
             }
         }//Распределение персонала по полу и возрасту 
         
-
-
-
-
-
-
-
-
         public static class Teachers
         {
             public static DataSet getCair(int cair)
@@ -870,5 +862,136 @@ namespace PGUTI
                 return  NDataAccess.DataAccess.GetDataSet(@"select second_name from dbo.Faculties", "Table1", connectionString);
             }
         }//Класс работы с главной таблицей
+
+        public static class Users1
+        {
+
+            public static bool extists(string login)
+            {
+                if (existsUser(login)) return true;
+                if (existsAdmins(login)) return true;
+                return false;
+            }
+
+
+            //users//////////////////////////////////users
+            private static bool existsUser(string login)
+            {
+                ds = NDataAccess.DataAccess.GetDataSet(@"select count(*) from Users where login='" + login + "'", "Table1", connectionString);
+                if ((int)ds.Tables[0].Rows[0].ItemArray[0] == 0) return false;
+                else return true;
+            }
+
+            public static DataSet getUsersLogAndPass(int id)
+            {
+                return NDataAccess.DataAccess.GetDataSet(@"select login,Password from Users where id=" + id, "Table1", connectionString);
+            }
+
+            public static void dellUsers(int id)
+            {
+                NDataAccess.DataAccess.ExecuteNonQuery2("DELETE FROM Users WHERE id =" + id, connectionString);
+            }
+
+            public static void updateUsers(int id, string login, string pass)
+            {
+                NDataAccess.DataAccess.ExecuteNonQuery2("UPDATE Users  SET login='" + login + "',password='" + pass + "' where id =" + id, connectionString);
+            }
+
+            public static void addUsers(string login, string pass)
+            {
+                NDataAccess.DataAccess.ExecuteNonQuery2("INSERT INTO Users (id,login,password)VALUES(" + getIdUsers() + " ,'" + login + "','" + pass + "')", connectionString);
+            }
+
+            private static int getIdUsers()
+            {
+                int id = 0;
+                ds = NDataAccess.DataAccess.GetDataSet(@"Select Max(id) from Users", "Table1", connectionString);
+                if (ds.Tables[0].Rows[0].ItemArray[0].ToString() == "") id = 1;
+                else id = (int)ds.Tables[0].Rows[0].ItemArray[0];
+                return id + 1;
+            }
+
+            public static DataSet getUsersTable()
+            {
+                return NDataAccess.DataAccess.GetDataSet(@"select login as Логин ,password as Пароль from Users", "Table1", connectionString);
+            }
+
+            public static bool hasUser(string login, string pass)
+            {
+                ds = NDataAccess.DataAccess.GetDataSet(@"select count(*) from Users where login ='" + login + "' and password='" + pass + "'", "Table1", connectionString);
+                if ((int)ds.Tables[0].Rows[0].ItemArray[0] == 1)
+                    return true;
+                else return false;
+            }
+
+            //admins//////////////////////////////////admins
+            private static bool existsAdmins(string login)
+            {
+                ds = NDataAccess.DataAccess.GetDataSet(@"select count(*) from Admins where login='" + login + "'", "Table1", connectionString);
+                if ((int)ds.Tables[0].Rows[0].ItemArray[0] == 0) return false;
+                else return true;
+            }
+
+            public static DataSet getAdminsLogAndPass(int id)
+            {
+                return NDataAccess.DataAccess.GetDataSet(@"select login,Password from Admins where id=" + id, "Table1", connectionString);
+            }
+
+            public static void dellAdmins(int id)
+            {
+                NDataAccess.DataAccess.ExecuteNonQuery2("DELETE FROM Admins WHERE id =" + id, connectionString);
+            }
+
+            public static void updateAdmins(int id, string login, string pass)
+            {
+                NDataAccess.DataAccess.ExecuteNonQuery2("UPDATE Admins  SET login='" + login + "',password='" + pass + "' where id =" + id, connectionString);
+            }
+
+            public static void addAdmins(string login, string pass)
+            {
+                NDataAccess.DataAccess.ExecuteNonQuery2("INSERT INTO Admins (id,login,password)VALUES(" + getIdAdmins() + " ,'" + login + "','" + pass + "')", connectionString);
+            }
+
+            public static int getIdAdmins()
+            {
+                int id = 0;
+                ds = NDataAccess.DataAccess.GetDataSet(@"Select Max(id) from Admins", "Table1", connectionString);
+                if (ds.Tables[0].Rows[0].ItemArray[0].ToString() == "") id = 1;
+                else id = (int)ds.Tables[0].Rows[0].ItemArray[0];
+                return id + 1;
+            }
+
+            public static bool hasAdmin(string login, string pass)
+            {
+                //string aaaaaaa = "select count(*) from Admins where login ='" + login + "' and password='" + pass + "'";
+                //string b = aaaaaaa;
+                ds = NDataAccess.DataAccess.GetDataSet(@"select count(*) from Admins where login ='" + login + "' and password='" + pass + "'", "Table1", connectionString);
+                if ((int)ds.Tables[0].Rows[0].ItemArray[0] == 1)
+                    return true;
+                else return false;
+            }
+
+            public static DataSet getAdminsTable()
+            {
+                return NDataAccess.DataAccess.GetDataSet(@"select id,login as Логин ,password as Пароль from Admins", "Table1", connectionString);
+            }
+
+
+        }
+
+        public static class Users
+        {
+            public static DataSet users()
+            {
+                return NDataAccess.DataAccess.GetDataSet(@"SELECT r.role,u.login,u.password FROM Users as u join Roles as r on r.login=u.login", "Table1", connectionString);
+            }
+            public static string role(string login, string pass)
+            {
+                ds = NDataAccess.DataAccess.GetDataSet(@"SELECT r.role,u.login,u.password FROM Users as u join Roles as r on r.login=u.login where u.login ='" + login + "' and u.password='" + pass + "'", "Table1", connectionString);
+                if (ds.Tables[0].Rows.Count>0)
+                    return ds.Tables[0].Rows[0].ItemArray[0].ToString();
+                else return "role";
+            }
+        }
     }
 }

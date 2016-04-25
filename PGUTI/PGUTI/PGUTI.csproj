@@ -60,6 +60,12 @@
     </Compile>
     <Compile Include="Data.cs" />
     <Compile Include="DataAccess.cs" />
+    <Compile Include="EditUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditUsers.Designer.cs">
+      <DependentUpon>EditUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="mainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,8 +105,17 @@
       <DependentUpon>ReportsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="reports\Staffer.cs" />
+    <Compile Include="Users.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users.Designer.cs">
+      <DependentUpon>Users.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="editForm.resx">
       <DependentUpon>editForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditUsers.resx">
+      <DependentUpon>EditUsers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="mainForm.resx">
       <DependentUpon>mainForm.cs</DependentUpon>
@@ -126,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="reports\ReportsForm.resx">
       <DependentUpon>ReportsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users.resx">
+      <DependentUpon>Users.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="PGUTIDataSet.xsc">
       <DependentUpon>PGUTIDataSet.xsd</DependentUpon>
