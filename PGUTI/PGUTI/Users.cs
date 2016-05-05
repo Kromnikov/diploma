@@ -149,7 +149,6 @@ namespace PGUTI
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.Message);
             }
         }
 
@@ -163,6 +162,5 @@ namespace PGUTI
         {
             user.password = passwordTextBox2.Text;
         }
-        //user.password = passwordTextBox2.Text;
     }
 }
