@@ -148,8 +148,8 @@
             this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
             this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(70, 22);
-            this.toolStripSplitButton1.Text = "Таблицы";
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(61, 22);
+            this.toolStripSplitButton1.Text = "Отчёты";
             // 
             // toolStripMenuItem2
             // 
@@ -159,8 +159,8 @@
             this.распределениеПерсоналаПоСтажуToolStripMenuItem,
             this.распределениеПерсоналаПоПолуИВозрастуToolStripMenuItem});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(221, 22);
-            this.toolStripMenuItem2.Text = "Основные таблицы";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(212, 22);
+            this.toolStripMenuItem2.Text = "Основные отчёты";
             // 
             // штатныйСотрудникToolStripMenuItem
             // 
@@ -221,8 +221,8 @@
             this.сторонниеСовместителиToolStripMenuItem,
             this.внешниеСовместителиToolStripMenuItem});
             this.дополнительныеТаблицыToolStripMenuItem.Name = "дополнительныеТаблицыToolStripMenuItem";
-            this.дополнительныеТаблицыToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
-            this.дополнительныеТаблицыToolStripMenuItem.Text = "Дополнительные таблицы";
+            this.дополнительныеТаблицыToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.дополнительныеТаблицыToolStripMenuItem.Text = "Дополнительные отчёты";
             // 
             // штатныеСотрудникиToolStripMenuItem
             // 
@@ -464,21 +464,21 @@
             // диссертацииToolStripMenuItem
             // 
             this.диссертацииToolStripMenuItem.Name = "диссертацииToolStripMenuItem";
-            this.диссертацииToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.диссертацииToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.диссертацииToolStripMenuItem.Text = "Диссертации";
             this.диссертацииToolStripMenuItem.Click += new System.EventHandler(this.диссертацииToolStripMenuItem_Click);
             // 
             // учетСотрудниковToolStripMenuItem
             // 
             this.учетСотрудниковToolStripMenuItem.Name = "учетСотрудниковToolStripMenuItem";
-            this.учетСотрудниковToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.учетСотрудниковToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.учетСотрудниковToolStripMenuItem.Text = "Учет сотрудников";
             this.учетСотрудниковToolStripMenuItem.Click += new System.EventHandler(this.учетСотрудниковToolStripMenuItem_Click);
             // 
             // печатьToolStripMenuItem
             // 
             this.печатьToolStripMenuItem.Name = "печатьToolStripMenuItem";
-            this.печатьToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.печатьToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.печатьToolStripMenuItem.Text = "Экспорт";
             this.печатьToolStripMenuItem.Click += new System.EventHandler(this.печатьToolStripMenuItem_Click);
             // 
@@ -559,11 +559,11 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.SystemColors.Control;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(593, 2);
+            this.button1.Location = new System.Drawing.Point(561, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(125, 25);
+            this.button1.Size = new System.Drawing.Size(157, 25);
             this.button1.TabIndex = 10;
-            this.button1.Text = "Указать дату";
+            this.button1.Text = "Указать период отчёта";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 

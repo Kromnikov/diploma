@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.CairsComboBox1 = new System.Windows.Forms.ComboBox();
             this.FacultyGridView1 = new System.Windows.Forms.DataGridView();
@@ -46,17 +46,17 @@
             this.PPCaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DekansbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ChairsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pgutiDataSet1 = new PGUTI.PGUTIDataSet();
             this.enterGroupBox1 = new System.Windows.Forms.GroupBox();
             this.enterButton1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.passwordTextBox2 = new System.Windows.Forms.TextBox();
             this.loginTextBox1 = new System.Windows.Forms.TextBox();
+            this.pgutiDataSet1 = new PGUTI.PGUTIDataSet();
             ((System.ComponentModel.ISupportInitialize)(this.FacultyGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pgutiDataSet1)).BeginInit();
             this.enterGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pgutiDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // CairsComboBox1
@@ -82,15 +82,15 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.FacultyGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.NullValue = null;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.FacultyGridView1.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.NullValue = null;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.FacultyGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.FacultyGridView1.Location = new System.Drawing.Point(0, 31);
             this.FacultyGridView1.Name = "FacultyGridView1";
             this.FacultyGridView1.ReadOnly = true;
@@ -217,11 +217,6 @@
             this.ChairsToolStripMenuItem.Text = "Кафедры";
             this.ChairsToolStripMenuItem.Click += new System.EventHandler(this.кафедрыToolStripMenuItem_Click);
             // 
-            // pgutiDataSet1
-            // 
-            this.pgutiDataSet1.DataSetName = "PGUTIDataSet";
-            this.pgutiDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // enterGroupBox1
             // 
             this.enterGroupBox1.Controls.Add(this.enterButton1);
@@ -271,6 +266,8 @@
             this.passwordTextBox2.PasswordChar = '*';
             this.passwordTextBox2.Size = new System.Drawing.Size(237, 20);
             this.passwordTextBox2.TabIndex = 1;
+            this.passwordTextBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.passwordTextBox2_KeyPress);
+            this.passwordTextBox2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.passwordTextBox2_KeyUp);
             // 
             // loginTextBox1
             // 
@@ -278,6 +275,13 @@
             this.loginTextBox1.Name = "loginTextBox1";
             this.loginTextBox1.Size = new System.Drawing.Size(237, 20);
             this.loginTextBox1.TabIndex = 0;
+            this.loginTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.loginTextBox1_KeyPress);
+            this.loginTextBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.loginTextBox1_KeyUp);
+            // 
+            // pgutiDataSet1
+            // 
+            this.pgutiDataSet1.DataSetName = "PGUTIDataSet";
+            this.pgutiDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // mainForm
             // 
@@ -295,9 +299,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.FacultyGridView1)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pgutiDataSet1)).EndInit();
             this.enterGroupBox1.ResumeLayout(false);
             this.enterGroupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pgutiDataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

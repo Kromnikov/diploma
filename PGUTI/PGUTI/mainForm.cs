@@ -280,28 +280,6 @@ namespace PGUTI
 
 
 
-
-        private void enterButton1_Click(object sender, EventArgs e)
-        {
-            //if (isAdmin() || isUser()) enterGroupBox1.Visible = false;
-            //else MessageBox.Show("Неверный логин/пароль");
-
-            string role = Data.Users.role(loginTextBox1.Text, passwordTextBox2.Text);
-            if (role.Equals("USER"))
-            {
-                enterGroupBox1.Visible = false;
-            }
-            else
-            {
-                if (role.Equals("ADMIN")) 
-                { 
-                    enterGroupBox1.Visible = false;
-                    редактироватьПользователейToolStripMenuItem.Visible = true;
-                }
-                else MessageBox.Show("Неверный логин/пароль");
-            }
-        }
-
         //private bool isUser()
         //{
         //    return (Data.Users.hasUser(loginTextBox1.Text, passwordTextBox2.Text));
@@ -336,6 +314,76 @@ namespace PGUTI
             cleanTextBox();
             enterGroupBox1.Visible = true;
             редактироватьПользователейToolStripMenuItem.Visible = false;
+        }
+        
+        
+
+
+        private void enterButton1_Click(object sender, EventArgs e)
+        {
+            auth();
+        }
+
+        private void passwordTextBox2_KeyUp(object sender, KeyEventArgs e)
+        {
+            //passwordTextBox2.KeyUp += new KeyEventHandler(tb_KeyDown);
+        }
+
+        private void loginTextBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+            //loginTextBox1.KeyUp += new KeyEventHandler(tb_KeyDown);
+        }
+
+        private void tb_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                SelectNextControl(ActiveControl, true, true, true, true);
+                auth();
+            }
+        }
+        private void auth()
+        {
+            string role = Data.Users.role(loginTextBox1.Text, passwordTextBox2.Text);
+            if (role.Equals("USER"))
+            {
+                enterGroupBox1.Visible = false;
+            }
+            else
+            {
+                if (role.Equals("ADMIN"))
+                {
+                    enterGroupBox1.Visible = false;
+                    редактироватьПользователейToolStripMenuItem.Visible = true;
+                }
+                else MessageBox.Show("Неверный логин/пароль");
+            }
+        }
+
+        private void loginTextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                SelectNextControl(ActiveControl, true, true, true, true);
+                auth();
+            }
+            else
+            { }
+        }
+
+        private void passwordTextBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                SelectNextControl(ActiveControl, true, true, true, true);
+                auth();
+            }
+            else
+            { }
         }
 
     }
