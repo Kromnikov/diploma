@@ -150,6 +150,7 @@ namespace PGUTI
         }//Дополнительные таблицы , сортировка по ставкам
         private void additional()
         {
+            if(ds != null)
             if (ds.Tables[0].Rows.Count != 0)
             {
                 double previusRate = (double)ds.Tables[0].Rows[0].ItemArray[7], nextRate = 0;//Начальное значение ставки и текущее
