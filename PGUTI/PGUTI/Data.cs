@@ -22,8 +22,6 @@ namespace PGUTI
         private static string connectionString = ConfigurationManager.ConnectionStrings["Pguti.Connection"].ConnectionString;//Строка подключения к базе , из файла конфигурации
         
         private static DataSet ds = new DataSet();//Объект запроса
-        
-        //private static Hashtable ht = new Hashtable();
 
         public static string ReverseDateTime(DateTime date)
         {
@@ -204,10 +202,6 @@ namespace PGUTI
                 NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
             }
 
-            //public static void Add(string result)
-            //{
-            //    NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
-            //}
         }
 
 
@@ -218,9 +212,7 @@ namespace PGUTI
             {
                 string[] a = null;
                 string result = "select COUNT(*)  from dbo.Teachers where Dekan_Faculties " + dekan + " group by " + by;
-                //return ds = NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
                 ds = NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
-                //a = (string[])ds.Tables[0].Rows[0].ItemArray[0];
                 string b = "";
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
@@ -458,7 +450,6 @@ namespace PGUTI
             }
             public static DataSet Show(DateTime startDate, DateTime endDate)
             {
-                //string result = "select f.id,w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,c.second_name as 'Кафедра',d.name as 'ученое звание',titles_date as 'Дата получения ученого звания',a.second_name as 'ученая степень',titles_date as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.' from Teachers as f left join  Working_positions as w on w.id=f.Job_title left join Titles as d on d.id=f.titles_id left join Degrees as a on a.id=f.degrees_id left join Cairs as c on c.id = f.Cairs    join Record as r on f.id = r.Teachers_id      where DATEDIFF(MONTH,r.date,'" + date + "')=0 ";
                 string result = "select f.id,c.second_name as 'Кафедра',w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,d.name as 'ученое звание',titles_date as 'Дата получения ученого звания',a.second_name as 'ученая степень',f.degress_date as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.' from Records as f  left join  Working_positions as w on w.id=f.Job_title left join Titles as d on d.id=f.titles_id left join Degrees as a on a.id=f.degrees_id left join Cairs as c on c.id = f.Cairs  where date >  '" + ReverseDateTime(startDate) + "'";//where DATEDIFF(MONTH,date,GETDATE())=0 ";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
@@ -599,15 +590,6 @@ namespace PGUTI
 
             public static DataSet getExperience(DateTime startDate, DateTime endDate)
             {
-                //string result = "SELECT COUNT(*) as Всего,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 3) as '3' 
-                //,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>2 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 5) as '3-5'
-                //,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>4 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 10) as '5-10'
-                //,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>9 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 15) as '10-15'
-                //,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>14 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 20) as '15-20'
-                //,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))> 19) as '20+' FROM Teachers 
-                //union all SELECT COUNT(*) as Всего,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 3 and Dekan_Faculties is not null) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>2 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 5 and Dekan_Faculties is not null) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>4 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 10 and Dekan_Faculties is not null),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>9 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 15 and Dekan_Faculties is not null),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>14 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 20 and Dekan_Faculties is not null),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))> 19 and Dekan_Faculties is not null) FROM Teachers where Dekan_Faculties is not null  union all SELECT COUNT(*) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 3 and Job_title = 1 ) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>2 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 5 and Job_title = 1 ) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>4 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 10 and Job_title = 1 ),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>9 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 15 and Job_title = 1 ),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>14 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 20 and Job_title = 1 ),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))> 19 and Job_title = 1 ) FROM Teachers where Job_title = 1 union all SELECT COUNT(*),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 3 and Job_title = 2 ) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>2 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 5 and Job_title = 2 ) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>4 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 10 and Job_title = 2 ),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>9 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 15 and Job_title = 2 ),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>14 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 20 and Job_title = 2 ),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))> 19 and Job_title = 2 ) FROM Teachers where Job_title = 2 union all SELECT COUNT(*),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 3 and Job_title = 3 ) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>2 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 5 and Job_title = 3) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>4 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 10 and Job_title = 3 ),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>9 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 15 and Job_title = 3 ),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>14 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 20 and Job_title = 3 ),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))> 19 and Job_title = 3 ) FROM Teachers where Job_title = 3 union all SELECT COUNT(*) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 3 and Job_title = 4 ) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>2 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 5 and Job_title = 4) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>4 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 10 and Job_title = 4 ), (select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>9 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 15 and Job_title = 4 ), (select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>14 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 20 and Job_title = 4 ),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))> 19 and Job_title = 4 ) FROM  Teachers where Job_title = 4 union all SELECT COUNT(*),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 3 and (Job_title = 5 or Job_title = 6 )) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>2 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 5 and (Job_title = 5 or Job_title = 6 )) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>4 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 10 and (Job_title = 5 or Job_title = 6 ) ), (select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>9 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 15 and (Job_title = 5 or Job_title = 6 )), (select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))>14 and DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))< 20 and (Job_title = 5 or Job_title = 6 ) ),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,experience_date,CAST(Getdate() AS Date))> 19 and (Job_title = 5 or Job_title = 6 ) ) FROM Teachers where (Job_title = 5 or Job_title = 6 )";       
-                //return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
-                
                 StringBuilder sb = new StringBuilder();
                 sb.Append(queryWithTitles(startDate, endDate, "experience_date"));
                 sb.Append(" union all ");
@@ -624,9 +606,6 @@ namespace PGUTI
             }
             public static DataSet getTotalExperience(DateTime startDate, DateTime endDate)
             {
-                //string result = "SELECT COUNT(*) as Всего,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 3) as '3' ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>2 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 5) as '3-5',(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>4 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 10) as '5-10',(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>9 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 15) as '10-15',(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>14 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 20) as '15-20',(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))> 19) as '20+' FROM Teachers union all SELECT COUNT(*) as Всего,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 3 and Dekan_Faculties is not null) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>2 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 5 and Dekan_Faculties is not null) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>4 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 10 and Dekan_Faculties is not null),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>9 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 15 and Dekan_Faculties is not null),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>14 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 20 and Dekan_Faculties is not null),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))> 19 and Dekan_Faculties is not null) FROM Teachers where Dekan_Faculties is not null  union all SELECT COUNT(*) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 3 and Job_title = 1 ) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>2 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 5 and Job_title = 1 ) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>4 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 10 and Job_title = 1 ),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>9 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 15 and Job_title = 1 ),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>14 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 20 and Job_title = 1 ),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))> 19 and Job_title = 1 ) FROM Teachers where Job_title = 1 union all SELECT COUNT(*),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 3 and Job_title = 2 ) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>2 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 5 and Job_title = 2 ) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>4 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 10 and Job_title = 2 ),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>9 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 15 and Job_title = 2 ),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>14 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 20 and Job_title = 2 ),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))> 19 and Job_title = 2 ) FROM Teachers where Job_title = 2 union all SELECT COUNT(*),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 3 and Job_title = 3 ) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>2 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 5 and Job_title = 3) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>4 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 10 and Job_title = 3 ),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>9 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 15 and Job_title = 3 ),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>14 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 20 and Job_title = 3 ),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))> 19 and Job_title = 3 ) FROM Teachers where Job_title = 3 union all SELECT COUNT(*) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 3 and Job_title = 4 ) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>2 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 5 and Job_title = 4) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>4 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 10 and Job_title = 4 ), (select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>9 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 15 and Job_title = 4 ), (select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>14 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 20 and Job_title = 4 ),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))> 19 and Job_title = 4 ) FROM  Teachers where Job_title = 4 union all SELECT COUNT(*),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 3 and (Job_title = 5 or Job_title = 6 )) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>2 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 5 and (Job_title = 5 or Job_title = 6 )) ,(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>4 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 10 and (Job_title = 5 or Job_title = 6 ) ), (select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>9 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 15 and (Job_title = 5 or Job_title = 6 )), (select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))>14 and DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))< 20 and (Job_title = 5 or Job_title = 6 ) ),(select COUNT(*) from dbo.Teachers where DATEDIFF(YY,total_experience_date,CAST(Getdate() AS Date))> 19 and (Job_title = 5 or Job_title = 6 ) ) FROM Teachers where (Job_title = 5 or Job_title = 6 )";
-                //return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
-
                 StringBuilder sb = new StringBuilder();
                 sb.Append(queryWithTitles(startDate, endDate, "total_experience_date"));
                 sb.Append(" union all ");
@@ -776,11 +755,6 @@ namespace PGUTI
                 string result = "select f.id,dek.second_name as Факультет,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,gender as Пол,convert(VARCHAR(10),birthday,105) as 'Дата рождения',passport_serial as 'Серия паспорта',passport_number as 'Номер паспорта',passport_gives as 'Кем выдан',convert(VARCHAR(10),passport_create,105) as 'Когда выдан',registration as 'Прописка',telephone as Телефон,educational_institution as 'Образовательное учреждение',specialty_of_diplom as 'Специальность по диплому',d.name as 'ученое звание',convert(VARCHAR(10),titles_date,105) as 'Дата получения ученого звания',a.second_name as 'ученая степень',convert(VARCHAR(10),degress_date,105) as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.',convert(VARCHAR(10),competitive_selection_start_date,105) as 'Начало кон. отб',convert(VARCHAR(10),competitive_selection_end_date,105) as 'Окончание кон. отб.',convert(VARCHAR(10),Training_dates,105) as 'Повышения квалификации',rate as 'Ставка',convert(VARCHAR(10),total_experience_date,105) as 'Стаж',convert(VARCHAR(10),experience_date,105) as 'Дата, педагогический стаж' from Teachers as f  left join dbo.Faculties as dek on dek.id = f.Dekan_Faculties left join Titles as d on d.id=f.titles_id left join Degrees as a on a.id = f.degrees_id where f.Cairs is null and f.enable > 0";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
-            //public static DataSet getTeachersEdit()//Главная таблица
-            //{
-            //    string result = "select f.id,c.name as Кафедра,w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,gender as Пол,birthday as 'Дата рождения',passport_serial as 'Серия паспорта',passport_number as 'Номер паспорта',passport_gives as 'Кем выдан',passport_create as 'Когда выдан',registration as 'Прописка',telephone as Телефон,educational_institution as 'Образовательное учреждение',specialty_of_diplom as 'Специальность по диплому',d.name as 'ученое звание',degress_date as 'Дата получения ученого звания',a.second_name as 'ученая степень',titles_date as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.',competitive_selection_start_date as 'Начало кон. отб',competitive_selection_end_date as 'Окончание кон. отб.',Training_dates as 'Повышения квалификации',rate as 'Ставка',total_experience_date as 'Стаж',experience_date as 'Дата, педагогический стаж',Dekan_Faculties as 'Декан' from Teachers as f , cairs as c, Working_positions as w,Titles as d,Degrees as a,Faculties as dek where f.cairs = c.id and f.Job_title = w.id and f.titles_id=d.id and f.degrees_id = a.id and f.Dekan_Faculties=dec.id";
-            //    return  NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
-            //}
             public static DataSet getSecondNameCairs()//Сокращенные кафедры
             {
                 return  NDataAccess.DataAccess.GetDataSet(@"select second_name from dbo.Cairs", "Table1", connectionString);
@@ -863,125 +837,10 @@ namespace PGUTI
             }
         }//Класс работы с главной таблицей
 
-        //public static class Users1
-        //{
-
-        //    public static bool extists(string login)
-        //    {
-        //        if (existsUser(login)) return true;
-        //        if (existsAdmins(login)) return true;
-        //        return false;
-        //    }
-
-
-        //    //users//////////////////////////////////users
-        //    private static bool existsUser(string login)
-        //    {
-        //        ds = NDataAccess.DataAccess.GetDataSet(@"select count(*) from Users where login='" + login + "'", "Table1", connectionString);
-        //        if ((int)ds.Tables[0].Rows[0].ItemArray[0] == 0) return false;
-        //        else return true;
-        //    }
-
-        //    public static DataSet getUsersLogAndPass(int id)
-        //    {
-        //        return NDataAccess.DataAccess.GetDataSet(@"select login,Password from Users where id=" + id, "Table1", connectionString);
-        //    }
-
-        //    public static void dellUsers(int id)
-        //    {
-        //        NDataAccess.DataAccess.ExecuteNonQuery2("DELETE FROM Users WHERE id =" + id, connectionString);
-        //    }
-
-        //    public static void updateUsers(int id, string login, string pass)
-        //    {
-        //        NDataAccess.DataAccess.ExecuteNonQuery2("UPDATE Users  SET login='" + login + "',password='" + pass + "' where id =" + id, connectionString);
-        //    }
-
-        //    public static void addUsers(string login, string pass)
-        //    {
-        //        NDataAccess.DataAccess.ExecuteNonQuery2("INSERT INTO Users (id,login,password)VALUES(" + getIdUsers() + " ,'" + login + "','" + pass + "')", connectionString);
-        //    }
-
-        //    private static int getIdUsers()
-        //    {
-        //        int id = 0;
-        //        ds = NDataAccess.DataAccess.GetDataSet(@"Select Max(id) from Users", "Table1", connectionString);
-        //        if (ds.Tables[0].Rows[0].ItemArray[0].ToString() == "") id = 1;
-        //        else id = (int)ds.Tables[0].Rows[0].ItemArray[0];
-        //        return id + 1;
-        //    }
-
-        //    public static DataSet getUsersTable()
-        //    {
-        //        return NDataAccess.DataAccess.GetDataSet(@"select login as Логин ,password as Пароль from Users", "Table1", connectionString);
-        //    }
-
-        //    public static bool hasUser(string login, string pass)
-        //    {
-        //        ds = NDataAccess.DataAccess.GetDataSet(@"select count(*) from Users where login ='" + login + "' and password='" + pass + "'", "Table1", connectionString);
-        //        if ((int)ds.Tables[0].Rows[0].ItemArray[0] == 1)
-        //            return true;
-        //        else return false;
-        //    }
-
-        //    //admins//////////////////////////////////admins
-        //    private static bool existsAdmins(string login)
-        //    {
-        //        ds = NDataAccess.DataAccess.GetDataSet(@"select count(*) from Admins where login='" + login + "'", "Table1", connectionString);
-        //        if ((int)ds.Tables[0].Rows[0].ItemArray[0] == 0) return false;
-        //        else return true;
-        //    }
-
-        //    public static DataSet getAdminsLogAndPass(int id)
-        //    {
-        //        return NDataAccess.DataAccess.GetDataSet(@"select login,Password from Admins where id=" + id, "Table1", connectionString);
-        //    }
-
-        //    public static void dellAdmins(int id)
-        //    {
-        //        NDataAccess.DataAccess.ExecuteNonQuery2("DELETE FROM Admins WHERE id =" + id, connectionString);
-        //    }
-
-        //    public static void updateAdmins(int id, string login, string pass)
-        //    {
-        //        NDataAccess.DataAccess.ExecuteNonQuery2("UPDATE Admins  SET login='" + login + "',password='" + pass + "' where id =" + id, connectionString);
-        //    }
-
-        //    public static void addAdmins(string login, string pass)
-        //    {
-        //        NDataAccess.DataAccess.ExecuteNonQuery2("INSERT INTO Admins (id,login,password)VALUES(" + getIdAdmins() + " ,'" + login + "','" + pass + "')", connectionString);
-        //    }
-
-        //    public static int getIdAdmins()
-        //    {
-        //        int id = 0;
-        //        ds = NDataAccess.DataAccess.GetDataSet(@"Select Max(id) from Admins", "Table1", connectionString);
-        //        if (ds.Tables[0].Rows[0].ItemArray[0].ToString() == "") id = 1;
-        //        else id = (int)ds.Tables[0].Rows[0].ItemArray[0];
-        //        return id + 1;
-        //    }
-
-        //    public static bool hasAdmin(string login, string pass)
-        //    {
-        //        //string aaaaaaa = "select count(*) from Admins where login ='" + login + "' and password='" + pass + "'";
-        //        //string b = aaaaaaa;
-        //        ds = NDataAccess.DataAccess.GetDataSet(@"select count(*) from Admins where login ='" + login + "' and password='" + pass + "'", "Table1", connectionString);
-        //        if ((int)ds.Tables[0].Rows[0].ItemArray[0] == 1)
-        //            return true;
-        //        else return false;
-        //    }
-
-        //    public static DataSet getAdminsTable()
-        //    {
-        //        return NDataAccess.DataAccess.GetDataSet(@"select id,login as Логин ,password as Пароль from Admins", "Table1", connectionString);
-        //    }
-
-
-        //}
+     
 
         public static class Users
         {
-            //admin-admin 19a2854144b63a8f7617a6f225019b12
 
             public static bool hasLogin(string login)
             {
@@ -1013,8 +872,6 @@ namespace PGUTI
             }
             public static void update(string oldLogin,string login, string pass, string role)
             {
-                //string a = "UPDATE Users  SET login='" + login + "',password='" + Cryptography.getHashString(pass) + "' where login =" + oldLogin;
-                //string b = a;
                 NDataAccess.DataAccess.ExecuteNonQuery2(@"UPDATE Users  SET login='" + login + "',password='" + Cryptography.getHashString(pass) + "' where login ='" + oldLogin+"'", connectionString);
                 NDataAccess.DataAccess.ExecuteNonQuery2(@"UPDATE Roles  SET login='" + login + "',role='" + role + "' where login ='" + oldLogin+"'", connectionString);
             }
