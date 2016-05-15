@@ -49,7 +49,7 @@ namespace PGUTI
         {
             public static DataSet getTeachers(int id)//Главная таблица
             {
-                string result = "select * from dbo.Teachers where id = " +id;
+                string result = "select id,Cairs,Job_title,surname      ,name      ,middlename      ,gender      ,birthday      ,passport_serial      ,passport_number      ,passport_gives      ,passport_create,registration      ,telephone      ,educational_institution      ,specialty_of_diplom      ,titles_id      ,titles_date      ,degrees_id      ,degress_date      ,terms_of_work      ,competitive_selection_start_date      ,competitive_selection_end_date      ,experience_date      ,total_experience_date      ,Dekan_Faculties      ,rate      ,Training_dates      ,education_date      ,enable,start_date      ,end_date from dbo.Teachers where id = " +id;
                 return ds = NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
         }
