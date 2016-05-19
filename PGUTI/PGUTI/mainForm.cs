@@ -27,6 +27,7 @@ namespace PGUTI
         private void mainForm_Load(object sender, EventArgs e)
         {
             UpdateFacultyGridView();//Загружаем таблицу Faculty
+            //blockAuth();
         }
 
         public void UpdateFacultyGridView()//Метод зугрузки главной таблицы
@@ -315,9 +316,13 @@ namespace PGUTI
             enterGroupBox1.Visible = true;
             редактироватьПользователейToolStripMenuItem.Visible = false;
         }
-        
-        
 
+
+        private void blockAuth()
+        {
+            enterGroupBox1.Visible = false;
+            редактироватьПользователейToolStripMenuItem.Visible = true;
+        }
 
         private void enterButton1_Click(object sender, EventArgs e)
         {
