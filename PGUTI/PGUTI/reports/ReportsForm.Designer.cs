@@ -79,16 +79,10 @@
             this.печатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.button2 = new System.Windows.Forms.Button();
-            this.dateGroupBox1 = new System.Windows.Forms.GroupBox();
-            this.EndMonthCalendar2 = new System.Windows.Forms.MonthCalendar();
             this.StartMonthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
-            this.dateGroupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -122,6 +116,8 @@
             this.dataGridView1.RowTemplate.Height = 44;
             this.dataGridView1.Size = new System.Drawing.Size(719, 307);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
             // 
             // toolStrip1
             // 
@@ -135,6 +131,7 @@
             this.toolStrip1.Size = new System.Drawing.Size(719, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip1.Click += new System.EventHandler(this.toolStrip1_Click);
             // 
             // toolStripSplitButton1
             // 
@@ -491,79 +488,25 @@
             // 
             this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Location = new System.Drawing.Point(686, 10);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(33, 18);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "X";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // dateGroupBox1
-            // 
-            this.dateGroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateGroupBox1.Controls.Add(this.EndMonthCalendar2);
-            this.dateGroupBox1.Controls.Add(this.StartMonthCalendar1);
-            this.dateGroupBox1.Controls.Add(this.label3);
-            this.dateGroupBox1.Controls.Add(this.label2);
-            this.dateGroupBox1.Controls.Add(this.button2);
-            this.dateGroupBox1.Location = new System.Drawing.Point(0, 28);
-            this.dateGroupBox1.Name = "dateGroupBox1";
-            this.dateGroupBox1.Size = new System.Drawing.Size(719, 307);
-            this.dateGroupBox1.TabIndex = 9;
-            this.dateGroupBox1.TabStop = false;
-            this.dateGroupBox1.Text = "Укажите дату";
-            this.dateGroupBox1.Visible = false;
-            // 
-            // EndMonthCalendar2
-            // 
-            this.EndMonthCalendar2.Location = new System.Drawing.Point(288, 38);
-            this.EndMonthCalendar2.Name = "EndMonthCalendar2";
-            this.EndMonthCalendar2.TabIndex = 12;
-            this.EndMonthCalendar2.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.EndMonthCalendar2_DateChanged);
-            // 
             // StartMonthCalendar1
             // 
-            this.StartMonthCalendar1.Location = new System.Drawing.Point(34, 38);
+            this.StartMonthCalendar1.Location = new System.Drawing.Point(554, 28);
             this.StartMonthCalendar1.Name = "StartMonthCalendar1";
             this.StartMonthCalendar1.TabIndex = 11;
+            this.StartMonthCalendar1.Visible = false;
             this.StartMonthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.StartMonthCalendar1_DateChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(255, 38);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(21, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "По";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 38);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(14, 13);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "С";
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.SystemColors.Control;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(561, 0);
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(554, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(157, 25);
+            this.button1.Size = new System.Drawing.Size(165, 28);
             this.button1.TabIndex = 10;
-            this.button1.Text = "Указать период отчёта";
+            this.button1.Text = "Выбрать дату";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -572,8 +515,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(719, 335);
+            this.Controls.Add(this.StartMonthCalendar1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.dateGroupBox1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dataGridView1);
             this.MinimumSize = new System.Drawing.Size(16, 373);
@@ -583,8 +526,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.dateGroupBox1.ResumeLayout(false);
-            this.dateGroupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -639,11 +580,6 @@
         private System.Windows.Forms.ToolStripMenuItem учетСотрудниковToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem печатьToolStripMenuItem;
         private System.Drawing.Printing.PrintDocument printDocument1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.GroupBox dateGroupBox1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.MonthCalendar EndMonthCalendar2;
         private System.Windows.Forms.MonthCalendar StartMonthCalendar1;
         private System.Windows.Forms.Button button1;
 

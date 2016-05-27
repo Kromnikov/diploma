@@ -42,7 +42,7 @@ namespace PGUTI
             dataGridView1.Columns.Add("", "Ученая степень");
             dataGridView1.Columns.Add("", "Ставка");
             dataGridView1.Columns.Add("", "Дата рождения");
-            dataGridView1.Columns.Add("", StartMonthCalendar1.SelectionStart.Date.ToString("dd.MM.yyyy")+" / "+EndMonthCalendar2.SelectionStart.Date.ToString("dd.MM.yyyy"));
+            dataGridView1.Columns.Add("", StartMonthCalendar1.SelectionStart.Date.ToString("dd.MM.yyyy"));
             sortingMode();
         }
         private void orderByRate(string num)
@@ -82,69 +82,69 @@ namespace PGUTI
                     //штат
                 case "1.1.1":
                     initOrderByRate();//Визуализация таблицы
-                    ds = Data.BasicStructure.getProfessorsDoc(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
+                    ds = Data.BasicStructure.getProfessorsDoc(StartMonthCalendar1.SelectionStart.Date); break;
                 case "1.1.2":
                     initOrderByRate();//Визуализация таблицы
-                    ds = Data.BasicStructure.getProfessorsCand(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
+                    ds = Data.BasicStructure.getProfessorsCand(StartMonthCalendar1.SelectionStart.Date); break;
                 case "1.1.3":
                     initOrderByRate();//Визуализация таблицы
-                    ds = Data.BasicStructure.getProfessors(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date);break;
+                    ds = Data.BasicStructure.getProfessors(StartMonthCalendar1.SelectionStart.Date);break;
                 case "1.2.1":
                     initOrderByRate();//Визуализация таблицы
-                    ds = Data.BasicStructure.getDocentsCandAndOrDocent(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
+                    ds = Data.BasicStructure.getDocentsCandAndOrDocent(StartMonthCalendar1.SelectionStart.Date); break;
                 case "1.2.2":
                     initOrderByRate();//Визуализация таблицы
-                    ds = Data.BasicStructure.getDocentsNull(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
+                    ds = Data.BasicStructure.getDocentsNull(StartMonthCalendar1.SelectionStart.Date); break;
                 case "1.3":
                     initOrderByRate();//Визуализация таблицы
-                    ds = Data.BasicStructure.getSenior(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
+                    ds = Data.BasicStructure.getSenior(StartMonthCalendar1.SelectionStart.Date); break;
                 case "1.4":
                     initOrderByRate();//Визуализация таблицы
-                    ds = Data.BasicStructure.getAssist(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
+                    ds = Data.BasicStructure.getAssist(StartMonthCalendar1.SelectionStart.Date); break;
                 //Внутр
                 case "2.1.1":
                     initOrderByRate();//Визуализация таблицы
-                    ds = Data.InternalStructure.getProfessorsDoc(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
+                    ds = Data.InternalStructure.getProfessorsDoc(StartMonthCalendar1.SelectionStart.Date); break;
                 case "2.1.2":
                     initOrderByRate();//Визуализация таблицы
-                    ds = Data.InternalStructure.getProfessorsCand(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
+                    ds = Data.InternalStructure.getProfessorsCand(StartMonthCalendar1.SelectionStart.Date); break;
                 case "2.1.3":
                     initOrderByRate();//Визуализация таблицы
-                    ds = Data.InternalStructure.getProfessors(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
+                    ds = Data.InternalStructure.getProfessors(StartMonthCalendar1.SelectionStart.Date); break;
                 case "2.2.1":
                     initOrderByRate();//Визуализация таблицы
-                    ds = Data.InternalStructure.getDocentsCandAndOrDocent(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
+                    ds = Data.InternalStructure.getDocentsCandAndOrDocent(StartMonthCalendar1.SelectionStart.Date); break;
                 case "2.2.2":
                     initOrderByRate();//Визуализация таблицы
-                    ds = Data.InternalStructure.getDocentsNull(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
+                    ds = Data.InternalStructure.getDocentsNull(StartMonthCalendar1.SelectionStart.Date); break;
                 case "2.3":
                     initOrderByRate();//Визуализация таблицы
-                    ds = Data.InternalStructure.getSenior(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
+                    ds = Data.InternalStructure.getSenior(StartMonthCalendar1.SelectionStart.Date); break;
                 case "2.4":
                     initOrderByRate();//Визуализация таблицы
-                    ds = Data.InternalStructure.getAssist(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
+                    ds = Data.InternalStructure.getAssist(StartMonthCalendar1.SelectionStart.Date); break;
                 //Внешние
                 case "3.1.1":
                     initOrderByRate();//Визуализация таблицы
-                    ds = Data.ExternalStructure.getProfessorsDoc(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
+                    ds = Data.ExternalStructure.getProfessorsDoc(StartMonthCalendar1.SelectionStart.Date); break;
                 case "3.1.2":
                     initOrderByRate();//Визуализация таблицы
-                    ds = Data.ExternalStructure.getProfessorsCand(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
+                    ds = Data.ExternalStructure.getProfessorsCand(StartMonthCalendar1.SelectionStart.Date); break;
                 case "3.1.3":
                     initOrderByRate();//Визуализация таблицы
-                    ds = Data.ExternalStructure.getProfessors(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
+                    ds = Data.ExternalStructure.getProfessors(StartMonthCalendar1.SelectionStart.Date); break;
                 case "3.2.1":
                     initOrderByRate();//Визуализация таблицы
-                    ds = Data.ExternalStructure.getDocentsCandAndOrDocent(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
+                    ds = Data.ExternalStructure.getDocentsCandAndOrDocent(StartMonthCalendar1.SelectionStart.Date); break;
                 case "3.2.2":
                     initOrderByRate();//Визуализация таблицы
-                    ds = Data.ExternalStructure.getDocentsNull(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
+                    ds = Data.ExternalStructure.getDocentsNull(StartMonthCalendar1.SelectionStart.Date); break;
                 case "3.3":
                     initOrderByRate();//Визуализация таблицы
-                    ds = Data.ExternalStructure.getSenior(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
+                    ds = Data.ExternalStructure.getSenior(StartMonthCalendar1.SelectionStart.Date); break;
                 case "3.4":
                     initOrderByRate();//Визуализация таблицы
-                    ds = Data.ExternalStructure.getAssist(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date); break;
+                    ds = Data.ExternalStructure.getAssist(StartMonthCalendar1.SelectionStart.Date); break;
             }//Получаем таблицу из базы
             additional();
         }//Дополнительные таблицы , сортировка по ставкам
@@ -210,7 +210,7 @@ namespace PGUTI
 
         private void showDissertations()
         {
-            ds = Data.Dissertation.Show(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);//В зависимости от названия кафедры, заполняем таблицу, CairsComboBox1.SelectedIndex + 1 получаем название кафедры по номеру +1 т.к. начинаеться с нуля а в базе с единицы
+            ds = Data.Dissertation.Show(StartMonthCalendar1.SelectionStart.Date);//В зависимости от названия кафедры, заполняем таблицу, CairsComboBox1.SelectedIndex + 1 получаем название кафедры по номеру +1 т.к. начинаеться с нуля а в базе с единицы
             dataGridView1.DataSource = ds;//Заполняем таблицу
             dataGridView1.DataMember = ds.Tables[0].TableName;//Имя таблицы
             dataGridView1.Columns["id"].Visible = false;//Скрываем поле id
@@ -218,7 +218,7 @@ namespace PGUTI
 
         private void showRecord()
         {
-            ds = Data.Record.Show(StartMonthCalendar1.SelectionStart.Date,EndMonthCalendar2.SelectionStart.Date);//В зависимости от названия кафедры, заполняем таблицу, CairsComboBox1.SelectedIndex + 1 получаем название кафедры по номеру +1 т.к. начинаеться с нуля а в базе с единицы
+            ds = Data.Record.Show(StartMonthCalendar1.SelectionStart.Date);//В зависимости от названия кафедры, заполняем таблицу, CairsComboBox1.SelectedIndex + 1 получаем название кафедры по номеру +1 т.к. начинаеться с нуля а в базе с единицы
             dataGridView1.DataSource = ds;//Заполняем таблицу
             dataGridView1.DataMember = ds.Tables[0].TableName;//Имя таблицы
             dataGridView1.Columns["id"].Visible = false;//Скрываем поле id
@@ -256,7 +256,7 @@ namespace PGUTI
         private void ageData()
         {
             initAge();
-            ds = Data.AgeStructure.getAge(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);
+            ds = Data.AgeStructure.getAge(StartMonthCalendar1.SelectionStart.Date);
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
@@ -265,7 +265,7 @@ namespace PGUTI
                     dataGridView1[j, i].Value = ds.Tables[0].Rows[i].ItemArray[j - 1].ToString();
                 }
             }
-            ds = Data.AgeStructure.getAgeFemale(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);
+            ds = Data.AgeStructure.getAgeFemale(StartMonthCalendar1.SelectionStart.Date);
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
@@ -310,7 +310,7 @@ namespace PGUTI
         private void experienceData()
         {
             initExperience();
-            ds = Data.ExperienceStructure.getTotalExperience(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);
+            ds = Data.ExperienceStructure.getTotalExperience(StartMonthCalendar1.SelectionStart.Date);
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
@@ -319,7 +319,7 @@ namespace PGUTI
                     dataGridView1[j, i].Value = ds.Tables[0].Rows[i].ItemArray[j - 1].ToString();
                 }
             }
-            ds = Data.ExperienceStructure.getExperience(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);
+            ds = Data.ExperienceStructure.getExperience(StartMonthCalendar1.SelectionStart.Date);
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
@@ -365,7 +365,7 @@ namespace PGUTI
         private void degreesData()
         {
             initDegrees();
-            ds = Data.DegreesStructure.getRate(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);
+            ds = Data.DegreesStructure.getRate(StartMonthCalendar1.SelectionStart.Date);
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
@@ -419,7 +419,7 @@ namespace PGUTI
         private void basicData()
         {
             initBasic();//Рисуем табличку
-            ds = Data.BasicStructure.getDegreesAndTitle(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);//Получаем объект DataSet для заполнения таблички
+            ds = Data.BasicStructure.getDegreesAndTitle(StartMonthCalendar1.SelectionStart.Date);//Получаем объект DataSet для заполнения таблички
 
             for (int i = 0; i < 7; i++)//Заполняем первую часть таблички, заполняем каждую строку
             {
@@ -428,12 +428,12 @@ namespace PGUTI
                     dataGridView1[j, i].Value = ds.Tables[0].Rows[i].ItemArray[j - 1].ToString();//ds.Tables[0].Rows[i].ItemArray[j-1] Достаём из объекта DataSet таблицу 0 , в ней строку i , а в этой строке стобец j-1 т.к. мы начинаем заполнение со второго столбца а нам нужен первый
                 }
             }
-            ds = Data.BasicStructure.getQualification(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);//Заполняем столбец с квалификациями
+            ds = Data.BasicStructure.getQualification(StartMonthCalendar1.SelectionStart.Date);//Заполняем столбец с квалификациями
             for (int i = 0; i < 7; i++)
             {
                 dataGridView1[9, i].Value = ds.Tables[0].Rows[i].ItemArray[0];//Начинаем от 9
             }
-            ds = Data.BasicStructure.getRate(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);//Заполняем ставки
+            ds = Data.BasicStructure.getRate(StartMonthCalendar1.SelectionStart.Date);//Заполняем ставки
             for (int i = 0; i < 7; i++)
             {
                 for (int j = 10; j < 20; j++)//Начинаем от 10
@@ -445,7 +445,7 @@ namespace PGUTI
         private void internalData()
         {
             initBasic();
-            ds = Data.InternalStructure.getDegreesAndTitle(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);
+            ds = Data.InternalStructure.getDegreesAndTitle(StartMonthCalendar1.SelectionStart.Date);
 
             for (int i = 0; i < 7; i++)
             {
@@ -454,12 +454,12 @@ namespace PGUTI
                     dataGridView1[j, i].Value = ds.Tables[0].Rows[i].ItemArray[j - 1].ToString();
                 }
             }
-            ds = Data.InternalStructure.getQualification(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);
+            ds = Data.InternalStructure.getQualification(StartMonthCalendar1.SelectionStart.Date);
             for (int i = 0; i < 7; i++)
             {
                 dataGridView1[9, i].Value = ds.Tables[0].Rows[i].ItemArray[0];
             }
-            ds = Data.InternalStructure.getRate(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);
+            ds = Data.InternalStructure.getRate(StartMonthCalendar1.SelectionStart.Date);
             for (int i = 0; i < 7; i++)
             {
                 for (int j = 10; j < 20; j++)
@@ -471,7 +471,7 @@ namespace PGUTI
         private void externalData()
         {
             initBasic();
-            ds = Data.ExternalStructure.getDegreesAndTitle(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);
+            ds = Data.ExternalStructure.getDegreesAndTitle(StartMonthCalendar1.SelectionStart.Date);
 
             for (int i = 0; i < 7; i++)
             {
@@ -480,12 +480,12 @@ namespace PGUTI
                     dataGridView1[j, i].Value = ds.Tables[0].Rows[i].ItemArray[j - 1].ToString();
                 }
             }
-            ds = Data.ExternalStructure.getQualification(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);
+            ds = Data.ExternalStructure.getQualification(StartMonthCalendar1.SelectionStart.Date);
             for (int i = 0; i < 7; i++)
             {
                 dataGridView1[9, i].Value = ds.Tables[0].Rows[i].ItemArray[0];
             }
-            ds = Data.ExternalStructure.getRate(StartMonthCalendar1.SelectionStart.Date, EndMonthCalendar2.SelectionStart.Date);
+            ds = Data.ExternalStructure.getRate(StartMonthCalendar1.SelectionStart.Date);
             for (int i = 0; i < 7; i++)
             {
                 for (int j = 10; j < 20; j++)
@@ -843,7 +843,7 @@ namespace PGUTI
 
         private string getDateString()
         {
-            return StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year + "   по  " + EndMonthCalendar2.SelectionStart.Date.Day + "-" + EndMonthCalendar2.SelectionStart.Date.Month + "-" + EndMonthCalendar2.SelectionStart.Date.Year;
+            return StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year ;
         }
 
         private void печатьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -909,14 +909,23 @@ namespace PGUTI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            dateGroupBox1.Visible = false;//Скрываем выбор дат
+            //dateGroupBox1.Visible = false;//Скрываем выбор дат
+            StartMonthCalendar1.Visible = false;
             //dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             //orderByRate(dsNum);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            dateGroupBox1.Visible = true;//Показываем выбор дат
+            //dateGroupBox1.Visible = true;//Показываем выбор дат
+            if (StartMonthCalendar1.Visible)
+            {
+                StartMonthCalendar1.Visible = false;
+            }
+            else
+            {
+                StartMonthCalendar1.Visible = true;
+            }
         }
 
         private void EndMonthCalendar2_DateChanged(object sender, DateRangeEventArgs e)
@@ -929,6 +938,27 @@ namespace PGUTI
         {
             dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             orderByRate(dsNum);
+        }
+
+        private void DateOfSampling_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            orderByRate(dsNum);
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_Click(object sender, EventArgs e)
+        {
+            StartMonthCalendar1.Visible = false;
+        }
+
+        private void toolStrip1_Click(object sender, EventArgs e)
+        {
+            StartMonthCalendar1.Visible = false;
         }        
 
 
