@@ -143,6 +143,15 @@ namespace PGUTI
                 tb.ForeColor = Color.DimGray;
             }
         }
+        public void TrainingDatesTextBoxLostFocus(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            if (tb.Text == "")
+            {
+                tb.Text = "Место проведения...";
+                tb.ForeColor = Color.DimGray;
+            }
+        }
         #endregion
         private void editForm_Load(object sender, EventArgs e)
         {
@@ -178,8 +187,9 @@ namespace PGUTI
 
             Rate.GotFocus += new EventHandler(this.TextGotFocus);
             Rate.LostFocus += new EventHandler(this.RateLostFocus);
-            
 
+            TrainingDatesTextBox.GotFocus += new EventHandler(this.TextGotFocus);
+            TrainingDatesTextBox.LostFocus += new EventHandler(this.TrainingDatesTextBoxLostFocus);
 
             //Заполняем все ComboBox'ы
             CairComboBox.DataSource = Data.Teachers.getSecondNameCairs().Tables[0];
@@ -274,10 +284,22 @@ namespace PGUTI
 
                 TotalExperienceDateTimePicker.Value = (DateTime)person.Tables[0].Rows[0].ItemArray[24];
 
-                TrainingDatesTimePicker.Value = (DateTime)person.Tables[0].Rows[0].ItemArray[27];
+                if (person.Tables[0].Rows[0].ItemArray[27].ToString() != "")
+                {
+                    TrainingDatesTimePicker.Value = (DateTime)person.Tables[0].Rows[0].ItemArray[27];
+                }
 
                 if (person.Tables[0].Rows[0].ItemArray[28].ToString() != "")
                     education_dateTimePicker1.Value = (DateTime)person.Tables[0].Rows[0].ItemArray[28];
+
+                if (person.Tables[0].Rows[0].ItemArray[33].ToString() != "")
+                {
+                    TrainingDatesTextBox.Text = person.Tables[0].Rows[0].ItemArray[33].ToString();
+                }
+                if (person.Tables[0].Rows[0].ItemArray[32].ToString() != "")
+                {
+                    TrainingDatesEndTimePicker.Value = (DateTime)person.Tables[0].Rows[0].ItemArray[32];
+                }
             }
 
         }
@@ -296,6 +318,7 @@ namespace PGUTI
         private static string[] rates;string rate;//Переменные ставок
         private static string titlesDate = null;
         private static string degressDate = null;
+        private static string education_date = null;
         private void insertPerson()
         {
             SplitAndCheck();//Метод для коррекции введённого значения ставки и даты
@@ -333,12 +356,31 @@ namespace PGUTI
             rates = Rate.Text.Split(new Char[] { '.', ',' });//Разбираем строку по разделителю ('.'или',')
             if (rates.Length > 1) rate = (rates[0] + "." + rates[1]);//если стоит разделитель, значит собираем строку с точкой для запроса в базу (с запятой запрос не будет работать, поэтому нужна точка)
             else rate = rates[0];//если без разделителя , тогда так и оставляем
+
             if (ScientificDegreeComboBox.Text == "")//Если нету ученой степени
                 titlesDate = "null";//То и даты получения также нету
             else titlesDate = "'" + TitlesDateTimePicker.Value.Date.ToString() + "'";
+
             if (AcademicTitleComboBox.Text == "")
                 degressDate = "null";
             else degressDate = "'" + DegreesTimePicker2.Value.Date.ToString() + "'";
+
+            if (TrainingDatesTextBox.Text == "Место проведения...")
+                TrainingDatesTextBox.Text = "";
+
+            if ((EducationalInstitutionTextBox.Text.Equals("Учреждение...") || EducationalInstitutionTextBox.Text.Equals("")) & (SpecialtyDiplomTextBox.Text.Equals("Специальность...") || SpecialtyDiplomTextBox.Text.Equals("")))
+            {
+                EducationalInstitutionTextBox.Text = "null";
+                SpecialtyDiplomTextBox.Text = "null";
+                education_date = "null";
+            }
+            else
+            {
+                education_date = "'" + education_dateTimePicker1.Value.Date.ToString() + "'";
+            }
+
+
+            TrainingChecked();
         }
         //Метод редактирования 
         private string getValuesUpdatePerson()
@@ -368,9 +410,11 @@ namespace PGUTI
                 + "',competitive_selection_end_date='" + Data.ReverseDateTime(CompetitiveSelectionEndDate.Value.Date)
                 + "',rate=" + rate
                 + ",experience_date='" + Data.ReverseDateTime(ExperienceDate.Value.Date)
-                + "',Training_dates='" + Data.ReverseDateTime(TrainingDatesTimePicker.Value.Date)
-                + "',total_experience_date='" + Data.ReverseDateTime(TotalExperienceDateTimePicker.Value.Date)
-                + "',education_date='" + Data.ReverseDateTime(education_dateTimePicker1.Value.Date) + "'";
+                + "',Training_dates=" + TrainingDatesStart
+                + ",total_experience_date='" + Data.ReverseDateTime(TotalExperienceDateTimePicker.Value.Date)
+                + "',education_date=" + education_date
+            + ",Training_dates_end=" + TrainingDatesEnd
+            + ",Training_place='" + TrainingDatesTex+"'";
         }
         //Метод редактирования декана
         private string getValuesUpdatePersonDekan()
@@ -398,10 +442,12 @@ namespace PGUTI
                 + "',competitive_selection_end_date='" + Data.ReverseDateTime(CompetitiveSelectionEndDate.Value.Date)
                 + "',rate=" + rate
                 + ",experience_date='" + Data.ReverseDateTime(ExperienceDate.Value.Date)
-                + "',Training_dates='" + Data.ReverseDateTime(TrainingDatesTimePicker.Value.Date)
-                + "',total_experience_date='" + Data.ReverseDateTime(TotalExperienceDateTimePicker.Value.Date)
-                + "',education_date='" + Data.ReverseDateTime(education_dateTimePicker1.Value.Date)
-                + "',Dekan_Faculties=" + (FacultiesComboBox.SelectedIndex+1);
+                + "',Training_dates=" + TrainingDatesStart
+                + ",total_experience_date='" + Data.ReverseDateTime(TotalExperienceDateTimePicker.Value.Date)
+                + "',education_date=" + education_date
+                + ",Dekan_Faculties=" + (FacultiesComboBox.SelectedIndex + 1)
+            +",Training_dates_end=" + TrainingDatesEnd
+            + ",Training_place='" + TrainingDatesTex + "'";
         }
         //Метод добавления декана
         private string getValuesInsertPersonDekan()
@@ -430,12 +476,14 @@ namespace PGUTI
                 + "','" + Data.ReverseDateTime(CompetitiveSelectionEndDate.Value.Date)
                 + "'," + rate
                 + ",'" + Data.ReverseDateTime(ExperienceDate.Value.Date)
-                + "','" + Data.ReverseDateTime(TrainingDatesTimePicker.Value.Date)
-                + "','" + Data.ReverseDateTime(TotalExperienceDateTimePicker.Value.Date)
-                + "'," + (FacultiesComboBox.SelectedIndex + 1) + "','" +
-                Data.ReverseDateTime(education_dateTimePicker1.Value.Date) + "','" +
+                + "'," + TrainingDatesStart
+                + ",'" + Data.ReverseDateTime(TotalExperienceDateTimePicker.Value.Date)
+                + "'," + (FacultiesComboBox.SelectedIndex + 1) + "," +
+                education_date + ",'" +
                 1 + "','" +
-                Data.ReverseDateTime(ExperienceDate.Value.Date) + "')";
+                Data.ReverseDateTime(ExperienceDate.Value.Date) + "',"
+                + TrainingDatesEnd + ",'"
+                + TrainingDatesTex + "')";
             return val;
 
         }
@@ -467,17 +515,25 @@ namespace PGUTI
                 + "','" + Data.ReverseDateTime(CompetitiveSelectionStartDate.Value.Date)
                 + "','" + Data.ReverseDateTime(CompetitiveSelectionEndDate.Value.Date)
                 + "'," + rate
-                + ",'" + Data.ReverseDateTime(ExperienceDate.Value.Date) + "','" +
-                Data.ReverseDateTime(TrainingDatesTimePicker.Value.Date) + "','" +
-                Data.ReverseDateTime(TotalExperienceDateTimePicker.Value.Date) + "','" +
-                Data.ReverseDateTime(education_dateTimePicker1.Value.Date) + "','" +
+                + ",'" + Data.ReverseDateTime(ExperienceDate.Value.Date) + "'," +
+                TrainingDatesStart + ",'" +
+                Data.ReverseDateTime(TotalExperienceDateTimePicker.Value.Date) + "'," +
+                education_date + ",'" +
                 1 + "','" +
-                Data.ReverseDateTime(ExperienceDate.Value.Date) + "')";
+                Data.ReverseDateTime(ExperienceDate.Value.Date) + "',"
+                + TrainingDatesEnd+ ",'"
+                +TrainingDatesTex+"')";
         }
+
+
+        private static string TrainingDatesTex = null;
+        private static string TrainingDatesStart = null;
+        private static string TrainingDatesEnd = null;
 
         private bool Correct()//Метод проверки корректности введённых сначений
         {
-            if (EducationalInstitutionTextBox.Text == "Учреждение..." || SpecialtyDiplomTextBox.Text == "Специальность..." || SerialTextBox.Text == "Серия..." || NumberTextBox.Text == "Номер..." || SurnameTextBox.Text == "Фамилия..." || NameTextBox.Text == "Имя..." || MiddleNameTextBox.Text == "Отчество..." || TelephoneTextBox.Text == "89271112233" || RegistrationTextBox.Text == "Прописка...")
+            //EducationalInstitutionTextBox.Text == "Учреждение..." || SpecialtyDiplomTextBox.Text == "Специальность..." ||
+            if (SerialTextBox.Text == "Серия..." || NumberTextBox.Text == "Номер..." || SurnameTextBox.Text == "Фамилия..." || NameTextBox.Text == "Имя..." || MiddleNameTextBox.Text == "Отчество..." || TelephoneTextBox.Text == "89271112233" || RegistrationTextBox.Text == "Прописка...")
                 return false;
             if (EducationalInstitutionTextBox.Text == String.Empty || SpecialtyDiplomTextBox.Text == String.Empty || SerialTextBox.Text == String.Empty || NumberTextBox.Text == String.Empty || SurnameTextBox.Text == String.Empty || NameTextBox.Text == String.Empty || MiddleNameTextBox.Text == String.Empty || RegistrationTextBox.Text == String.Empty)
                 return false;
@@ -524,6 +580,29 @@ namespace PGUTI
         private void education_dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            TrainingChecked();
+        }
+
+        private void TrainingChecked()
+        {
+            if (TrainingcheckBox1.Checked)
+            {
+                groupBox8.Enabled = true;
+                TrainingDatesStart = "'"+Data.ReverseDateTime(TrainingDatesTimePicker.Value.Date)+"'";
+                TrainingDatesEnd = "'" + Data.ReverseDateTime(TrainingDatesEndTimePicker.Value.Date)+"'";
+                TrainingDatesTex = TrainingDatesTextBox.Text;
+            }
+            else
+            {
+                groupBox8.Enabled = false;
+                TrainingDatesTex = null;
+                TrainingDatesStart = "null";
+                TrainingDatesEnd = "null";
+            }
         }
     }
 }

@@ -68,6 +68,13 @@
             this.NumberTextBox = new System.Windows.Forms.TextBox();
             this.SerialTextBox = new System.Windows.Forms.TextBox();
             this.DekanСheckBox = new System.Windows.Forms.CheckBox();
+            this.TrainingDatesTextBox = new System.Windows.Forms.TextBox();
+            this.TrainingDatesEndTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.TrainingcheckBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -85,16 +92,16 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox9.Controls.Add(this.TotalExperienceDateTimePicker);
-            this.groupBox9.Location = new System.Drawing.Point(380, 241);
+            this.groupBox9.Location = new System.Drawing.Point(380, 231);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(254, 63);
+            this.groupBox9.Size = new System.Drawing.Size(161, 48);
             this.groupBox9.TabIndex = 31;
             this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Стаж";
+            this.groupBox9.Text = "Стаж ПГУТИ";
             // 
             // TotalExperienceDateTimePicker
             // 
-            this.TotalExperienceDateTimePicker.Location = new System.Drawing.Point(6, 19);
+            this.TotalExperienceDateTimePicker.Location = new System.Drawing.Point(31, 19);
             this.TotalExperienceDateTimePicker.Name = "TotalExperienceDateTimePicker";
             this.TotalExperienceDateTimePicker.Size = new System.Drawing.Size(130, 20);
             this.TotalExperienceDateTimePicker.TabIndex = 11;
@@ -131,31 +138,35 @@
             this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox8.Controls.Add(this.label2);
+            this.groupBox8.Controls.Add(this.label1);
+            this.groupBox8.Controls.Add(this.TrainingDatesEndTimePicker);
+            this.groupBox8.Controls.Add(this.TrainingDatesTextBox);
             this.groupBox8.Controls.Add(this.TrainingDatesTimePicker);
-            this.groupBox8.Location = new System.Drawing.Point(380, 307);
+            this.groupBox8.Location = new System.Drawing.Point(380, 281);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(254, 62);
+            this.groupBox8.Size = new System.Drawing.Size(161, 94);
             this.groupBox8.TabIndex = 30;
             this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Повышениe квалификации,";
+            this.groupBox8.Text = "Повышениe квалификации";
             // 
             // TrainingDatesTimePicker
             // 
-            this.TrainingDatesTimePicker.Location = new System.Drawing.Point(6, 26);
+            this.TrainingDatesTimePicker.Location = new System.Drawing.Point(31, 45);
             this.TrainingDatesTimePicker.Name = "TrainingDatesTimePicker";
             this.TrainingDatesTimePicker.Size = new System.Drawing.Size(130, 20);
             this.TrainingDatesTimePicker.TabIndex = 10;
             // 
             // CompetitiveSelectionEndDate
             // 
-            this.CompetitiveSelectionEndDate.Location = new System.Drawing.Point(6, 45);
+            this.CompetitiveSelectionEndDate.Location = new System.Drawing.Point(31, 44);
             this.CompetitiveSelectionEndDate.Name = "CompetitiveSelectionEndDate";
             this.CompetitiveSelectionEndDate.Size = new System.Drawing.Size(130, 20);
             this.CompetitiveSelectionEndDate.TabIndex = 10;
             // 
             // CompetitiveSelectionStartDate
             // 
-            this.CompetitiveSelectionStartDate.Location = new System.Drawing.Point(6, 19);
+            this.CompetitiveSelectionStartDate.Location = new System.Drawing.Point(31, 18);
             this.CompetitiveSelectionStartDate.Name = "CompetitiveSelectionStartDate";
             this.CompetitiveSelectionStartDate.Size = new System.Drawing.Size(130, 20);
             this.CompetitiveSelectionStartDate.TabIndex = 9;
@@ -163,7 +174,7 @@
             // Rate
             // 
             this.Rate.ForeColor = System.Drawing.Color.DimGray;
-            this.Rate.Location = new System.Drawing.Point(6, 121);
+            this.Rate.Location = new System.Drawing.Point(31, 121);
             this.Rate.Name = "Rate";
             this.Rate.Size = new System.Drawing.Size(130, 20);
             this.Rate.TabIndex = 10;
@@ -180,14 +191,14 @@
             this.groupBox7.Controls.Add(this.TermWorksComboBox);
             this.groupBox7.Location = new System.Drawing.Point(380, 82);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(254, 153);
+            this.groupBox7.Size = new System.Drawing.Size(161, 147);
             this.groupBox7.TabIndex = 28;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Условия";
             // 
             // ExperienceDate
             // 
-            this.ExperienceDate.Location = new System.Drawing.Point(6, 92);
+            this.ExperienceDate.Location = new System.Drawing.Point(31, 92);
             this.ExperienceDate.Name = "ExperienceDate";
             this.ExperienceDate.Size = new System.Drawing.Size(130, 20);
             this.ExperienceDate.TabIndex = 9;
@@ -200,7 +211,7 @@
             "Приняли",
             "Перевели",
             "Уволили"});
-            this.AcceptedComboBox.Location = new System.Drawing.Point(6, 56);
+            this.AcceptedComboBox.Location = new System.Drawing.Point(31, 56);
             this.AcceptedComboBox.Name = "AcceptedComboBox";
             this.AcceptedComboBox.Size = new System.Drawing.Size(130, 21);
             this.AcceptedComboBox.TabIndex = 14;
@@ -213,7 +224,7 @@
             "Штатный сотрудник",
             "Штатные совместители ",
             "Сторонние (внешние) совместители"});
-            this.TermWorksComboBox.Location = new System.Drawing.Point(6, 19);
+            this.TermWorksComboBox.Location = new System.Drawing.Point(31, 19);
             this.TermWorksComboBox.Name = "TermWorksComboBox";
             this.TermWorksComboBox.Size = new System.Drawing.Size(130, 21);
             this.TermWorksComboBox.TabIndex = 13;
@@ -262,11 +273,13 @@
             this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox6.Controls.Add(this.label3);
             this.groupBox6.Controls.Add(this.CompetitiveSelectionEndDate);
+            this.groupBox6.Controls.Add(this.label4);
             this.groupBox6.Controls.Add(this.CompetitiveSelectionStartDate);
-            this.groupBox6.Location = new System.Drawing.Point(380, 6);
+            this.groupBox6.Location = new System.Drawing.Point(380, 5);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(254, 70);
+            this.groupBox6.Size = new System.Drawing.Size(161, 70);
             this.groupBox6.TabIndex = 27;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Срок конкурсного отбора ";
@@ -366,7 +379,7 @@
             this.TelephoneTextBox.Name = "TelephoneTextBox";
             this.TelephoneTextBox.Size = new System.Drawing.Size(206, 20);
             this.TelephoneTextBox.TabIndex = 7;
-            this.TelephoneTextBox.Text = "Техефон...";
+            this.TelephoneTextBox.Text = "Телефон...";
             // 
             // GenderComboBox
             // 
@@ -484,11 +497,76 @@
             this.DekanСheckBox.UseVisualStyleBackColor = true;
             this.DekanСheckBox.CheckedChanged += new System.EventHandler(this.DekanСheckBox_CheckedChanged);
             // 
+            // TrainingDatesTextBox
+            // 
+            this.TrainingDatesTextBox.ForeColor = System.Drawing.Color.DimGray;
+            this.TrainingDatesTextBox.Location = new System.Drawing.Point(31, 19);
+            this.TrainingDatesTextBox.Name = "TrainingDatesTextBox";
+            this.TrainingDatesTextBox.Size = new System.Drawing.Size(130, 20);
+            this.TrainingDatesTextBox.TabIndex = 11;
+            this.TrainingDatesTextBox.Text = "Место проведения...";
+            // 
+            // TrainingDatesEndTimePicker
+            // 
+            this.TrainingDatesEndTimePicker.Location = new System.Drawing.Point(31, 68);
+            this.TrainingDatesEndTimePicker.Name = "TrainingDatesEndTimePicker";
+            this.TrainingDatesEndTimePicker.Size = new System.Drawing.Size(130, 20);
+            this.TrainingDatesEndTimePicker.TabIndex = 12;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1, 51);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(17, 13);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "C:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(1, 74);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(24, 13);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "По:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(1, 50);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(24, 13);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "По:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(1, 27);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(17, 13);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "C:";
+            // 
+            // TrainingcheckBox1
+            // 
+            this.TrainingcheckBox1.AutoSize = true;
+            this.TrainingcheckBox1.Checked = true;
+            this.TrainingcheckBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.TrainingcheckBox1.Location = new System.Drawing.Point(529, 282);
+            this.TrainingcheckBox1.Name = "TrainingcheckBox1";
+            this.TrainingcheckBox1.Size = new System.Drawing.Size(15, 14);
+            this.TrainingcheckBox1.TabIndex = 33;
+            this.TrainingcheckBox1.UseVisualStyleBackColor = true;
+            this.TrainingcheckBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // EditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(651, 385);
+            this.ClientSize = new System.Drawing.Size(553, 384);
+            this.Controls.Add(this.TrainingcheckBox1);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.DekanСheckBox);
             this.Controls.Add(this.groupBox9);
@@ -500,18 +578,20 @@
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.MaximumSize = new System.Drawing.Size(667, 423);
-            this.MinimumSize = new System.Drawing.Size(667, 423);
+            this.MaximumSize = new System.Drawing.Size(569, 423);
+            this.MinimumSize = new System.Drawing.Size(569, 423);
             this.Name = "EditForm";
             this.Text = "Данные сотрудника";
             this.Load += new System.EventHandler(this.editForm_Load);
             this.groupBox9.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
@@ -565,5 +645,12 @@
         private System.Windows.Forms.CheckBox DekanСheckBox;
         private System.Windows.Forms.ComboBox FacultiesComboBox;
         private System.Windows.Forms.DateTimePicker education_dateTimePicker1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker TrainingDatesEndTimePicker;
+        private System.Windows.Forms.TextBox TrainingDatesTextBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox TrainingcheckBox1;
     }
 }
