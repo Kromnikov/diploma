@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PGUTI.reports;
 using System.Drawing.Printing;
+using System.Drawing.Imaging;
 
 namespace PGUTI
 {
@@ -914,20 +915,25 @@ namespace PGUTI
             //dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             //orderByRate(dsNum);
         }
-
+        private static bool flagBackOpacity = false;
         private void button1_Click(object sender, EventArgs e)
         {
-            //dateGroupBox1.Visible = true;//Показываем выбор дат
             if (StartMonthCalendar1.Visible)
             {
                 StartMonthCalendar1.Visible = false;
+                DissMonthCalendar1.Visible = false;
+                dataGridView1.Refresh();
             }
             else
             {
                 StartMonthCalendar1.Visible = true;
+                dataGridView1.Refresh();
+                if (dsNum.Equals("0.2.0"))
+                {
+                    DissMonthCalendar1.Visible = true;
+                }
             }
         }
-
         private void EndMonthCalendar2_DateChanged(object sender, DateRangeEventArgs e)
         {
             dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
@@ -954,12 +960,27 @@ namespace PGUTI
         private void dataGridView1_Click(object sender, EventArgs e)
         {
             StartMonthCalendar1.Visible = false;
+            DissMonthCalendar1.Visible = false;
+            flagBackOpacity = false;
         }
 
         private void toolStrip1_Click(object sender, EventArgs e)
         {
             StartMonthCalendar1.Visible = false;
-        }        
+            DissMonthCalendar1.Visible = false;
+            flagBackOpacity = false;
+        }
+
+        private void dataGridView1_Paint(object sender, PaintEventArgs e)
+        {
+            if (StartMonthCalendar1.Visible)
+            {
+                Color color = Color.FromArgb(100, Color.Gray);
+                SolidBrush br = new SolidBrush(color);
+                e.Graphics.FillRectangle(br, e.ClipRectangle);
+            }
+        }
+
 
 
     }
