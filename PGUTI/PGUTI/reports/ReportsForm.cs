@@ -211,7 +211,7 @@ namespace PGUTI
 
         private void showDissertations()
         {
-            ds = Data.Dissertation.Show(StartMonthCalendar1.SelectionStart.Date);//В зависимости от названия кафедры, заполняем таблицу, CairsComboBox1.SelectedIndex + 1 получаем название кафедры по номеру +1 т.к. начинаеться с нуля а в базе с единицы
+            ds = Data.Dissertation.Show(DissMonthCalendar1.SelectionStart.Date, StartMonthCalendar1.SelectionStart.Date);//В зависимости от названия кафедры, заполняем таблицу, CairsComboBox1.SelectedIndex + 1 получаем название кафедры по номеру +1 т.к. начинаеться с нуля а в базе с единицы
             dataGridView1.DataSource = ds;//Заполняем таблицу
             dataGridView1.DataMember = ds.Tables[0].TableName;//Имя таблицы
             dataGridView1.Columns["id"].Visible = false;//Скрываем поле id
@@ -915,7 +915,6 @@ namespace PGUTI
             //dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             //orderByRate(dsNum);
         }
-        private static bool flagBackOpacity = false;
         private void button1_Click(object sender, EventArgs e)
         {
             if (StartMonthCalendar1.Visible)
@@ -961,14 +960,12 @@ namespace PGUTI
         {
             StartMonthCalendar1.Visible = false;
             DissMonthCalendar1.Visible = false;
-            flagBackOpacity = false;
         }
 
         private void toolStrip1_Click(object sender, EventArgs e)
         {
             StartMonthCalendar1.Visible = false;
             DissMonthCalendar1.Visible = false;
-            flagBackOpacity = false;
         }
 
         private void dataGridView1_Paint(object sender, PaintEventArgs e)

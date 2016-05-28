@@ -24,7 +24,11 @@ namespace PGUTI
             //return String.Format(" (((start_date < '{1}' and start_date > '{0}' ) and (end_date is null)) or  ((start_date between '{0}' and '{1}') or (end_date between '{0}' and '{1}'))) ", ReverseDateTime(startDate), ReverseDateTime(endDate));
             return String.Format(" ((total_experience_date <= '{0}'  and end_date is null) or  (total_experience_date <= '{0}'  and end_date >= '{0}' )) ", ReverseDateTime(date));
         }
-
+        private static string betweenDiss(DateTime date, DateTime endDate)
+        {
+            //return String.Format(" (((start_date < '{1}' and start_date > '{0}' ) and (end_date is null)) or  ((start_date between '{0}' and '{1}') or (end_date between '{0}' and '{1}'))) ", ReverseDateTime(startDate), ReverseDateTime(endDate));
+            return String.Format(" ((total_experience_date <= '{0}'  and end_date is null) or  (total_experience_date <= '{0}'  and end_date >= '{0}' )) ", ReverseDateTime(date));
+        }
 
         private static string connectionString = ConfigurationManager.ConnectionStrings["Pguti.Connection"].ConnectionString;//Строка подключения к базе , из файла конфигурации
         
@@ -407,9 +411,9 @@ namespace PGUTI
 
         public static class Dissertation
         {
-            public static DataSet Show(DateTime startDate)
+            public static DataSet Show(DateTime startDate, DateTime endDate)
             {
-                string result = "select f.id,w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,c.second_name as 'Кафедра',d.name as 'ученое звание',titles_date as 'Дата получения ученого звания',a.second_name as 'ученая степень',f.degress_date as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.' from Teachers as f left join  Working_positions as w on w.id=f.Job_title   left join Titles as d on d.id=f.titles_id  left join Degrees as a on a.id=f.degrees_id  left join Cairs as c on c.id = f.Cairs where (d.name is not null) and " + between(startDate) + " ";//where DATEDIFF(MONTH,degress_date,'" + date + "')=0 ";//and f.Dekan_Faculties is null
+                string result = "select f.id,w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,c.second_name as 'Кафедра',d.name as 'ученое звание',titles_date as 'Дата получения ученого звания',a.second_name as 'ученая степень',f.degress_date as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.' from Teachers as f left join  Working_positions as w on w.id=f.Job_title   left join Titles as d on d.id=f.titles_id  left join Degrees as a on a.id=f.degrees_id  left join Cairs as c on c.id = f.Cairs where (d.name is not null) and " + betweenDiss(startDate,endDate) + " ";//where DATEDIFF(MONTH,degress_date,'" + date + "')=0 ";//and f.Dekan_Faculties is null
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
         }//Диссетрации
