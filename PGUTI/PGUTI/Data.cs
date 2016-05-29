@@ -411,9 +411,13 @@ namespace PGUTI
 
         public static class Dissertation
         {
-            public static DataSet Show(DateTime startDate, DateTime endDate)
+            public static DataSet Show(DateTime endDate)
             {
-                string result = "select f.id,w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,c.second_name as 'Кафедра',d.name as 'ученое звание',titles_date as 'Дата получения ученого звания',a.second_name as 'ученая степень',f.degress_date as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.' from Teachers as f left join  Working_positions as w on w.id=f.Job_title   left join Titles as d on d.id=f.titles_id  left join Degrees as a on a.id=f.degrees_id  left join Cairs as c on c.id = f.Cairs where (d.name is not null) and " + betweenDiss(startDate,endDate) + " ";//where DATEDIFF(MONTH,degress_date,'" + date + "')=0 ";//and f.Dekan_Faculties is null
+                DateTime startDate = endDate.Date;
+                startDate = startDate.AddYears(-5);
+                string result = "select f.id,w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,c.second_name as 'Кафедра',a.second_name as 'ученая степень',f.degress_date as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.' from Teachers as f left join  Working_positions as w on w.id=f.Job_title   left join Titles as d on d.id=f.titles_id  left join Degrees as a on a.id=f.degrees_id  left join Cairs as c on c.id = f.Cairs where (a.second_name is not null) and "+
+                   
+                "(f.degress_date between '"+startDate+"' and '"+endDate+"')";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
         }//Диссетрации

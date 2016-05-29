@@ -210,7 +210,7 @@ namespace PGUTI
 
         private void showDissertations()
         {
-            ds = Data.Dissertation.Show(DissMonthCalendar1.SelectionStart.Date, StartMonthCalendar1.SelectionStart.Date);//В зависимости от названия кафедры, заполняем таблицу, CairsComboBox1.SelectedIndex + 1 получаем название кафедры по номеру +1 т.к. начинаеться с нуля а в базе с единицы
+            ds = Data.Dissertation.Show(StartMonthCalendar1.SelectionStart.Date);//В зависимости от названия кафедры, заполняем таблицу, CairsComboBox1.SelectedIndex + 1 получаем название кафедры по номеру +1 т.к. начинаеться с нуля а в базе с единицы
             dataGridView1.DataSource = ds;//Заполняем таблицу
             dataGridView1.DataMember = ds.Tables[0].TableName;//Имя таблицы
             dataGridView1.Columns["id"].Visible = false;//Скрываем поле id
@@ -821,7 +821,8 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Защита диссертаций: " + getDateString();
+                //tableName = "Защита диссертаций: " + getDateString();
+                tableName = "Защита диссертаций за 5 лет на " + getDateString();
                 dsNum = "0.2.0";
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 showDissertations();
