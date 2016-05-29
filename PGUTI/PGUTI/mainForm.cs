@@ -52,20 +52,6 @@ namespace PGUTI
             FacultyGridView1.DataSource = ds;//Заполняем таблицу
             FacultyGridView1.DataMember = ds.Tables[0].TableName;//Имя таблицы
             FacultyGridView1.Columns["id"].Visible = false;//Скрываем поле id
-
-            //for (int i = 0; i < ds.Tables[0].Columns.Count; i++)
-            //{
-            //    FacultyGridView1.Columns.Add("",ds.Tables[0].Columns[i].ColumnName.ToString());
-            //}
-            //FacultyGridView1.Columns[0].Visible = false;
-            //for (int i = 0; i <ds.Tables[0].Rows.Count; i++)
-            //{
-            //    FacultyGridView1.Rows.Add();
-            //    for (int j = 1; j < ds.Tables[0].Columns.Count; j++)
-            //    {
-            //        FacultyGridView1[j,i].Value = ds.Tables[0].Rows[i].ItemArray[j - 1].ToString();
-            //    }
-            //}
             SortingMode();//Запрещаем сортировку по столбцу
         }
 

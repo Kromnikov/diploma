@@ -44,3 +44,5 @@ C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.csproj.Generat
 E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.reference.TestForm.resources
 E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.EditUsers.resources
 E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.Users.resources
+C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.EditUsers.resources
+C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.Users.resources

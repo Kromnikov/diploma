@@ -960,12 +960,14 @@ namespace PGUTI
         {
             StartMonthCalendar1.Visible = false;
             DissMonthCalendar1.Visible = false;
+            dataGridView1.Refresh();
         }
 
         private void toolStrip1_Click(object sender, EventArgs e)
         {
             StartMonthCalendar1.Visible = false;
             DissMonthCalendar1.Visible = false;
+            dataGridView1.Refresh();
         }
 
         private void dataGridView1_Paint(object sender, PaintEventArgs e)
