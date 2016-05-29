@@ -871,10 +871,10 @@ namespace PGUTI
             {
                 StartMonthCalendar1.Visible = true;
                 dataGridView1.Refresh();
-                if (dsNum.Equals("0.2.0"))
-                {
-                    DissMonthCalendar1.Visible = true;
-                }
+                //if (dsNum.Equals("0.2.0"))
+                //{
+                //    DissMonthCalendar1.Visible = true;
+                //}
             }
         }
         private void EndMonthCalendar2_DateChanged(object sender, DateRangeEventArgs e)
@@ -932,6 +932,18 @@ namespace PGUTI
         private void текущийОтчётToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Export.print(dataGridView1, tableName);
+        }
+
+        private void повышениеКвалификацииToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                tableName = "Повышение квалификации за 5 лет на " + getDateString();
+                dsNum = "0.2.0";
+                dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+                showDissertations();
+            }
+            catch { this.Close(); }
         }
 
 
