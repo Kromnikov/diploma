@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.CairsComboBox1 = new System.Windows.Forms.ComboBox();
             this.FacultyGridView1 = new System.Windows.Forms.DataGridView();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.добавитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,15 +82,15 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.FacultyGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.NullValue = null;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.FacultyGridView1.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.NullValue = null;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.FacultyGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.FacultyGridView1.Location = new System.Drawing.Point(0, 31);
             this.FacultyGridView1.Name = "FacultyGridView1";
             this.FacultyGridView1.ReadOnly = true;
@@ -98,6 +99,10 @@
             this.FacultyGridView1.TabIndex = 5;
             this.FacultyGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.FacultyGridView1_CellContentClick);
             this.FacultyGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.FacultyGridView1_CellDoubleClick);
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             // 
             // toolStrip1
             // 
@@ -214,6 +219,9 @@
             // 
             // enterGroupBox1
             // 
+            this.enterGroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.enterGroupBox1.Controls.Add(this.enterButton1);
             this.enterGroupBox1.Controls.Add(this.label2);
             this.enterGroupBox1.Controls.Add(this.label1);
@@ -228,6 +236,7 @@
             // 
             // enterButton1
             // 
+            this.enterButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.enterButton1.Location = new System.Drawing.Point(439, 192);
             this.enterButton1.Name = "enterButton1";
             this.enterButton1.Size = new System.Drawing.Size(75, 23);
@@ -238,6 +247,9 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(228, 166);
             this.label2.Name = "label2";
@@ -247,6 +259,9 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(235, 137);
             this.label1.Name = "label1";
@@ -256,6 +271,9 @@
             // 
             // passwordTextBox2
             // 
+            this.passwordTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.passwordTextBox2.Location = new System.Drawing.Point(277, 163);
             this.passwordTextBox2.Name = "passwordTextBox2";
             this.passwordTextBox2.PasswordChar = '*';
@@ -266,6 +284,9 @@
             // 
             // loginTextBox1
             // 
+            this.loginTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.loginTextBox1.Location = new System.Drawing.Point(277, 137);
             this.loginTextBox1.Name = "loginTextBox1";
             this.loginTextBox1.Size = new System.Drawing.Size(237, 20);
@@ -308,6 +329,7 @@
         private PGUTIDataSetTableAdapters.ППСTableAdapter пПСTableAdapter;
         private System.Windows.Forms.DataGridView FacultyGridView1;
         private System.Windows.Forms.ComboBox CairsComboBox1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripMenuItem добавитьToolStripMenuItem;

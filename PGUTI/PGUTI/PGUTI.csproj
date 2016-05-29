@@ -67,6 +67,7 @@
     <Compile Include="EditUsers.Designer.cs">
       <DependentUpon>EditUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Export.cs" />
     <Compile Include="mainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,13 +100,12 @@
     <Compile Include="TEST\TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="reports\ReportsForm.cs">
+    <Compile Include="ReportsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="reports\ReportsForm.Designer.cs">
+    <Compile Include="ReportsForm.Designer.cs">
       <DependentUpon>ReportsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="reports\Staffer.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Users.cs">
       <SubType>Form</SubType>
@@ -141,7 +141,7 @@
     <EmbeddedResource Include="TEST\TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="reports\ReportsForm.resx">
+    <EmbeddedResource Include="ReportsForm.resx">
       <DependentUpon>ReportsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Users.resx">

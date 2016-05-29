@@ -84,6 +84,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.DissMonthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.выведеннойТаблицыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сВыборомТаблицToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -100,7 +102,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.LightGray;
             this.dataGridView1.ColumnHeadersHeight = 40;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -479,6 +480,9 @@
             // 
             // печатьToolStripMenuItem
             // 
+            this.печатьToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.выведеннойТаблицыToolStripMenuItem,
+            this.сВыборомТаблицToolStripMenuItem});
             this.печатьToolStripMenuItem.Name = "печатьToolStripMenuItem";
             this.печатьToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.печатьToolStripMenuItem.Text = "Экспорт";
@@ -529,6 +533,20 @@
             this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // выведеннойТаблицыToolStripMenuItem
+            // 
+            this.выведеннойТаблицыToolStripMenuItem.Name = "выведеннойТаблицыToolStripMenuItem";
+            this.выведеннойТаблицыToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.выведеннойТаблицыToolStripMenuItem.Text = "Выбранной таблицы";
+            this.выведеннойТаблицыToolStripMenuItem.Click += new System.EventHandler(this.выведеннойТаблицыToolStripMenuItem_Click);
+            // 
+            // сВыборомТаблицToolStripMenuItem
+            // 
+            this.сВыборомТаблицToolStripMenuItem.Name = "сВыборомТаблицToolStripMenuItem";
+            this.сВыборомТаблицToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.сВыборомТаблицToolStripMenuItem.Text = "С выбором таблиц";
+            this.сВыборомТаблицToolStripMenuItem.Click += new System.EventHandler(this.сВыборомТаблицToolStripMenuItem_Click);
             // 
             // ReportsForm
             // 
@@ -605,6 +623,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.MonthCalendar DissMonthCalendar1;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ToolStripMenuItem выведеннойТаблицыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сВыборомТаблицToolStripMenuItem;
 
     }
 }

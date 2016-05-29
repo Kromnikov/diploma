@@ -87,11 +87,73 @@ namespace PGUTI
         {
             UpdateFacultyGridView();
         }
-        private void печатьToolStripMenuItem_Click(object sender, EventArgs e)
+        //Print
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            Export.print(FacultyGridView1, tableName);
+            //Bitmap bmp = new Bitmap(FacultyGridView1.Size.Width + 10, FacultyGridView1.Size.Height + 10);
+            //FacultyGridView1.DrawToBitmap(bmp, FacultyGridView1.Bounds);
+            //e.Graphics.DrawImage(bmp, 0, 0);
+             bool more = MyDataGridViewPrinter.DrawDataGridView(e.Graphics);
+        if (more == true)
+        e.HasMorePages = true;
         }//Print
 
+        private void печатьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //printDocument1.Print();
+
+            ////PrintPreviewDialog dlg = new PrintPreviewDialog();
+            ////dlg.Document = printDocument1;
+            ////dlg.ShowDialog();
+
+
+            //MyDataGridView = FacultyGridView1; // d-мой датагрид, который на форме
+            //if (SetupThePrinting())
+            //    printDocument1.Print();
+
+            Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();//Создание объекта Excel
+            ExcelApp.Application.Workbooks.Add(Type.Missing);
+            ExcelApp.Columns.ColumnWidth = 15;
+            ExcelApp.Cells[1, 1] = tableName;//Передаём имя таблицы
+            for (int i = 1; i < FacultyGridView1.Columns.Count; i++)//Заполняем названия столбцов
+            {
+                ExcelApp.Cells[2, i] = FacultyGridView1.Columns[i].HeaderText;
+            }
+
+            for (int i = 1; i < FacultyGridView1.ColumnCount; i++)//Заполняем таблицу
+            {
+                for (int j = 0; j < FacultyGridView1.RowCount; j++)
+                {
+                    ExcelApp.Cells[j + 3, i] = (FacultyGridView1[i, j].Value).ToString();
+                }
+            }
+            ExcelApp.Visible = true;
+        }//Print
+         DataGridView MyDataGridView = new DataGridView();
+        DataGridViewPrinter MyDataGridViewPrinter;
+        private bool SetupThePrinting()
+        {
+            PrintDialog MyPrintDialog = new PrintDialog();
+            MyPrintDialog.AllowCurrentPage = false;
+            MyPrintDialog.AllowPrintToFile = false;
+            MyPrintDialog.AllowSelection = false;
+            MyPrintDialog.AllowSomePages = false;
+            MyPrintDialog.PrintToFile = false;
+            MyPrintDialog.ShowHelp = false;
+            MyPrintDialog.ShowNetwork = false;
+            if (MyPrintDialog.ShowDialog() != DialogResult.OK)
+                return false;
+            printDocument1.DocumentName = "Customers Report";
+            printDocument1.PrinterSettings = MyPrintDialog.PrinterSettings;
+            printDocument1.DefaultPageSettings = MyPrintDialog.PrinterSettings.DefaultPageSettings;
+            printDocument1.DefaultPageSettings.Margins = new Margins(40, 40, 40, 40);
+            if (MessageBox.Show("Do you want the report to be centered on the page", "InvoiceManager - Center on Page", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                MyDataGridViewPrinter = new DataGridViewPrinter(MyDataGridView, printDocument1, true, true, "Отчет", new System.Drawing.Font("Tahoma", 12, FontStyle.Regular, GraphicsUnit.Point), Color.Black, true);
+            else
+                MyDataGridViewPrinter = new DataGridViewPrinter(MyDataGridView, printDocument1, false, true, "Отчет", new System.Drawing.Font("Tahoma", 12, FontStyle.Regular, GraphicsUnit.Point), Color.Black, true);
+            return true;
+        }        //Print
+        //Print end
         private void таблицыОтчётаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Форма отчётов
@@ -122,6 +184,22 @@ namespace PGUTI
 
         }
 
+        //private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        int id = int.Parse(FacultyGridView1.CurrentRow.Cells[0].Value.ToString());//Номер сотрудника в базе
+        //        DialogResult result = MessageBox.Show("Удалить запись?", "удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question);//Подтверждение
+        //        if (result == DialogResult.Yes)//Если подтвердили
+        //        {
+        //            Data.Record.Add(id, true);//Добавляем запись в таблицу Records
+        //            Data.Teachers.dellRow(id);//Выбираем из выбранной строки первый столбец и передаём его значение в метод удаления записи
+        //            UpdateFacultyGridView();
+        //        }
+        //    }
+        //    catch (Exception err) { MessageBox.Show("Выберите сотрудника", "Сотрудник не выбран", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+
+        //}
 
         private void aToolStripMenuItem_Click(object sender, EventArgs e)
         {

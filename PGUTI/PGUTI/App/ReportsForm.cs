@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using PGUTI.reports;
 using System.Drawing.Printing;
 using System.Drawing.Imaging;
 
@@ -847,7 +846,7 @@ namespace PGUTI
             return StartMonthCalendar1.SelectionStart.Date.Day + "-" + StartMonthCalendar1.SelectionStart.Date.Month + "-" + StartMonthCalendar1.SelectionStart.Date.Year ;
         }
 
-        private void печатьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void startPrint()
         {
             //MyDataGridView = dataGridView1; 
             //if (SetupThePrinting())
@@ -855,7 +854,7 @@ namespace PGUTI
             Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();//Создание объекта Excel
             ExcelApp.Application.Workbooks.Add(Type.Missing);
             ExcelApp.Columns.ColumnWidth = 15;
-            ExcelApp.Cells[1,1] = tableName;//Передаём имя таблицы
+            ExcelApp.Cells[1, 1] = tableName;//Передаём имя таблицы
             for (int i = 1; i < dataGridView1.Columns.Count; i++)//Заполняем названия столбцов
             {
                 ExcelApp.Cells[2, i] = dataGridView1.Columns[i].HeaderText;
@@ -873,6 +872,11 @@ namespace PGUTI
                 }
             }
             ExcelApp.Visible = true;//Открываем Excel
+        }
+
+        private void печатьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
@@ -978,6 +982,16 @@ namespace PGUTI
                 SolidBrush br = new SolidBrush(color);
                 e.Graphics.FillRectangle(br, e.ClipRectangle);
             }
+        }
+
+        private void выведеннойТаблицыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            startPrint();
+        }
+
+        private void сВыборомТаблицToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
 
