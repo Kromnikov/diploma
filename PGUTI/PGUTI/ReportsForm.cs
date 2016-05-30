@@ -1056,10 +1056,6 @@ namespace PGUTI
             }
         }
 
-        private void выборПараметровToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void текущийОтчётToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1085,6 +1081,18 @@ namespace PGUTI
         }
 
 
+        private void выборПараметровToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (ReportExcel addform = new ReportExcel())
+            {
+                addform.Closing += (sender_1, e_1) =>
+                {
+                    //UpdateFacultyGridView();//обнавляем после закрытия
+                };
+                addform.ShowDialog();
+            }
+
+        }
 
     }
 }
