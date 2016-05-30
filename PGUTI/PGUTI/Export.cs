@@ -39,33 +39,41 @@ namespace PGUTI
             Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();//Создание объекта Excel
             ExcelApp.Application.Workbooks.Add(Type.Missing);
             ExcelApp.Columns.ColumnWidth = 15;
-            ExcelApp.Cells[1, 1] = title;//Передаём имя таблицы
+            ExcelApp.Cells[1, 4] = title;//Передаём имя таблицы
+            ExcelApp.Cells[1, 4].HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
+            //ExcelApp.Cells[1, 4].Interior.Color = 36;
 
             int rowNumber = 0,prevRowNumber=0;
-
+            DataSet dataset=null;
             for (int numEl = 0; numEl < listDataGrid.Count; numEl++)
             {
-                DataSet dataset = listDataGrid.Values.ElementAt(numEl);
-                ExcelApp.Cells[2+rowNumber, 1] = listDataGrid.Keys.ElementAt(numEl);//Передаём имя таблицы
+                dataset = listDataGrid.Values.ElementAt(numEl);
+                ExcelApp.Cells[2 + rowNumber, 4] = listDataGrid.Keys.ElementAt(numEl);//Передаём имя таблицы
+                ExcelApp.Cells[2 + rowNumber, 4].HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
 
                 for (int i = 1; i < dataset.Tables[0].Columns.Count; i++)//Заполняем названия столбцов
                 {
                     ExcelApp.Cells[3 + rowNumber, i] = dataset.Tables[0].Columns[i].ColumnName;
+                    ExcelApp.Cells[3 + rowNumber, i].HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
                 }
 
                 for (int i = 1; i < dataset.Tables[0].Columns.Count; i++)//Заполняем таблицу
                 {
                     for (int j = 0; j < dataset.Tables[0].Rows.Count; j++)
                     {
-                        //try
-                        //{
-                            ExcelApp.Cells[j + 4 + rowNumber, i] = (dataset.Tables[0].Rows[j].ItemArray[i]).ToString();
-                        //}
-                        //catch { }
+                        ExcelApp.Cells[j + 4 + rowNumber, i] = (dataset.Tables[0].Rows[j].ItemArray[i]).ToString();
+                        ExcelApp.Cells[j + 4 + rowNumber, i].HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
                     }
                 }
                 rowNumber += 2 + dataset.Tables[0].Columns.Count;
             }
+            //for (int i = 1; i < rowNumber-1; i++)
+            //{
+            //    for (int j = 0; j < dataset.Tables[0].Columns.Count; j++)
+            //    {
+            //        ExcelApp.Cells[i,j].HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
+            //    }
+            //}
             ExcelApp.Visible = true;//Открываем Excel
         }
     }

@@ -346,6 +346,7 @@ namespace PGUTI
             {
                 if (ds.Tables[0].Rows.Count != 0)
                 {
+
                     DataRow dr = ds.Tables[0].NewRow();
                     dataset = ds.Clone();
 
@@ -413,9 +414,19 @@ namespace PGUTI
 
                     dataset.Tables[0].Rows.Add(dr);
                 }
+                else
+                {
+                    dataset = null;
+                    //dataset.Tables.Add(new DataTable());
+                }
+            }
+            else
+            {
+                dataset = null;
+                //dataset.Tables.Add(new DataTable());
             }
             dataGridView1.DataSource = dataset;//Заполняем таблицу
-            dataGridView1.DataMember = dataset.Tables[0].TableName;//Имя таблицы
+            //dataGridView1.DataMember = dataset.Tables[0].TableName;//Имя таблицы
         }
 
         private void showDissertations()
@@ -1186,48 +1197,47 @@ namespace PGUTI
             setTableName("1.1.1");
             listDataGrid.Add(tableName, dataset);
 
+            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            orderByRate("1.1.2");
+            setTableName("1.1.2");
+            listDataGrid.Add(tableName, dataset);
 
-            //var columns = ds.Tables
-            //         .Cast<DataTable>()
-            //         .SelectMany(t => t.Columns
-            //                         .Cast<DataColumn>()
-            //                         .Select(c => c.ColumnName));
+            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            orderByRate("1.1.3");
+            setTableName("1.1.3");
+            listDataGrid.Add(tableName, dataset);
 
+            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            orderByRate("1.2.1");
+            setTableName("1.2.1");
+            listDataGrid.Add(tableName, dataset);
 
-            //dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
-            //orderByRate("1.1.2");
-            //setTableName("1.1.2");
-            //listDataGrid.Add(tableName, dataset);
+            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            orderByRate("1.2.2");
+            setTableName("1.2.2");
+            listDataGrid.Add(tableName, dataset);
 
-            //dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
-            //orderByRate("1.1.3");
-            //setTableName("1.1.3");
-            //listDataGrid.Add(tableName, dataset);
+            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            orderByRate("1.3");
+            setTableName("1.3");
+            listDataGrid.Add(tableName, dataset);
 
-            //dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
-            //orderByRate("1.2.1");
-            //setTableName("1.2.1");
-            //listDataGrid.Add(tableName, dataset);
-
-            //dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
-            //orderByRate("1.2.2");
-            //setTableName("1.2.2");
-            //listDataGrid.Add(tableName, dataset);
-
-            //dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
-            //orderByRate("1.3");
-            //setTableName("1.3");
-            //listDataGrid.Add(tableName, dataset);
-
-            //dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
-            //orderByRate("1.4");
-            //setTableName("1.4");
-            //listDataGrid.Add(tableName, dataset);
+            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            orderByRate("1.4");
+            setTableName("1.4");
+            listDataGrid.Add(tableName, dataset);
 
             dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             dataGridView1.Visible = true;
-
-            Export.print(listDataGrid, "Штатные сотрудники");
+            try
+            {
+                Export.print(listDataGrid, "Штатные сотрудники");
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show("Отчёт пустой");
+            }
+            dataset.Clear();
 
 
             #region
@@ -1239,7 +1249,116 @@ namespace PGUTI
             //    };
             //    addform.ShowDialog();
             //}
+
+
+            //var columns = ds.Tables
+            //         .Cast<DataTable>()
+            //         .SelectMany(t => t.Columns
+            //                         .Cast<DataColumn>()
+            //                         .Select(c => c.ColumnName));
             #endregion
+        }
+
+        private void сторонниеСовместителиToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Visible = false;
+            Dictionary<string, DataSet> listDataGrid = new Dictionary<string, DataSet>();
+            orderByRate("2.1.1");
+            setTableName("2.1.1");
+            listDataGrid.Add(tableName, dataset);
+
+            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            orderByRate("2.1.2");
+            setTableName("2.1.2");
+            listDataGrid.Add(tableName, dataset);
+
+            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            orderByRate("2.1.3");
+            setTableName("2.1.3");
+            listDataGrid.Add(tableName, dataset);
+
+            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            orderByRate("2.2.1");
+            setTableName("2.2.1");
+            listDataGrid.Add(tableName, dataset);
+
+            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            orderByRate("2.2.2");
+            setTableName("2.2.2");
+            listDataGrid.Add(tableName, dataset);
+
+            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            orderByRate("2.3");
+            setTableName("2.3");
+            listDataGrid.Add(tableName, dataset);
+
+            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            orderByRate("2.4");
+            setTableName("2.4");
+            listDataGrid.Add(tableName, dataset);
+
+            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            dataGridView1.Visible = true;
+            try
+            {
+                Export.print(listDataGrid, "Сторонние совместители");
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show("Отчёт пустой");
+            }
+            dataset.Clear();
+        }
+
+        private void внешниеСовместителиToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Visible = false;
+            Dictionary<string, DataSet> listDataGrid = new Dictionary<string, DataSet>();
+            orderByRate("3.1.1");
+            setTableName("3.1.1");
+            listDataGrid.Add(tableName, dataset);
+
+            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            orderByRate("3.1.2");
+            setTableName("3.1.2");
+            listDataGrid.Add(tableName, dataset);
+
+            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            orderByRate("3.1.3");
+            setTableName("3.1.3");
+            listDataGrid.Add(tableName, dataset);
+
+            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            orderByRate("3.2.1");
+            setTableName("3.2.1");
+            listDataGrid.Add(tableName, dataset);
+
+            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            orderByRate("3.2.2");
+            setTableName("3.2.2");
+            listDataGrid.Add(tableName, dataset);
+
+            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            orderByRate("3.3");
+            setTableName("3.3");
+            listDataGrid.Add(tableName, dataset);
+
+            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            orderByRate("3.4");
+            setTableName("3.4");
+            listDataGrid.Add(tableName, dataset);
+
+            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            dataGridView1.Visible = true;
+            try
+            {
+                Export.print(listDataGrid, "Внешние совместители ");
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show("Отчёт пустой");
+            }
+            dataset.Clear();
         }
 
     }

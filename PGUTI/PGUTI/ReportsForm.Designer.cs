@@ -564,12 +564,14 @@
             this.сторонниеСовместителиToolStripMenuItem1.Name = "сторонниеСовместителиToolStripMenuItem1";
             this.сторонниеСовместителиToolStripMenuItem1.Size = new System.Drawing.Size(215, 22);
             this.сторонниеСовместителиToolStripMenuItem1.Text = "Сторонние совместители";
+            this.сторонниеСовместителиToolStripMenuItem1.Click += new System.EventHandler(this.сторонниеСовместителиToolStripMenuItem1_Click);
             // 
             // внешниеСовместителиToolStripMenuItem1
             // 
             this.внешниеСовместителиToolStripMenuItem1.Name = "внешниеСовместителиToolStripMenuItem1";
             this.внешниеСовместителиToolStripMenuItem1.Size = new System.Drawing.Size(215, 22);
             this.внешниеСовместителиToolStripMenuItem1.Text = "Внешние совместители ";
+            this.внешниеСовместителиToolStripMenuItem1.Click += new System.EventHandler(this.внешниеСовместителиToolStripMenuItem1_Click);
             // 
             // ReportsForm
             // 
