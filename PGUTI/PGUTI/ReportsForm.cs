@@ -77,6 +77,9 @@ namespace PGUTI
                 case "0.2.1":
                     showRecord();
                     return;
+                case "0.2.2":
+                    training();
+                    return;
 
 
                     //штат
@@ -211,6 +214,14 @@ namespace PGUTI
         private void showDissertations()
         {
             ds = Data.Dissertation.Show(DissMonthCalendar1.SelectionStart.Date,StartMonthCalendar1.SelectionStart.Date);//В зависимости от названия кафедры, заполняем таблицу, CairsComboBox1.SelectedIndex + 1 получаем название кафедры по номеру +1 т.к. начинаеться с нуля а в базе с единицы
+            dataGridView1.DataSource = ds;//Заполняем таблицу
+            dataGridView1.DataMember = ds.Tables[0].TableName;//Имя таблицы
+            dataGridView1.Columns["id"].Visible = false;//Скрываем поле id
+        }
+
+        private void training()
+        {
+            ds = Data.Training.Show(DissMonthCalendar1.SelectionStart.Date, StartMonthCalendar1.SelectionStart.Date);//В зависимости от названия кафедры, заполняем таблицу, CairsComboBox1.SelectedIndex + 1 получаем название кафедры по номеру +1 т.к. начинаеться с нуля а в базе с единицы
             dataGridView1.DataSource = ds;//Заполняем таблицу
             dataGridView1.DataMember = ds.Tables[0].TableName;//Имя таблицы
             dataGridView1.Columns["id"].Visible = false;//Скрываем поле id
@@ -549,7 +560,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Сведения об ученых степенях профессорско-преподавательского состава и научных работников: " + getDateString();
+                tableName = "Сведения об ученых степенях профессорско-преподавательского состава и научных работников с " + getDateString() +" по "+getDateStringDiss();
                 dsNum = "0.1.0";
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 degreesData();
@@ -822,7 +833,6 @@ namespace PGUTI
             try
             {
                 tableName = "Защита диссертаций c " + getDateString() + " по " + getDateStringDiss();
-                //tableName = "Защита диссертаций за 5 лет на " + getDateString();
                 dsNum = "0.2.0";
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 showDissertations();
@@ -875,7 +885,7 @@ namespace PGUTI
             {
                 StartMonthCalendar1.Visible = true;
                 dataGridView1.Refresh();
-                if (dsNum.Equals("0.2.0") || dsNum.Equals("0.1.0"))
+                if (dsNum.Equals("0.2.0") || dsNum.Equals("0.1.0") || dsNum.Equals("0.2.2"))
                 {
                     DissMonthCalendar1.Visible = true;
                 }
@@ -950,8 +960,8 @@ namespace PGUTI
             {
                 tableName = "Повышение квалификации за 5 лет на " + getDateString();
                 dsNum = "0.2.2";
-                //dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
-                //showDissertations();
+                dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+                training();
             }
             catch { this.Close(); }
         }
