@@ -32,6 +32,18 @@ namespace PGUTI
         }
         private void initOrderByRate()
         {
+            //dataset.Tables.Add(new DataTable());//
+            //dataset.Tables[0].Columns.Add("Фамилия");
+            //dataset.Tables[0].Columns.Add( "Имя");
+            //dataset.Tables[0].Columns.Add( "Отчество");
+            //dataset.Tables[0].Columns.Add( "Должность");
+            //dataset.Tables[0].Columns.Add( "Кафедра");
+            //dataset.Tables[0].Columns.Add( "Ученое звание");
+            //dataset.Tables[0].Columns.Add( "Ученая степень");
+            //dataset.Tables[0].Columns.Add( "Ставка");
+            //dataset.Tables[0].Columns.Add( "Дата рождения");
+            //dataset.Tables[0].Columns.Add( StartMonthCalendar1.SelectionStart.Date.ToString("dd.MM.yyyy"));
+
             dataGridView1.DataSource = null;
             dataGridView1.Columns.Add("", "Фамилия");
             dataGridView1.Columns.Add("", "Имя");
@@ -87,72 +99,75 @@ namespace PGUTI
 
                     //штат
                 case "1.1.1":
-                    initOrderByRate();//Визуализация таблицы
-                    ds = Data.BasicStructure.getProfessorsDoc(StartMonthCalendar1.SelectionStart.Date); break;
+                    //initOrderByRate();//Визуализация таблицы
+                    ds = Data.BasicStructure.getProfessorsDoc(StartMonthCalendar1.SelectionStart.Date);
+                    //dataset = ds.Copy();
+                    //MessageBox.Show(ds.Tables[0].Columns.Count.ToString());
+                    break;
                 case "1.1.2":
-                    initOrderByRate();//Визуализация таблицы
+                    //initOrderByRate();//Визуализация таблицы
                     ds = Data.BasicStructure.getProfessorsCand(StartMonthCalendar1.SelectionStart.Date); break;
                 case "1.1.3":
-                    initOrderByRate();//Визуализация таблицы
+                    //initOrderByRate();//Визуализация таблицы
                     ds = Data.BasicStructure.getProfessors(StartMonthCalendar1.SelectionStart.Date);break;
                 case "1.2.1":
-                    initOrderByRate();//Визуализация таблицы
+                    //initOrderByRate();//Визуализация таблицы
                     ds = Data.BasicStructure.getDocentsCandAndOrDocent(StartMonthCalendar1.SelectionStart.Date); break;
                 case "1.2.2":
-                    initOrderByRate();//Визуализация таблицы
+                    //initOrderByRate();//Визуализация таблицы
                     ds = Data.BasicStructure.getDocentsNull(StartMonthCalendar1.SelectionStart.Date); break;
                 case "1.3":
-                    initOrderByRate();//Визуализация таблицы
+                    //initOrderByRate();//Визуализация таблицы
                     ds = Data.BasicStructure.getSenior(StartMonthCalendar1.SelectionStart.Date); break;
                 case "1.4":
-                    initOrderByRate();//Визуализация таблицы
+                    //initOrderByRate();//Визуализация таблицы
                     ds = Data.BasicStructure.getAssist(StartMonthCalendar1.SelectionStart.Date); break;
                 //Внутр
                 case "2.1.1":
-                    initOrderByRate();//Визуализация таблицы
+                    //initOrderByRate();//Визуализация таблицы
                     ds = Data.InternalStructure.getProfessorsDoc(StartMonthCalendar1.SelectionStart.Date); break;
                 case "2.1.2":
-                    initOrderByRate();//Визуализация таблицы
+                    //initOrderByRate();//Визуализация таблицы
                     ds = Data.InternalStructure.getProfessorsCand(StartMonthCalendar1.SelectionStart.Date); break;
                 case "2.1.3":
-                    initOrderByRate();//Визуализация таблицы
+                    //initOrderByRate();//Визуализация таблицы
                     ds = Data.InternalStructure.getProfessors(StartMonthCalendar1.SelectionStart.Date); break;
                 case "2.2.1":
-                    initOrderByRate();//Визуализация таблицы
+                    //initOrderByRate();//Визуализация таблицы
                     ds = Data.InternalStructure.getDocentsCandAndOrDocent(StartMonthCalendar1.SelectionStart.Date); break;
                 case "2.2.2":
-                    initOrderByRate();//Визуализация таблицы
+                    //initOrderByRate();//Визуализация таблицы
                     ds = Data.InternalStructure.getDocentsNull(StartMonthCalendar1.SelectionStart.Date); break;
                 case "2.3":
-                    initOrderByRate();//Визуализация таблицы
+                    //initOrderByRate();//Визуализация таблицы
                     ds = Data.InternalStructure.getSenior(StartMonthCalendar1.SelectionStart.Date); break;
                 case "2.4":
-                    initOrderByRate();//Визуализация таблицы
+                    //initOrderByRate();//Визуализация таблицы
                     ds = Data.InternalStructure.getAssist(StartMonthCalendar1.SelectionStart.Date); break;
                 //Внешние
                 case "3.1.1":
-                    initOrderByRate();//Визуализация таблицы
+                    //initOrderByRate();//Визуализация таблицы
                     ds = Data.ExternalStructure.getProfessorsDoc(StartMonthCalendar1.SelectionStart.Date); break;
                 case "3.1.2":
-                    initOrderByRate();//Визуализация таблицы
+                    //initOrderByRate();//Визуализация таблицы
                     ds = Data.ExternalStructure.getProfessorsCand(StartMonthCalendar1.SelectionStart.Date); break;
                 case "3.1.3":
-                    initOrderByRate();//Визуализация таблицы
+                    //initOrderByRate();//Визуализация таблицы
                     ds = Data.ExternalStructure.getProfessors(StartMonthCalendar1.SelectionStart.Date); break;
                 case "3.2.1":
-                    initOrderByRate();//Визуализация таблицы
+                    //initOrderByRate();//Визуализация таблицы
                     ds = Data.ExternalStructure.getDocentsCandAndOrDocent(StartMonthCalendar1.SelectionStart.Date); break;
                 case "3.2.2":
-                    initOrderByRate();//Визуализация таблицы
+                    //initOrderByRate();//Визуализация таблицы
                     ds = Data.ExternalStructure.getDocentsNull(StartMonthCalendar1.SelectionStart.Date); break;
                 case "3.3":
-                    initOrderByRate();//Визуализация таблицы
+                    //initOrderByRate();//Визуализация таблицы
                     ds = Data.ExternalStructure.getSenior(StartMonthCalendar1.SelectionStart.Date); break;
                 case "3.4":
-                    initOrderByRate();//Визуализация таблицы
+                    //initOrderByRate();//Визуализация таблицы
                     ds = Data.ExternalStructure.getAssist(StartMonthCalendar1.SelectionStart.Date); break;
             }//Получаем таблицу из базы
-            additional();
+            additionalCopy();
         }//Дополнительные таблицы , сортировка по ставкам
         
         private void setTableName(string num)
@@ -259,14 +274,16 @@ namespace PGUTI
                     tableName = "Численность ППС преподавателей и ассистентов(Внешние совместители): " + getDateString();
                     break;
             }//Получаем таблицу из базы
-            additional();
-        }//Дополнительные таблицы , сортировка по ставкам
+            //additional();
+        }
 
+        private static DataSet dataset = new DataSet();
         private void additional()
         {
             if(ds != null)
             if (ds.Tables[0].Rows.Count != 0)
             {
+
                 double previusRate = (double)ds.Tables[0].Rows[0].ItemArray[7], nextRate = 0;//Начальное значение ставки и текущее
                 int rownum = 0, countTitle = 0, sumcountTitle = 0, degree = 0, sumdegree = 0;//Номер строки,количество званий, их сумма, количество степеней, их сумма
                 double rate = 0, sumrate = 0;//Ставка, сумма ставок
@@ -276,7 +293,8 @@ namespace PGUTI
                     if (previusRate == nextRate)//Сравниваем с предедущим
                     {//и если они совпадают по заполняем дальше таблицу
                         dataGridView1.Rows.Add();//Добавляем строку
-                        for (int j = 0; j < dataGridView1.Columns.Count - 1; j++)//Запослняем колонки в строке
+
+                        for (int j = 0; j < dataGridView1.Columns.Count - 1; j++)//Заполняем колонки в строке
                         {
                             dataGridView1[j, i + rownum].Value = ds.Tables[0].Rows[i].ItemArray[j].ToString();
                         }
@@ -320,6 +338,84 @@ namespace PGUTI
                 dataGridView1[6, dataGridView1.Rows.Count - 1].Value = sumcountTitle;
                 dataGridView1[7, dataGridView1.Rows.Count - 1].Value = sumrate;
             }
+        }
+
+        private void additionalCopy()
+        {
+            if (ds != null)
+            {
+                if (ds.Tables[0].Rows.Count != 0)
+                {
+                    DataRow dr = ds.Tables[0].NewRow();
+                    dataset = ds.Clone();
+
+                    double previusRate = (double)ds.Tables[0].Rows[0].ItemArray[7], nextRate = 0;//Начальное значение ставки и текущее
+                    int rownum = 0, countTitle = 0, sumcountTitle = 0, degree = 0, sumdegree = 0;//Номер строки,количество званий, их сумма, количество степеней, их сумма
+                    double rate = 0, sumrate = 0;//Ставка, сумма ставок
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        nextRate = (double)ds.Tables[0].Rows[i].ItemArray[7];//Присваеваем текущее значение ставки
+                        if (previusRate == nextRate)//Сравниваем с предедущим
+                        {//и если они совпадают по заполняем дальше таблицу
+                            dr = dataset.Tables[0].NewRow();
+
+                            for (int j = 0; j < ds.Tables[0].Columns.Count; j++)//Заполняем колонки в строке
+                            {
+                                dr[j] = ds.Tables[0].Rows[i].ItemArray[j].ToString();
+                            }
+
+                            //rate += double.Parse(ds.Tables[0].Rows[i + rownum].ItemArray[7].ToString());//Получаем ставку
+                            rate += double.Parse(dr[7].ToString());//Получаем ставку
+                            sumrate += double.Parse(dr[7].ToString());//Суммируем ставку
+                            if (dr[5].ToString() != "")
+                            {
+                                degree++; sumdegree++;//Суммируем степень и сумму степеней
+                            }
+                            if (dr[6].ToString() != "")
+                            {
+                                countTitle++; sumcountTitle++;//Суммируем звание и сумму званий
+                            }
+
+                            dataset.Tables[0].Rows.Add(dr);
+                        }
+                        else
+                        {
+                            dr = dataset.Tables[0].NewRow();
+                            rownum++;
+                            //Заполняем суммы
+                            dr[4] = "Всего";
+                            dr[5] = degree;
+                            dr[6] = countTitle;
+                            dr[7] = rate;
+
+                            degree = 0;//анулируем степень
+                            countTitle = 0;//Звание
+                            rate = 0;//и ставку
+                            previusRate = nextRate;//меняем предыдущую на текущую ставки
+                            i--;
+                            dataset.Tables[0].Rows.Add(dr);
+                        }
+                    }
+                    //Заполняем предпоследнюю строку , т.к. вышли из цыкла , а заполнить её тоже нужно
+                    dr = dataset.Tables[0].NewRow();
+
+                    dr[4] = "Всего";
+                    dr[5] = degree;
+                    dr[6] = countTitle;
+                    dr[7] = rate;
+                    dataset.Tables[0].Rows.Add(dr);
+                    //Заполняем последнюю строку
+                    dr = dataset.Tables[0].NewRow();
+                    dr[4] = "Итого";
+                    dr[5] = sumdegree;
+                    dr[6] = sumcountTitle;
+                    dr[7] = sumrate;
+
+                    dataset.Tables[0].Rows.Add(dr);
+                }
+            }
+            dataGridView1.DataSource = dataset;//Заполняем таблицу
+            dataGridView1.DataMember = dataset.Tables[0].TableName;//Имя таблицы
         }
 
         private void showDissertations()
@@ -710,35 +806,35 @@ namespace PGUTI
 
         private void численностьДокторовНаукToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 //tableName = "Численность ППС с ученой степенью доктора наук(Штатные сотрудники): " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("1.1.1");
-            }
-            catch { this.Close(); }
+            //}
+            //catch { this.Close(); }
         }
 
         private void кандидатыНаукПрофессораToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 //tableName = "Численность ППС с ученой степенью кандидата наук и ученым званием профессора (Штатные сотрудники): " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("1.1.2");
-            }
-            catch { this.Close(); }
+            //}
+            //catch { this.Close(); }
         }
 
         private void профессорыToolStripMenuItem_Click(object sender, EventArgs e)//TODO Профессора
         {
-            try
-            {
+            //try
+            //{
                 //tableName = "Численность ППС на должности профессора(Штатные сотрудники): " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("1.1.3");
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message); this.Close(); }
+            //}
+            //catch (Exception ex) { MessageBox.Show(ex.Message); this.Close(); }
         }
 
         private void кандидатыНаукИилиДоцентыToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1083,15 +1179,67 @@ namespace PGUTI
 
         private void выборПараметровToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (ReportExcel addform = new ReportExcel())
-            {
-                addform.Closing += (sender_1, e_1) =>
-                {
-                    //UpdateFacultyGridView();//обнавляем после закрытия
-                };
-                addform.ShowDialog();
-            }
+            //1.2.1 1.2.2   1.3    1.4
+            dataGridView1.Visible = false;
+            Dictionary<string, DataSet> listDataGrid = new Dictionary<string, DataSet>();
+            orderByRate("1.1.1");
+            setTableName("1.1.1");
+            listDataGrid.Add(tableName, dataset);
 
+
+            //var columns = ds.Tables
+            //         .Cast<DataTable>()
+            //         .SelectMany(t => t.Columns
+            //                         .Cast<DataColumn>()
+            //                         .Select(c => c.ColumnName));
+
+
+            //dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            //orderByRate("1.1.2");
+            //setTableName("1.1.2");
+            //listDataGrid.Add(tableName, dataset);
+
+            //dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            //orderByRate("1.1.3");
+            //setTableName("1.1.3");
+            //listDataGrid.Add(tableName, dataset);
+
+            //dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            //orderByRate("1.2.1");
+            //setTableName("1.2.1");
+            //listDataGrid.Add(tableName, dataset);
+
+            //dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            //orderByRate("1.2.2");
+            //setTableName("1.2.2");
+            //listDataGrid.Add(tableName, dataset);
+
+            //dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            //orderByRate("1.3");
+            //setTableName("1.3");
+            //listDataGrid.Add(tableName, dataset);
+
+            //dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            //orderByRate("1.4");
+            //setTableName("1.4");
+            //listDataGrid.Add(tableName, dataset);
+
+            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            dataGridView1.Visible = true;
+
+            Export.print(listDataGrid, "Штатные сотрудники");
+
+
+            #region
+            //using (ReportExcel addform = new ReportExcel())
+            //{
+            //    addform.Closing += (sender_1, e_1) =>
+            //    {
+            //        //UpdateFacultyGridView();//обнавляем после закрытия
+            //    };
+            //    addform.ShowDialog();
+            //}
+            #endregion
         }
 
     }

@@ -359,11 +359,12 @@ namespace PGUTI
 
             if (ScientificDegreeComboBox.Text == "")//Если нету ученой степени
                 titlesDate = "null";//То и даты получения также нету
-            else titlesDate = "'" + TitlesDateTimePicker.Value.Date.ToString() + "'";
+            else titlesDate = "'" + Data.ReverseDateTime(TitlesDateTimePicker.Value.Date) + "'";
 
+            
             if (AcademicTitleComboBox.Text == "")
                 degressDate = "null";
-            else degressDate = "'" + DegreesTimePicker2.Value.Date.ToString() + "'";
+            else degressDate = "'" + Data.ReverseDateTime(DegreesTimePicker2.Value.Date) + "'";
 
             if (TrainingDatesTextBox.Text == "Место проведения...")
                 TrainingDatesTextBox.Text = "";
