@@ -228,6 +228,7 @@
             this.дополнительныеТаблицыToolStripMenuItem.Name = "дополнительныеТаблицыToolStripMenuItem";
             this.дополнительныеТаблицыToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
             this.дополнительныеТаблицыToolStripMenuItem.Text = "Дополнительные отчёты";
+            this.дополнительныеТаблицыToolStripMenuItem.Click += new System.EventHandler(this.дополнительныеТаблицыToolStripMenuItem_Click);
             // 
             // штатныеСотрудникиToolStripMenuItem
             // 

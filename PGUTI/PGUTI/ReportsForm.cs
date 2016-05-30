@@ -45,6 +45,9 @@ namespace PGUTI
             dataGridView1.Columns.Add("", StartMonthCalendar1.SelectionStart.Date.ToString("dd.MM.yyyy"));
             sortingMode();
         }
+
+
+
         private void orderByRate(string num)
         {
             ds = null;//Создадим объект DataSet
@@ -151,6 +154,114 @@ namespace PGUTI
             }//Получаем таблицу из базы
             additional();
         }//Дополнительные таблицы , сортировка по ставкам
+        
+        private void setTableName(string num)
+        {
+            ds = null;//Создадим объект DataSet
+            //dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+
+            dsNum = num;
+            switch (num)//Выбор запроса
+            {
+                case "0.0.1":
+                    tableName = "Распределение численности основного персонала по уровню образования (без внешних совместителей): " + getDateString();
+                    return;
+                case "0.0.2":
+                    tableName = "Распределение численности внутренние совместителей по уровню образования: " + getDateString();
+                    return;
+                case "0.0.3":
+                    tableName = "Распределение численности внешних совместителей по уровню образования: " + getDateString();
+                    return;
+                case "0.1.0":
+                    tableName = "Сведения об ученых степенях профессорско-преподавательского состава и научных работников с " + getDateStringDiss() + " по " + getDateString();
+                    return;
+                case "0.1.1":
+                    tableName = "Распределение персонала по стажу работы (Основного персонала, Штатных совместителей, Внешних совместителей): " + getDateString();
+                    return;
+                case "0.1.2":
+                    tableName = "Распределение персонала по полу и возрасту (Основного персонала, Штатных совместителей, Внешних совместителей): " + getDateString();
+                    return;
+                case "0.2.0":
+                    tableName = "Защита диссертаций c " + getDateStringDiss() + " по " + getDateString();
+                    return;
+                case "0.2.1":
+                    tableName = "Учёт сотрудников: " + getDateString();
+                    return;
+                case "0.2.2":
+                    tableName = "Повышение квалификации с " + getDateStringDiss() + " по " + getDateString();
+                    return;
+
+
+                //штат
+                case "1.1.1":
+                    tableName = "Численность ППС с ученой степенью доктора наук(Штатные сотрудники): " + getDateString();
+                    break;
+                case "1.1.2":
+                    tableName = "Численность ППС с ученой степенью кандидата наук и ученым званием профессора (Штатные сотрудники): " + getDateString();
+                    break;
+                case "1.1.3":
+                    tableName = "Численность ППС на должности профессора(Штатные сотрудники): " + getDateString();
+                    break;
+                case "1.2.1":
+                    tableName = "Численность ППС с ученой степенью кандидата наук и/или званием доцента(Штатные сотрудники): " + getDateString();
+                    break;
+                case "1.2.2":
+                    tableName = "Численность ППС доцентов (без ученой степени и/или звания)(Штатные сотрудники): " + getDateString();
+                    break;
+                case "1.3":
+                    tableName = "Численность ППС старших преподавателей (Штатные сотрудники): " + getDateString();
+                    break;
+                case "1.4":
+                    tableName = "Численность ППС преподавателей и ассистентов(Штатные сотрудники): " + getDateString();
+                    break;
+                //Внутр
+                case "2.1.1":
+                    tableName = "Численность ППС с ученой степенью доктора наук (Внутренние совместители): " + getDateString();
+                    break;
+                case "2.1.2":
+                    tableName = "Численность ППС с ученой степенью кандидата наук и ученым званием профессора (Внутренние совместители): " + getDateString();
+                    break;
+                case "2.1.3":
+                    tableName = "Численность ППС на должности профессора(Внутренние совместители): " + getDateString();
+                    break;
+                case "2.2.1":
+                    tableName = "Численность ППС с ученой степенью кандидата наук и/или званием доцента(Внутренние совместители): " + getDateString();
+                    break;
+                case "2.2.2":
+                    tableName = "Численность ППС доцентов (без ученой степени и/или звания)(Внутренние совместители): " + getDateString();
+                    break;
+                case "2.3":
+                    tableName = "Численность ППС старших преподавателей (Внутренние совместители): " + getDateString();
+                    break;
+                case "2.4":
+                    tableName = "Численность ППС преподавателей и ассистентов(Внутренние совместители): " + getDateString();
+                    break;
+                //Внешние
+                case "3.1.1":
+                    tableName = "Численность ППС с ученой степенью доктора наук(Внешние совместители): " + getDateString();
+                    break;
+                case "3.1.2":
+                    tableName = "Численность ППС с ученой степенью кандидата наук и ученым званием профессора (Внешние совместители): " + getDateString();
+                    break;
+                case "3.1.3":
+                    tableName = "Численность ППС на должности профессора(Внешние совместители): " + getDateString();
+                    break;
+                case "3.2.1":
+                    tableName = "Численность ППС с ученой степенью кандидата наук и/или званием доцента(Внешние совместители): " + getDateString();
+                    break;
+                case "3.2.2":
+                    tableName = "Численность ППС доцентов (без ученой степени и/или звания(Внешние совместители): " + getDateString();
+                    break;
+                case "3.3":
+                    tableName = "Численность ППС старших преподавателей (Внешние совместители): " + getDateString();
+                    break;
+                case "3.4":
+                    tableName = "Численность ППС преподавателей и ассистентов(Внешние совместители): " + getDateString();
+                    break;
+            }//Получаем таблицу из базы
+            additional();
+        }//Дополнительные таблицы , сортировка по ставкам
+
         private void additional()
         {
             if(ds != null)
@@ -519,7 +630,7 @@ namespace PGUTI
             {
                 //dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 //orderByRate("0.0.1");
-                tableName = "Распределение численности основного персонала по уровню образования (без внешних совместителей): " + getDateString();
+                //tableName = "Распределение численности основного персонала по уровню образования (без внешних совместителей): " + getDateString();
                 dsNum = "0.0.1";
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 basicData();
@@ -536,7 +647,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Распределение численности внутренние совместителей по уровню образования: " + getDateString();
+                //tableName = "Распределение численности внутренние совместителей по уровню образования: " + getDateString();
                 dsNum = "0.0.2";
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 internalData();
@@ -548,7 +659,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Распределение численности внешних совместителей по уровню образования: " + getDateString();
+                //tableName = "Распределение численности внешних совместителей по уровню образования: " + getDateString();
                 dsNum = "0.0.3";
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 externalData();
@@ -560,7 +671,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Сведения об ученых степенях профессорско-преподавательского состава и научных работников с " + getDateString() +" по "+getDateStringDiss();
+                //tableName = "Сведения об ученых степенях профессорско-преподавательского состава и научных работников с " + getDateString() +" по "+getDateStringDiss();
                 dsNum = "0.1.0";
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 degreesData();
@@ -572,7 +683,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Распределение персонала по стажу работы (Основного персонала, Штатных совместителей, Внешних совместителей): " + getDateString();
+                //tableName = "Распределение персонала по стажу работы (Основного персонала, Штатных совместителей, Внешних совместителей): " + getDateString();
                 dsNum = "0.1.1";
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 experienceData();
@@ -584,7 +695,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Распределение персонала по полу и возрасту (Основного персонала, Штатных совместителей, Внешних совместителей): " + getDateString();
+                //tableName = "Распределение персонала по полу и возрасту (Основного персонала, Штатных совместителей, Внешних совместителей): " + getDateString();
                 dsNum = "0.1.2";
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 ageData();
@@ -601,7 +712,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС с ученой степенью доктора наук(Штатные сотрудники): " + getDateString();
+                //tableName = "Численность ППС с ученой степенью доктора наук(Штатные сотрудники): " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("1.1.1");
             }
@@ -612,7 +723,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС с ученой степенью кандидата наук и ученым званием профессора (Штатные сотрудники): " + getDateString();
+                //tableName = "Численность ППС с ученой степенью кандидата наук и ученым званием профессора (Штатные сотрудники): " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("1.1.2");
             }
@@ -623,7 +734,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС на должности профессора(Штатные сотрудники): " + getDateString();
+                //tableName = "Численность ППС на должности профессора(Штатные сотрудники): " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("1.1.3");
             }
@@ -634,7 +745,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС с ученой степенью кандидата наук и/или званием доцента(Штатные сотрудники): " + getDateString();
+                //tableName = "Численность ППС с ученой степенью кандидата наук и/или званием доцента(Штатные сотрудники): " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("1.2.1");
             }
@@ -645,7 +756,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС доцентов (без ученой степени и/или звания)(Штатные сотрудники): " + getDateString();
+                //tableName = "Численность ППС доцентов (без ученой степени и/или звания)(Штатные сотрудники): " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("1.2.2");
             }
@@ -656,7 +767,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС старших преподавателей (Штатные сотрудники): " + getDateString();
+                //tableName = "Численность ППС старших преподавателей (Штатные сотрудники): " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("1.3");
             }
@@ -667,7 +778,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС преподавателей и ассистентов(Штатные сотрудники): " + getDateString();
+                //tableName = "Численность ППС преподавателей и ассистентов(Штатные сотрудники): " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("1.4");
             }
@@ -678,7 +789,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС с ученой степенью доктора наук (Внутренние совместители): " + getDateString();
+                //tableName = "Численность ППС с ученой степенью доктора наук (Внутренние совместители): " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("2.1.1");
             }
@@ -689,7 +800,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС с ученой степенью кандидата наук и ученым званием профессора (Внутренние совместители): " + getDateString();
+                //tableName = "Численность ППС с ученой степенью кандидата наук и ученым званием профессора (Внутренние совместители): " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("2.1.2");
             }
@@ -700,7 +811,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС на должности профессора(Внутренние совместители): " + getDateString();
+                //tableName = "Численность ППС на должности профессора(Внутренние совместители): " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("2.1.3");
             }
@@ -711,7 +822,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС с ученой степенью кандидата наук и/или званием доцента(Внутренние совместители): " + getDateString();
+                //tableName = "Численность ППС с ученой степенью кандидата наук и/или званием доцента(Внутренние совместители): " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("2.2.1");
             }
@@ -722,7 +833,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС доцентов (без ученой степени и/или звания)(Внутренние совместители): " + getDateString();
+                //tableName = "Численность ППС доцентов (без ученой степени и/или звания)(Внутренние совместители): " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("2.2.2");
             }
@@ -733,7 +844,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС старших преподавателей (Внутренние совместители): " + getDateString();
+                //tableName = "Численность ППС старших преподавателей (Внутренние совместители): " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("2.3");
             }
@@ -744,7 +855,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС преподавателей и ассистентов(Внутренние совместители): " + getDateString();
+                //tableName = "Численность ППС преподавателей и ассистентов(Внутренние совместители): " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("2.4");
             }
@@ -755,7 +866,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС с ученой степенью доктора наук(Внешние совместители): " + getDateString();
+                //tableName = "Численность ППС с ученой степенью доктора наук(Внешние совместители): " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("3.1.1");
             }
@@ -766,7 +877,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС с ученой степенью кандидата наук и ученым званием профессора (Внешние совместители): " + getDateString();
+                //tableName = "Численность ППС с ученой степенью кандидата наук и ученым званием профессора (Внешние совместители): " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("3.1.2");
             }
@@ -777,7 +888,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС на должности профессора(Внешние совместители): " + getDateString();
+                //tableName = "Численность ППС на должности профессора(Внешние совместители): " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("3.1.3");
             }
@@ -788,7 +899,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС с ученой степенью кандидата наук и/или званием доцента(Внешние совместители): " + getDateString();
+                //tableName = "Численность ППС с ученой степенью кандидата наук и/или званием доцента(Внешние совместители): " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("3.2.1");
             }
@@ -799,7 +910,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС доцентов (без ученой степени и/или звания(Внешние совместители): " + getDateString();
+                //tableName = "Численность ППС доцентов (без ученой степени и/или звания(Внешние совместители): " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("3.2.2");
             }
@@ -810,7 +921,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС старших преподавателей (Внешние совместители): " + getDateString();
+                //tableName = "Численность ППС старших преподавателей (Внешние совместители): " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("3.3");
             }
@@ -821,7 +932,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Численность ППС преподавателей и ассистентов(Внешние совместители): " + getDateString();
+                //tableName = "Численность ППС преподавателей и ассистентов(Внешние совместители): " + getDateString();
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 orderByRate("3.4");
             }
@@ -832,7 +943,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Защита диссертаций c " + getDateString() + " по " + getDateStringDiss();
+                //tableName = "Защита диссертаций c " + getDateString() + " по " + getDateStringDiss();
                 dsNum = "0.2.0";
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 showDissertations();
@@ -844,7 +955,7 @@ namespace PGUTI
         {
             try
             {
-                tableName = "Учёт сотрудников с " + getDateString();
+                //tableName = "Учёт сотрудников с " + getDateString();
                 dsNum = "0.2.1";
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 showRecord();
@@ -901,12 +1012,13 @@ namespace PGUTI
         {
             dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             orderByRate(dsNum);
+            setTableName(dsNum);
         }
-
         private void DissMonthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
             dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             orderByRate(dsNum);
+            setTableName(dsNum);
         }
 
         private void DateOfSampling_DateChanged(object sender, DateRangeEventArgs e)
@@ -952,18 +1064,24 @@ namespace PGUTI
         private void текущийОтчётToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Export.print(dataGridView1, tableName);
+            setTableName(dsNum);
         }
 
         private void повышениеКвалификацииToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
-                tableName = "Повышение квалификации за 5 лет на " + getDateString();
+                //tableName = "Повышение квалификации" + getDateString() + " с " + getDateStringDiss();
                 dsNum = "0.2.2";
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 training();
             }
             catch { this.Close(); }
+        }
+
+        private void дополнительныеТаблицыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
 
