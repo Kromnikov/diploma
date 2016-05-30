@@ -76,6 +76,7 @@
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
             this.диссертацииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.повышениеКвалификацииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.учетСотрудниковToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.печатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.текущийОтчётToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,7 +86,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.DissMonthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.повышениеКвалификацииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -473,6 +473,13 @@
             this.диссертацииToolStripMenuItem.Text = "Диссертации";
             this.диссертацииToolStripMenuItem.Click += new System.EventHandler(this.диссертацииToolStripMenuItem_Click);
             // 
+            // повышениеКвалификацииToolStripMenuItem
+            // 
+            this.повышениеКвалификацииToolStripMenuItem.Name = "повышениеКвалификацииToolStripMenuItem";
+            this.повышениеКвалификацииToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
+            this.повышениеКвалификацииToolStripMenuItem.Text = "Повышение квалификации";
+            this.повышениеКвалификацииToolStripMenuItem.Click += new System.EventHandler(this.повышениеКвалификацииToolStripMenuItem_Click);
+            // 
             // учетСотрудниковToolStripMenuItem
             // 
             this.учетСотрудниковToolStripMenuItem.Name = "учетСотрудниковToolStripMenuItem";
@@ -539,19 +546,13 @@
             this.DissMonthCalendar1.Name = "DissMonthCalendar1";
             this.DissMonthCalendar1.TabIndex = 12;
             this.DissMonthCalendar1.Visible = false;
+            this.DissMonthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.DissMonthCalendar1_DateChanged);
             // 
             // imageList1
             // 
             this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // повышениеКвалификацииToolStripMenuItem
-            // 
-            this.повышениеКвалификацииToolStripMenuItem.Name = "повышениеКвалификацииToolStripMenuItem";
-            this.повышениеКвалификацииToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
-            this.повышениеКвалификацииToolStripMenuItem.Text = "Повышение квалификации";
-            this.повышениеКвалификацииToolStripMenuItem.Click += new System.EventHandler(this.повышениеКвалификацииToolStripMenuItem_Click);
             // 
             // ReportsForm
             // 

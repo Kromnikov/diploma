@@ -411,13 +411,13 @@ namespace PGUTI
 
         public static class Dissertation
         {
-            public static DataSet Show(DateTime endDate)
+            public static DataSet Show(DateTime startDate,DateTime endDate)
             {
-                DateTime startDate = endDate.Date;
-                startDate = startDate.AddYears(-5);
+                //DateTime startDate = endDate.Date;
+                //startDate = startDate.AddYears(-5);
                 string result = "select f.id,w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,c.second_name as 'Кафедра',a.second_name as 'ученая степень',f.degress_date as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.' from Teachers as f left join  Working_positions as w on w.id=f.Job_title   left join Titles as d on d.id=f.titles_id  left join Degrees as a on a.id=f.degrees_id  left join Cairs as c on c.id = f.Cairs where (a.second_name is not null) and "+
-                   
-                "(f.degress_date between '"+startDate+"' and '"+endDate+"')";
+
+                "(f.degress_date between '" + ReverseDateTime(startDate) + "' and '" + ReverseDateTime(endDate) + "')";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
         }//Диссетрации
@@ -515,6 +515,41 @@ namespace PGUTI
 
                 return sb.ToString();
             }
+
+            private static string queryWithTitles(DateTime startDate, DateTime endDate, string emploe)
+            {
+
+                StringBuilder sb = new StringBuilder();
+
+                sb.Append("SELECT COUNT(*) as Всего");
+                double a = 0;
+                for (int i = 1; i < 10; i++)
+                {
+                    a += 0.1;
+                    sb.Append(String.Format(",(select Count(*) from dbo.Teachers where rate = " + SplitAndCheck(a) + " and terms_of_work like '{0}' and (degress_date between '{1}' and '{2}') and (degrees_id between 4 and 16)) as '" + a.ToString("0.0") + "' ", emploe, ReverseDateTime(startDate), ReverseDateTime(endDate)));
+                }
+                sb.Append(String.Format(",(select Count(*) from dbo.Teachers where rate >0.9 and terms_of_work like '{0}' and (degress_date between '{1}' and '{2}') and (degrees_id between 4 and 16)) as '1' ", emploe, ReverseDateTime(startDate), ReverseDateTime(endDate)));
+                sb.Append(String.Format(" from dbo.Teachers where terms_of_work like '{0}' and (degress_date between '{1}' and '{2}' and (degrees_id between 4 and 16))", emploe, ReverseDateTime(startDate), ReverseDateTime(endDate)));
+
+                return sb.ToString();
+            }
+            private static string queryWithTitles(DateTime startDate, DateTime endDate, string emploe, string title)
+            {
+
+                StringBuilder sb = new StringBuilder();
+
+                sb.Append("SELECT COUNT(*) as Всего");
+                double a = 0;
+                for (int i = 1; i < 10; i++)
+                {
+                    a += 0.1;
+                    sb.Append(String.Format(",(select Count(*) from dbo.Teachers where rate = " + SplitAndCheck(a) + " and terms_of_work like '{0}' and {1} and (degress_date between '{2}' and '{3}') ) as '" + a.ToString("0.0") + "' ", emploe, title, ReverseDateTime(startDate), ReverseDateTime(endDate)));
+                }
+                sb.Append(String.Format(",(select Count(*) from dbo.Teachers where rate >0.9 and terms_of_work like '{0}' and {1} and (degress_date between '{2}' and '{3}') ) as '1' ", emploe, title, ReverseDateTime(startDate), ReverseDateTime(endDate)));
+                sb.Append(String.Format(" from dbo.Teachers where terms_of_work like '{0}' and {1} and (degress_date between '{2}' and '{3}')", emploe, title, ReverseDateTime(startDate), ReverseDateTime(endDate)));
+
+                return sb.ToString();
+            }
             private static string queryWithTitles(DateTime startDate, string emploe,string title)
             {
 
@@ -533,32 +568,33 @@ namespace PGUTI
                 return sb.ToString();
             }
 
-            public static DataSet getRate(DateTime startDate)
+
+            public static DataSet getRate(DateTime startDate, DateTime endDate)
             {
                 StringBuilder sb = new StringBuilder();
 
                 string emploe = "%Штатный сотрудник%";
-                sb.Append(queryWithTitles(startDate, emploe));
+                sb.Append(queryWithTitles(startDate,endDate, emploe));
                 sb.Append(" union all ");
-                sb.Append(queryWithTitles(startDate, emploe, "(degrees_id between 10 and 16)"));
+                sb.Append(queryWithTitles(startDate, endDate, emploe, "(degrees_id between 10 and 16)"));
                 sb.Append(" union all ");
-                sb.Append(queryWithTitles(startDate, emploe, "(degrees_id between 4 and 11)"));
+                sb.Append(queryWithTitles(startDate, endDate, emploe, "(degrees_id between 4 and 11)"));
                 sb.Append(" union all ");
 
                 emploe = "%Сторонние (внешние) совместители%";
-                sb.Append(queryWithTitles(startDate, emploe));
+                sb.Append(queryWithTitles(startDate, endDate, emploe));
                 sb.Append(" union all ");
-                sb.Append(queryWithTitles(startDate, emploe, "(degrees_id between 10 and 16)"));
+                sb.Append(queryWithTitles(startDate, endDate, emploe, "(degrees_id between 10 and 16)"));
                 sb.Append(" union all ");
-                sb.Append(queryWithTitles(startDate, emploe, "(degrees_id between 4 and 11)"));
+                sb.Append(queryWithTitles(startDate, endDate, emploe, "(degrees_id between 4 and 11)"));
                 sb.Append(" union all ");
 
                 emploe = "%Штатные совместители%";
-                sb.Append(queryWithTitles(startDate, emploe));
+                sb.Append(queryWithTitles(startDate, endDate, emploe));
                 sb.Append(" union all ");
-                sb.Append(queryWithTitles(startDate, emploe, "(degrees_id between 10 and 16)"));
+                sb.Append(queryWithTitles(startDate, endDate, emploe, "(degrees_id between 10 and 16)"));
                 sb.Append(" union all ");
-                sb.Append(queryWithTitles(startDate, emploe, "(degrees_id between 4 and 11)"));
+                sb.Append(queryWithTitles(startDate, endDate, emploe, "(degrees_id between 4 and 11)"));
 
                 return NDataAccess.DataAccess.GetDataSet(sb.ToString(), "Table1", connectionString);
 
