@@ -416,13 +416,13 @@ namespace PGUTI
                 }
                 else
                 {
-                    dataset = null;
+                    //dataset = null;
                     //dataset.Tables.Add(new DataTable());
                 }
             }
             else
             {
-                dataset = null;
+                //dataset = null;
                 //dataset.Tables.Add(new DataTable());
             }
             dataGridView1.DataSource = dataset;//Заполняем таблицу
