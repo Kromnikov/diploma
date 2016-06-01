@@ -68,3 +68,4 @@ C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.EditUsers.re
 C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.Users.resources
 E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.EditUsers.resources
 E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.Users.resources
+C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Release\PGUTI.ReportExcel.resources

@@ -278,67 +278,6 @@ namespace PGUTI
         }
 
         private static DataSet dataset = new DataSet();
-        private void additional()
-        {
-            if(ds != null)
-            if (ds.Tables[0].Rows.Count != 0)
-            {
-
-                double previusRate = (double)ds.Tables[0].Rows[0].ItemArray[7], nextRate = 0;//Начальное значение ставки и текущее
-                int rownum = 0, countTitle = 0, sumcountTitle = 0, degree = 0, sumdegree = 0;//Номер строки,количество званий, их сумма, количество степеней, их сумма
-                double rate = 0, sumrate = 0;//Ставка, сумма ставок
-                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                {
-                    nextRate = (double)ds.Tables[0].Rows[i].ItemArray[7];//Присваеваем текущее значение ставки
-                    if (previusRate == nextRate)//Сравниваем с предедущим
-                    {//и если они совпадают по заполняем дальше таблицу
-                        dataGridView1.Rows.Add();//Добавляем строку
-
-                        for (int j = 0; j < dataGridView1.Columns.Count - 1; j++)//Заполняем колонки в строке
-                        {
-                            dataGridView1[j, i + rownum].Value = ds.Tables[0].Rows[i].ItemArray[j].ToString();
-                        }
-                        rate += double.Parse(dataGridView1[7, i + rownum].Value.ToString());//Получаем ставку
-                        sumrate += rate;//Суммируем ставку
-                        if (dataGridView1[5, i + rownum].Value != "")
-                        {
-                            degree++; sumdegree++;//Суммируем степень и сумму степеней
-                        }
-                        if (dataGridView1[6, i + rownum].Value != "")
-                        {
-                            countTitle++; sumcountTitle++;//Суммируем звание и сумму званий
-                        }
-                    }
-                    else
-                    {
-                        dataGridView1.Rows.Add();
-                        rownum++;
-                        //Заполняем суммы
-                        dataGridView1[4, dataGridView1.Rows.Count - 1].Value = "Всего";
-                        dataGridView1[5, dataGridView1.Rows.Count - 1].Value = degree;
-                        dataGridView1[6, dataGridView1.Rows.Count - 1].Value = countTitle;
-                        dataGridView1[7, dataGridView1.Rows.Count - 1].Value = rate;
-                        degree = 0;//анулируем степень
-                        countTitle = 0;//Звание
-                        rate = 0;//и ставку
-                        previusRate = nextRate;//меняем предыдущую на текущую ставки
-                        i--;
-                    }
-                }
-                //Заполняем предпоследнюю строку , т.к. вышли из цыкла , а заполнить её тоже нужно
-                dataGridView1.Rows.Add();
-                dataGridView1[4, dataGridView1.Rows.Count - 1].Value = "Всего";
-                dataGridView1[5, dataGridView1.Rows.Count - 1].Value = degree;
-                dataGridView1[6, dataGridView1.Rows.Count - 1].Value = countTitle;
-                dataGridView1[7, dataGridView1.Rows.Count - 1].Value = rate;
-                //Заполняем последнюю строку
-                dataGridView1.Rows.Add();
-                dataGridView1[4, dataGridView1.Rows.Count - 1].Value = "Итого";
-                dataGridView1[5, dataGridView1.Rows.Count - 1].Value = sumdegree;
-                dataGridView1[6, dataGridView1.Rows.Count - 1].Value = sumcountTitle;
-                dataGridView1[7, dataGridView1.Rows.Count - 1].Value = sumrate;
-            }
-        }
 
         private void additionalCopy()
         {
@@ -426,6 +365,7 @@ namespace PGUTI
                 //dataset.Tables.Add(new DataTable());
             }
             dataGridView1.DataSource = dataset;//Заполняем таблицу
+            dataGridView1.DataMember = dataset.Tables[0].TableName;//Имя таблицы
             //dataGridView1.DataMember = dataset.Tables[0].TableName;//Имя таблицы
         }
 
@@ -1191,44 +1131,51 @@ namespace PGUTI
         private void выборПараметровToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //1.2.1 1.2.2   1.3    1.4
-            dataGridView1.Visible = false;
+            //dataGridView1.Visible = false;
             Dictionary<string, DataSet> listDataGrid = new Dictionary<string, DataSet>();
             orderByRate("1.1.1");
             setTableName("1.1.1");
-            listDataGrid.Add(tableName, dataset);
+            listDataGrid.Add(tableName, dataset.Copy());
+            dataset.Clear();
 
             dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             orderByRate("1.1.2");
             setTableName("1.1.2");
-            listDataGrid.Add(tableName, dataset);
+            listDataGrid.Add(tableName, dataset.Copy());
+            dataset.Clear();
 
             dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             orderByRate("1.1.3");
             setTableName("1.1.3");
-            listDataGrid.Add(tableName, dataset);
+            listDataGrid.Add(tableName, dataset.Copy());
+            dataset.Clear();
 
             dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             orderByRate("1.2.1");
             setTableName("1.2.1");
-            listDataGrid.Add(tableName, dataset);
+            listDataGrid.Add(tableName, dataset.Copy());
+            dataset.Clear();
 
             dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             orderByRate("1.2.2");
             setTableName("1.2.2");
-            listDataGrid.Add(tableName, dataset);
+            listDataGrid.Add(tableName, dataset.Copy());
+            dataset.Clear();
 
             dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             orderByRate("1.3");
             setTableName("1.3");
-            listDataGrid.Add(tableName, dataset);
+            listDataGrid.Add(tableName, dataset.Copy());
+            dataset.Clear();
 
             dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             orderByRate("1.4");
             setTableName("1.4");
-            listDataGrid.Add(tableName, dataset);
+            listDataGrid.Add(tableName, dataset.Copy());
+            dataset.Clear();
 
-            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
-            dataGridView1.Visible = true;
+            //dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            //dataGridView1.Visible = true;
             try
             {
                 Export.print(listDataGrid, "Штатные сотрудники");
@@ -1261,44 +1208,51 @@ namespace PGUTI
 
         private void сторонниеСовместителиToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            dataGridView1.Visible = false;
+            //dataGridView1.Visible = false;
             Dictionary<string, DataSet> listDataGrid = new Dictionary<string, DataSet>();
             orderByRate("2.1.1");
             setTableName("2.1.1");
-            listDataGrid.Add(tableName, dataset);
+            listDataGrid.Add(tableName, dataset.Copy());
+            dataset.Clear();
 
             dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             orderByRate("2.1.2");
             setTableName("2.1.2");
-            listDataGrid.Add(tableName, dataset);
+            listDataGrid.Add(tableName, dataset.Copy());
+            dataset.Clear();
 
             dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             orderByRate("2.1.3");
             setTableName("2.1.3");
-            listDataGrid.Add(tableName, dataset);
+            listDataGrid.Add(tableName, dataset.Copy());
+            dataset.Clear();
 
             dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             orderByRate("2.2.1");
             setTableName("2.2.1");
-            listDataGrid.Add(tableName, dataset);
+            listDataGrid.Add(tableName, dataset.Copy());
+            dataset.Clear();
 
             dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             orderByRate("2.2.2");
             setTableName("2.2.2");
-            listDataGrid.Add(tableName, dataset);
+            listDataGrid.Add(tableName, dataset.Copy());
+            dataset.Clear();
 
             dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             orderByRate("2.3");
             setTableName("2.3");
-            listDataGrid.Add(tableName, dataset);
+            listDataGrid.Add(tableName, dataset.Copy());
+            dataset.Clear();
 
             dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             orderByRate("2.4");
             setTableName("2.4");
-            listDataGrid.Add(tableName, dataset);
+            listDataGrid.Add(tableName, dataset.Copy());
+            dataset.Clear();
 
-            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
-            dataGridView1.Visible = true;
+            //dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            //dataGridView1.Visible = true;
             try
             {
                 Export.print(listDataGrid, "Сторонние совместители");
@@ -1312,44 +1266,51 @@ namespace PGUTI
 
         private void внешниеСовместителиToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            dataGridView1.Visible = false;
+            //dataGridView1.Visible = false;
             Dictionary<string, DataSet> listDataGrid = new Dictionary<string, DataSet>();
             orderByRate("3.1.1");
             setTableName("3.1.1");
-            listDataGrid.Add(tableName, dataset);
+            listDataGrid.Add(tableName, dataset.Copy());
+            dataset.Clear();
 
             dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             orderByRate("3.1.2");
             setTableName("3.1.2");
-            listDataGrid.Add(tableName, dataset);
+            listDataGrid.Add(tableName, dataset.Copy());
+            dataset.Clear();
 
             dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             orderByRate("3.1.3");
             setTableName("3.1.3");
-            listDataGrid.Add(tableName, dataset);
+            listDataGrid.Add(tableName, dataset.Copy());
+            dataset.Clear();
 
             dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             orderByRate("3.2.1");
             setTableName("3.2.1");
-            listDataGrid.Add(tableName, dataset);
+            listDataGrid.Add(tableName, dataset.Copy());
+            dataset.Clear();
 
             dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             orderByRate("3.2.2");
             setTableName("3.2.2");
-            listDataGrid.Add(tableName, dataset);
+            listDataGrid.Add(tableName, dataset.Copy());
+            dataset.Clear();
 
             dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             orderByRate("3.3");
             setTableName("3.3");
-            listDataGrid.Add(tableName, dataset);
+            listDataGrid.Add(tableName, dataset.Copy());
+            dataset.Clear();
 
             dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
             orderByRate("3.4");
             setTableName("3.4");
-            listDataGrid.Add(tableName, dataset);
+            listDataGrid.Add(tableName, dataset.Copy());
+            dataset.Clear();
 
-            dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
-            dataGridView1.Visible = true;
+            //dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            //dataGridView1.Visible = true;
             try
             {
                 Export.print(listDataGrid, "Внешние совместители ");

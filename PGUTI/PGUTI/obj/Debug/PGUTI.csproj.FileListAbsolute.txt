@@ -47,3 +47,4 @@ E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.Users.resou
 C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.EditUsers.resources
 C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.Users.resources
 E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.ReportExcel.resources
+C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.ReportExcel.resources

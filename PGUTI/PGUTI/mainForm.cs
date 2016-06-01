@@ -27,7 +27,7 @@ namespace PGUTI
         private void mainForm_Load(object sender, EventArgs e)
         {
             UpdateFacultyGridView();//Загружаем таблицу Faculty
-            //blockAuth();
+            blockAuth();
         }
 
         public void UpdateFacultyGridView()//Метод зугрузки главной таблицы
@@ -234,6 +234,7 @@ namespace PGUTI
 
         private void enterButton1_Click(object sender, EventArgs e)
         {
+            //blockAuth();
             auth();
         }
 
