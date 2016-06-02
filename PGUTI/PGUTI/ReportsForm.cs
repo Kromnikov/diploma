@@ -352,20 +352,12 @@ namespace PGUTI
                     dr[7] = sumrate;
 
                     dataset.Tables[0].Rows.Add(dr);
-                }
-                else
-                {
-                    //dataset = null;
-                    //dataset.Tables.Add(new DataTable());
+
+
+                    dataGridView1.DataSource = dataset;//Заполняем таблицу
+                    dataGridView1.DataMember = dataset.Tables[0].TableName;//Имя таблицы
                 }
             }
-            else
-            {
-                //dataset = null;
-                //dataset.Tables.Add(new DataTable());
-            }
-            dataGridView1.DataSource = dataset;//Заполняем таблицу
-            dataGridView1.DataMember = dataset.Tables[0].TableName;//Имя таблицы
             //dataGridView1.DataMember = dataset.Tables[0].TableName;//Имя таблицы
         }
 
@@ -387,7 +379,7 @@ namespace PGUTI
 
         private void showRecord()
         {
-            ds = Data.Record.Show(StartMonthCalendar1.SelectionStart.Date);//В зависимости от названия кафедры, заполняем таблицу, CairsComboBox1.SelectedIndex + 1 получаем название кафедры по номеру +1 т.к. начинаеться с нуля а в базе с единицы
+            ds = Data.RecordOld.Show(StartMonthCalendar1.SelectionStart.Date);//В зависимости от названия кафедры, заполняем таблицу, CairsComboBox1.SelectedIndex + 1 получаем название кафедры по номеру +1 т.к. начинаеться с нуля а в базе с единицы
             dataGridView1.DataSource = ds;//Заполняем таблицу
             dataGridView1.DataMember = ds.Tables[0].TableName;//Имя таблицы
             dataGridView1.Columns["id"].Visible = false;//Скрываем поле id

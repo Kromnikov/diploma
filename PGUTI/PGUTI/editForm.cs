@@ -308,8 +308,8 @@ namespace PGUTI
         {
             if (Correct())//Проверяем корректность введённых данных
             {
-                if (edit) updatePerson();//Метод редактирования
-                else insertPerson();//Метод добавления в базу
+                if (edit) update();//Метод редактирования
+                else insert();//Метод добавления в базу
                 this.Close();//Закрываем форму
             }
             else { MessageBox.Show("Не все поля заполнены правильно"); }
@@ -319,37 +319,83 @@ namespace PGUTI
         private static string titlesDate = null;
         private static string degressDate = null;
         private static string education_date = null;
-        private void insertPerson()
+        private void insert()
         {
             SplitAndCheck();//Метод для коррекции введённого значения ставки и даты
+            int idTeacher = Data.Teachers.nextId();
             if (DekanСheckBox.Checked)//Если добавляем декана
             {
-                Data.Teachers.insertDecan(getValuesInsertPersonDekan());
+                Data.Teachers.insertDecan(getValuesInsertPersonDekan(idTeacher));
+                Data.RecordTeachers.insertDecan(getValuesInsertRecordDekan(Data.RecordTeachers.nextId()), idTeacher);
             }
             else//Иначе
             {
-                Data.Teachers.insertPerson(getValuesInsertPerson());
+                Data.Teachers.insertPerson(getValuesInsertPerson(idTeacher));
+                Data.RecordTeachers.insertPerson(getValuesInsertRecord(Data.RecordTeachers.nextId()), idTeacher);
             }
-            recordAdd(id);//Метод добавления в таблицу Records
         }
-        private void updatePerson()
+        private void update()
         {
-            string result = "";
             SplitAndCheck();//Метод для коррекции введённого значения ставки и даты
             if (DekanСheckBox.Checked)
             {
                 Data.Teachers.updateDecan(getValuesUpdatePersonDekan(), id);
+                //Data.RecordTeachers.insertDecan(getValuesInsertPersonDekan(Data.Teachers.count()), id);
             }
             else
-                Data.Teachers.updatePerson(getValuesUpdatePerson(), id);
-            //Data.Teachers.InsertTeachers(result.ToString());//Метод для вставки записей в таблицу Teachers
-            if (AcceptedComboBox.SelectedIndex == 2)
             {
-                recordDel();
-                Data.Teachers.updateEndDate(Data.ReverseDateTime(ExperienceDate.Value.Date), id);
+                Data.Teachers.updatePerson(getValuesUpdatePerson(), id);
+            }
+            updateRecordTeachers();
+        }
+        private void updateRecordTeachers()
+        {
+            bool result = false;
+            if (ScientificDegreeComboBox.SelectedIndex != (int)person.Tables[0].Rows[0].ItemArray[16] - 1)
+            {
+                result = true;
             }
             else
-                recordAdd(id);//Метод добавления в таблицу Records
+                if (AcademicTitleComboBox.SelectedIndex != (int)person.Tables[0].Rows[0].ItemArray[18] - 1)
+                {
+                    result = true;
+                }
+                else
+                    if (TrainingcheckBox1.Checked)
+                    {
+                        if (!TrainingDatesTextBox.Text.Equals(person.Tables[0].Rows[0].ItemArray[33].ToString()))
+                        {
+                            result = true;
+                        }
+                        else
+                            if (person.Tables[0].Rows[0].ItemArray[32].ToString() != "")
+                            {
+                                if (TrainingDatesEndTimePicker.Value != (DateTime)person.Tables[0].Rows[0].ItemArray[32])
+                                {
+                                    result = true;
+                                }
+                            }
+                            else
+                                if (person.Tables[0].Rows[0].ItemArray[27].ToString() != "")
+                                {
+                                    if (TrainingDatesTimePicker.Value != (DateTime)person.Tables[0].Rows[0].ItemArray[27])
+                                    {
+                                        result = true;
+                                    }
+                                }
+                    }
+            if (result)
+            {
+                Data.RecordTeachers.setEndDate(Data.ReverseDateTime(ActualTimePicker1.Value.Date), Data.RecordTeachers.prevEnty(id));
+                if (DekanСheckBox.Checked)
+                {
+                    Data.RecordTeachers.insertPerson(getValuesInsertRecordDekan(Data.RecordTeachers.nextId()), id);
+                }
+                else
+                {
+                    Data.RecordTeachers.insertPerson(getValuesInsertRecord(Data.RecordTeachers.nextId()), id);
+                }
+            }
         }
         private void SplitAndCheck()//Метод для коррекции введённого значения ставки и даты
         {
@@ -383,6 +429,18 @@ namespace PGUTI
 
             TrainingChecked();
         }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         //Метод редактирования 
         private string getValuesUpdatePerson()
         {
@@ -450,11 +508,14 @@ namespace PGUTI
             +",Training_dates_end=" + TrainingDatesEnd
             + ",Training_place='" + TrainingDatesTex + "'";
         }
+
+
+
+
         //Метод добавления декана
-        private string getValuesInsertPersonDekan()
+        private string getValuesInsertPersonDekan(int idPerson)
         {
-            id = int.Parse(Data.Teachers.getCountRows())+1;
-            string val = "(" + (id)
+            string val = "" + (idPerson)
                 + ",'" + SurnameTextBox.Text
                 + "','" + NameTextBox.Text
                 + "','" + MiddleNameTextBox.Text
@@ -484,15 +545,15 @@ namespace PGUTI
                 1 + "','" +
                 Data.ReverseDateTime(ExperienceDate.Value.Date) + "',"
                 + TrainingDatesEnd + ",'"
-                + TrainingDatesTex + "')";
+                + TrainingDatesTex + "'";
             return val;
 
         }
         //Метод добавления
-        private string getValuesInsertPerson()
+        private string getValuesInsertPerson(int idPerson)
         {
-            id = int.Parse(Data.Teachers.getCountRows())+1;
-            return "(" + (id)
+
+            return "" + (idPerson)
                 + "," + (CairComboBox.SelectedIndex + 1)
                 + "," + (JobTitleComboBox.SelectedIndex + 1)
                 + ",'" + SurnameTextBox.Text
@@ -523,8 +584,103 @@ namespace PGUTI
                 1 + "','" +
                 Data.ReverseDateTime(ExperienceDate.Value.Date) + "',"
                 + TrainingDatesEnd+ ",'"
-                +TrainingDatesTex+"')";
+                +TrainingDatesTex+"'";
         }
+
+        private string getValuesInsertRecord(int idPerson)
+        {
+
+            return "" + (idPerson)
+                + "," + (CairComboBox.SelectedIndex + 1)
+                + "," + (JobTitleComboBox.SelectedIndex + 1)
+                + ",'" + SurnameTextBox.Text
+                + "','" + NameTextBox.Text
+                + "','" + MiddleNameTextBox.Text
+                + "','" + GenderComboBox.Text
+                + "','" + Data.ReverseDateTime(birthdayTimePicker.Value.Date)
+                + "'," + SerialTextBox.Text
+                + "," + NumberTextBox.Text
+                + ",'" + PasportDataTextBox.Text
+                + "','" + Data.ReverseDateTime(PasportDateTimePicker.Value.Date)
+                + "','" + RegistrationTextBox.Text
+                + "','" + TelephoneTextBox.Text
+                + "','" + EducationalInstitutionTextBox.Text
+                + "','" + SpecialtyDiplomTextBox.Text
+                + "'," + (ScientificDegreeComboBox.SelectedIndex + 1)
+                + "," + titlesDate
+                + "," + (AcademicTitleComboBox.SelectedIndex + 1)
+                + "," + degressDate
+                + ",'" + TermWorksComboBox.Text + "-" + Rate.Text + "-" + AcceptedComboBox.Text + "(" + ExperienceDate.Value.Day + "." + ExperienceDate.Value.Month + "." + ExperienceDate.Value.Year + ")"
+                + "','" + Data.ReverseDateTime(CompetitiveSelectionStartDate.Value.Date)
+                + "','" + Data.ReverseDateTime(CompetitiveSelectionEndDate.Value.Date)
+                + "'," + rate
+                + ",'" + Data.ReverseDateTime(ExperienceDate.Value.Date) + "'," +
+                TrainingDatesStart + ",'" +
+                Data.ReverseDateTime(TotalExperienceDateTimePicker.Value.Date) + "'," +
+                education_date + ",'" +
+                1 + "','" +
+                Data.ReverseDateTime(ActualTimePicker1.Value.Date) + "',"
+                + TrainingDatesEnd + ",'"
+                + TrainingDatesTex + "'";
+        }
+        private string getValuesInsertRecordDekan(int idPerson)
+        {
+            string val = "" + (idPerson)
+                + ",'" + SurnameTextBox.Text
+                + "','" + NameTextBox.Text
+                + "','" + MiddleNameTextBox.Text
+                + "','" + GenderComboBox.Text
+                + "','" + Data.ReverseDateTime(birthdayTimePicker.Value.Date)
+                + "'," + SerialTextBox.Text
+                + "," + NumberTextBox.Text
+                + ",'" + PasportDataTextBox.Text
+                + "','" + Data.ReverseDateTime(PasportDateTimePicker.Value.Date)
+                + "','" + RegistrationTextBox.Text
+                + "','" + TelephoneTextBox.Text
+                + "','" + EducationalInstitutionTextBox.Text
+                + "','" + SpecialtyDiplomTextBox.Text
+                + "'," + (ScientificDegreeComboBox.SelectedIndex + 1)
+                + "," + titlesDate
+                + "," + (AcademicTitleComboBox.SelectedIndex + 1)
+                + "," + degressDate
+                + ",'" + TermWorksComboBox.Text + "-" + Rate.Text + "-" + AcceptedComboBox.Text + "(" + ExperienceDate.Value.Day + "." + ExperienceDate.Value.Month + "." + ExperienceDate.Value.Year + ")"
+                + "','" + Data.ReverseDateTime(CompetitiveSelectionStartDate.Value.Date)
+                + "','" + Data.ReverseDateTime(CompetitiveSelectionEndDate.Value.Date)
+                + "'," + rate
+                + ",'" + Data.ReverseDateTime(ExperienceDate.Value.Date)
+                + "'," + TrainingDatesStart
+                + ",'" + Data.ReverseDateTime(TotalExperienceDateTimePicker.Value.Date)
+                + "'," + (FacultiesComboBox.SelectedIndex + 1) + "," +
+                education_date + ",'" +
+                1 + "','" +
+                Data.ReverseDateTime(ActualTimePicker1.Value.Date) + "',"
+                + TrainingDatesEnd + ",'"
+                + TrainingDatesTex + "'";
+            return val;
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         private static string TrainingDatesTex = null;
@@ -544,7 +700,7 @@ namespace PGUTI
 
         private void recordAdd(int id)//Метод добавления в таблицу Records
         {
-            Data.Record.Add(id,false,ExperienceDate.Value.Date);//Метод добавления в таблицу Records
+            Data.RecordOld.Add(id,false,ExperienceDate.Value.Date);//Метод добавления в таблицу Records
         }
 
         private void recordDel()
@@ -552,7 +708,7 @@ namespace PGUTI
             DialogResult result = MessageBox.Show("Удалить запись?", "удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question);//Подтверждение
             if (result == DialogResult.Yes)//Если подтвердили
             {
-                Data.Record.Add(id,true, ExperienceDate.Value.Date);//Добавляем запись в таблицу Records
+                Data.RecordOld.Add(id,true, ExperienceDate.Value.Date);//Добавляем запись в таблицу Records
                 Data.Teachers.disableRow(id);//Выбираем из выбранной строки первый столбец и передаём его значение в метод удаления записи
             }
         }
@@ -603,6 +759,18 @@ namespace PGUTI
                 TrainingDatesTex = null;
                 TrainingDatesStart = "null";
                 TrainingDatesEnd = "null";
+            }
+        }
+
+        private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                groupBox10.Enabled = true;
+            }
+            else
+            {
+                groupBox10.Enabled = false;
             }
         }
     }

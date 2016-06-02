@@ -43,7 +43,7 @@ namespace PGUTI
             ExcelApp.Cells[1, 4].HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
             //ExcelApp.Cells[1, 4].Interior.Color = 36;
 
-            int rowNumber = 0,prevRowNumber=0;
+            int rowNumber = 0;
             DataSet dataset=null;
             for (int numEl = 0; numEl < listDataGrid.Count; numEl++)
             {
