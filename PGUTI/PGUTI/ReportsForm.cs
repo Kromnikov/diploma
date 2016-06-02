@@ -526,7 +526,7 @@ namespace PGUTI
         private void degreesData()
         {
             initDegrees();
-            ds = Data.DegreesStructure.getRate(DissMonthCalendar1.SelectionStart.Date,StartMonthCalendar1.SelectionStart.Date);
+            ds = Data.DegreesStructure.getRate(StartMonthCalendar1.SelectionStart.Date);
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
@@ -1035,7 +1035,7 @@ namespace PGUTI
             {
                 StartMonthCalendar1.Visible = true;
                 dataGridView1.Refresh();
-                if (dsNum.Equals("0.2.0") || dsNum.Equals("0.1.0") || dsNum.Equals("0.2.2"))
+                if (dsNum.Equals("0.2.0")  || dsNum.Equals("0.2.2"))
                 {
                     DissMonthCalendar1.Visible = true;
                 }
