@@ -81,13 +81,14 @@
             this.печатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.текущийОтчётToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выборПараметровToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сторонниеСовместителиToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.внешниеСовместителиToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.StartMonthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.button1 = new System.Windows.Forms.Button();
             this.DissMonthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.сторонниеСовместителиToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.внешниеСовместителиToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.среднийВозрастToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -149,6 +150,7 @@
             this.toolStripMenuItem2,
             this.дополнительныеТаблицыToolStripMenuItem,
             this.диссертацииToolStripMenuItem,
+            this.среднийВозрастToolStripMenuItem,
             this.повышениеКвалификацииToolStripMenuItem,
             this.учетСотрудниковToolStripMenuItem,
             this.печатьToolStripMenuItem});
@@ -516,6 +518,20 @@
             this.выборПараметровToolStripMenuItem.Text = "Штатные сотрудники";
             this.выборПараметровToolStripMenuItem.Click += new System.EventHandler(this.выборПараметровToolStripMenuItem_Click);
             // 
+            // сторонниеСовместителиToolStripMenuItem1
+            // 
+            this.сторонниеСовместителиToolStripMenuItem1.Name = "сторонниеСовместителиToolStripMenuItem1";
+            this.сторонниеСовместителиToolStripMenuItem1.Size = new System.Drawing.Size(215, 22);
+            this.сторонниеСовместителиToolStripMenuItem1.Text = "Сторонние совместители";
+            this.сторонниеСовместителиToolStripMenuItem1.Click += new System.EventHandler(this.сторонниеСовместителиToolStripMenuItem1_Click);
+            // 
+            // внешниеСовместителиToolStripMenuItem1
+            // 
+            this.внешниеСовместителиToolStripMenuItem1.Name = "внешниеСовместителиToolStripMenuItem1";
+            this.внешниеСовместителиToolStripMenuItem1.Size = new System.Drawing.Size(215, 22);
+            this.внешниеСовместителиToolStripMenuItem1.Text = "Внешние совместители ";
+            this.внешниеСовместителиToolStripMenuItem1.Click += new System.EventHandler(this.внешниеСовместителиToolStripMenuItem1_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -559,25 +575,18 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // сторонниеСовместителиToolStripMenuItem1
+            // среднийВозрастToolStripMenuItem
             // 
-            this.сторонниеСовместителиToolStripMenuItem1.Name = "сторонниеСовместителиToolStripMenuItem1";
-            this.сторонниеСовместителиToolStripMenuItem1.Size = new System.Drawing.Size(215, 22);
-            this.сторонниеСовместителиToolStripMenuItem1.Text = "Сторонние совместители";
-            this.сторонниеСовместителиToolStripMenuItem1.Click += new System.EventHandler(this.сторонниеСовместителиToolStripMenuItem1_Click);
-            // 
-            // внешниеСовместителиToolStripMenuItem1
-            // 
-            this.внешниеСовместителиToolStripMenuItem1.Name = "внешниеСовместителиToolStripMenuItem1";
-            this.внешниеСовместителиToolStripMenuItem1.Size = new System.Drawing.Size(215, 22);
-            this.внешниеСовместителиToolStripMenuItem1.Text = "Внешние совместители ";
-            this.внешниеСовместителиToolStripMenuItem1.Click += new System.EventHandler(this.внешниеСовместителиToolStripMenuItem1_Click);
+            this.среднийВозрастToolStripMenuItem.Name = "среднийВозрастToolStripMenuItem";
+            this.среднийВозрастToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
+            this.среднийВозрастToolStripMenuItem.Text = "Средний возраст";
+            this.среднийВозрастToolStripMenuItem.Click += new System.EventHandler(this.среднийВозрастToolStripMenuItem_Click);
             // 
             // ReportsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(719, 335);
+            this.ClientSize = new System.Drawing.Size(719, 336);
             this.Controls.Add(this.DissMonthCalendar1);
             this.Controls.Add(this.StartMonthCalendar1);
             this.Controls.Add(this.button1);
@@ -652,6 +661,7 @@
         private System.Windows.Forms.ToolStripMenuItem повышениеКвалификацииToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сторонниеСовместителиToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem внешниеСовместителиToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem среднийВозрастToolStripMenuItem;
 
     }
 }

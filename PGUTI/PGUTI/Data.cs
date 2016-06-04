@@ -536,10 +536,18 @@ namespace PGUTI
                 string result = "select f.id,w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,c.second_name as 'Кафедра', Training_place as 'Место проведения', Training_dates as 'Начало проведения', Training_dates_end as 'Окночание проведения' from Record_Teachers as f left join  Working_positions as w on w.id=f.Job_title   left join Titles as d on d.id=f.titles_id  left join Degrees as a on a.id=f.degrees_id  left join Cairs as c on c.id = f.Cairs "+
                 "where  (Training_dates is not null and Training_dates_end is not null)  and " +
 
-                //"(Training_dates > '" + ReverseDateTime(startDate) + "' and Training_dates_end < '" + ReverseDateTime(endDate) + "')";
                 "(Training_dates >= '" + ReverseDateTime(startDate) + "' and Training_dates_end <= '" + ReverseDateTime(endDate) + "')";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
+        }//Диссетрации
+        public static class Chair
+        {
+            public static DataSet Show(DateTime startDate,string st)
+            {
+                string result = "SELECT (c.id),(c.second_name), AVG(datediff(yy,birthday ,'" + ReverseDateTime(startDate) + "')) as 'Возраст' from dbo.Teachers as rt right outer join Cairs as c on rt.Cairs = c.id where rt.terms_of_work like '%"+st+"%' or rt.terms_of_work is null and (" + between(startDate) + " or (start_date is null  and end_date is null)) group by (c.id),(c.second_name) order by (c.id)";
+                return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
+            }
+
         }//Диссетрации
 
 
