@@ -350,42 +350,53 @@ namespace PGUTI
         }
         private void updateRecordTeachers()
         {
-            bool result = false;
-            if (ScientificDegreeComboBox.SelectedIndex != (int)person.Tables[0].Rows[0].ItemArray[16] - 1)
-            {
-                result = true;
-            }
-            else
-                if (AcademicTitleComboBox.SelectedIndex != (int)person.Tables[0].Rows[0].ItemArray[18] - 1)
-                {
-                    result = true;
-                }
-                else
-                    if (TrainingcheckBox1.Checked)
-                    {
-                        if (!TrainingDatesTextBox.Text.Equals(person.Tables[0].Rows[0].ItemArray[33].ToString()))
-                        {
-                            result = true;
-                        }
-                        else
-                            if (person.Tables[0].Rows[0].ItemArray[32].ToString() != "")
-                            {
-                                if (TrainingDatesEndTimePicker.Value != (DateTime)person.Tables[0].Rows[0].ItemArray[32])
-                                {
-                                    result = true;
-                                }
-                            }
-                            else
-                                if (person.Tables[0].Rows[0].ItemArray[27].ToString() != "")
-                                {
-                                    if (TrainingDatesTimePicker.Value != (DateTime)person.Tables[0].Rows[0].ItemArray[27])
-                                    {
-                                        result = true;
-                                    }
-                                }
-                    }
-            if (result)
-            {
+            //bool result = false;
+            //if (ScientificDegreeComboBox.SelectedIndex != (int)person.Tables[0].Rows[0].ItemArray[16] - 1)
+            //{
+            //    if (TitlesDateTimePicker.Value != (DateTime)person.Tables[0].Rows[0].ItemArray[17])
+            //    {
+            //        result = true;
+            //    }
+            //}
+            //else
+            //    if (JobTitleComboBox.SelectedIndex != (int)person.Tables[0].Rows[0].ItemArray[2] - 1)
+            //    {
+            //        result = true;
+            //    }
+            //    else
+            //        if (AcademicTitleComboBox.SelectedIndex != (int)person.Tables[0].Rows[0].ItemArray[18] - 1)
+            //        {
+            //            if (DegreesTimePicker2.Value != (DateTime)person.Tables[0].Rows[0].ItemArray[19])
+            //            {
+            //                result = true;
+            //            }
+            //        }
+            //        else
+            //            if (TrainingcheckBox1.Checked)
+            //            {
+            //                if (!TrainingDatesTextBox.Text.Equals(person.Tables[0].Rows[0].ItemArray[33].ToString()))
+            //                {
+            //                    result = true;
+            //                }
+            //                else
+            //                    if (person.Tables[0].Rows[0].ItemArray[32].ToString() != "")
+            //                    {
+            //                        if (TrainingDatesEndTimePicker.Value != (DateTime)person.Tables[0].Rows[0].ItemArray[32])
+            //                        {
+            //                            result = true;
+            //                        }
+            //                    }
+            //                    else
+            //                        if (person.Tables[0].Rows[0].ItemArray[27].ToString() != "")
+            //                        {
+            //                            if (TrainingDatesTimePicker.Value != (DateTime)person.Tables[0].Rows[0].ItemArray[27])
+            //                            {
+            //                                result = true;
+            //                            }
+            //                        }
+            //            }
+            //if (result)
+            //{
                 Data.RecordTeachers.setEndDate(Data.ReverseDateTime(ActualTimePicker1.Value.Date), Data.RecordTeachers.prevEnty(id));
                 if (DekanСheckBox.Checked)
                 {
@@ -395,7 +406,7 @@ namespace PGUTI
                 {
                     Data.RecordTeachers.insertPerson(getValuesInsertRecord(Data.RecordTeachers.nextId()), id);
                 }
-            }
+            //}
         }
         private void SplitAndCheck()//Метод для коррекции введённого значения ставки и даты
         {
@@ -700,7 +711,7 @@ namespace PGUTI
 
         private void recordAdd(int id)//Метод добавления в таблицу Records
         {
-            Data.RecordOld.Add(id,false,ExperienceDate.Value.Date);//Метод добавления в таблицу Records
+            //Data.RecordOld.Add(id,false,ExperienceDate.Value.Date);//Метод добавления в таблицу Records
         }
 
         private void recordDel()
@@ -708,7 +719,7 @@ namespace PGUTI
             DialogResult result = MessageBox.Show("Удалить запись?", "удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question);//Подтверждение
             if (result == DialogResult.Yes)//Если подтвердили
             {
-                Data.RecordOld.Add(id,true, ExperienceDate.Value.Date);//Добавляем запись в таблицу Records
+                //Data.RecordOld.Add(id,true, ExperienceDate.Value.Date);//Добавляем запись в таблицу Records
                 Data.Teachers.disableRow(id);//Выбираем из выбранной строки первый столбец и передаём его значение в метод удаления записи
             }
         }
@@ -772,6 +783,11 @@ namespace PGUTI
             {
                 groupBox10.Enabled = false;
             }
+        }
+
+        private void JobTitleComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -61,6 +61,11 @@ namespace PGUTI
         {
             public static DataSet getTeachers(int id)//Главная таблица
             {
+                string result = "select id,Cairs,Job_title,surname      ,name      ,middlename      ,gender      ,birthday      ,passport_serial      ,passport_number      ,passport_gives      ,passport_create,registration      ,telephone      ,educational_institution      ,specialty_of_diplom      ,titles_id      ,titles_date      ,degrees_id      ,degress_date      ,terms_of_work      ,competitive_selection_start_date      ,competitive_selection_end_date      ,experience_date      ,total_experience_date      ,Dekan_Faculties      ,rate      ,Training_dates      ,education_date      ,enable,start_date      ,end_date,Training_dates_end,Training_place from dbo.Teachers where id = " + id;
+                return ds = NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
+            }
+            public static DataSet getRecordTeachers(int id)//Главная таблица
+            {
                 string result = "select id,Cairs,Job_title,surname      ,name      ,middlename      ,gender      ,birthday      ,passport_serial      ,passport_number      ,passport_gives      ,passport_create,registration      ,telephone      ,educational_institution      ,specialty_of_diplom      ,titles_id      ,titles_date      ,degrees_id      ,degress_date      ,terms_of_work      ,competitive_selection_start_date      ,competitive_selection_end_date      ,experience_date      ,total_experience_date      ,Dekan_Faculties      ,rate      ,Training_dates      ,education_date      ,enable,start_date      ,end_date,Training_dates_end,Training_place from dbo.Record_Teachers where id = " + id;
                 return ds = NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
@@ -522,9 +527,9 @@ namespace PGUTI
             {
                 //DateTime startDate = endDate.Date;
                 //startDate = startDate.AddYears(-5);
-                string result = "select f.id,w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,c.second_name as 'Кафедра',a.second_name as 'ученая степень',f.degress_date as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.' from Record_Teachers as f left join  Working_positions as w on w.id=f.Job_title   left join Titles as d on d.id=f.titles_id  left join Degrees as a on a.id=f.degrees_id  left join Cairs as c on c.id = f.Cairs where (a.second_name is not null) and "+
+                string result = "select f.Teacher_id,f.id,w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,c.second_name as 'Кафедра',a.second_name as 'ученая степень',f.degress_date as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.' from Record_Teachers as f left join  Working_positions as w on w.id=f.Job_title   left join Titles as d on d.id=f.titles_id  left join Degrees as a on a.id=f.degrees_id  left join Cairs as c on c.id = f.Cairs where (a.second_name is not null) and " +
 
-                "(f.degress_date between '" + ReverseDateTime(startDate) + "' and '" + ReverseDateTime(endDate) + "')";
+                "(f.degress_date between '" + ReverseDateTime(startDate) + "' and '" + ReverseDateTime(endDate) + "') order by f.Teacher_id";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
         }//Диссетрации
@@ -533,10 +538,10 @@ namespace PGUTI
         {
             public static DataSet Show(DateTime startDate, DateTime endDate)
             {
-                string result = "select f.id,w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,c.second_name as 'Кафедра', Training_place as 'Место проведения', Training_dates as 'Начало проведения', Training_dates_end as 'Окночание проведения' from Record_Teachers as f left join  Working_positions as w on w.id=f.Job_title   left join Titles as d on d.id=f.titles_id  left join Degrees as a on a.id=f.degrees_id  left join Cairs as c on c.id = f.Cairs "+
+                string result = "select  f.Teacher_id,f.id,w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,c.second_name as 'Кафедра', Training_place as 'Место проведения', Training_dates as 'Начало проведения', Training_dates_end as 'Окночание проведения' from Record_Teachers as f left join  Working_positions as w on w.id=f.Job_title   left join Titles as d on d.id=f.titles_id  left join Degrees as a on a.id=f.degrees_id  left join Cairs as c on c.id = f.Cairs " +
                 "where  (Training_dates is not null and Training_dates_end is not null)  and " +
 
-                "(Training_dates >= '" + ReverseDateTime(startDate) + "' and Training_dates_end <= '" + ReverseDateTime(endDate) + "')";
+                "(Training_dates >= '" + ReverseDateTime(startDate) + "' and Training_dates_end <= '" + ReverseDateTime(endDate) + "') order by f.Teacher_id";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
         }//Диссетрации
@@ -547,7 +552,6 @@ namespace PGUTI
                 string result = "SELECT (c.id),(c.second_name), AVG(datediff(yy,birthday ,'" + ReverseDateTime(startDate) + "')) as 'Возраст' from dbo.Teachers as rt right outer join Cairs as c on rt.Cairs = c.id where rt.terms_of_work like '%"+st+"%' or rt.terms_of_work is null and (" + between(startDate) + " or (start_date is null  and end_date is null)) group by (c.id),(c.second_name) order by (c.id)";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
-
         }//Диссетрации
 
 
@@ -864,6 +868,12 @@ namespace PGUTI
 
         public static class RecordTeachers
         {
+            public static void dell(int id)
+            {
+                string result = "DELETE FROM Record_Teachers  WHERE id = "+ id;
+                NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
+            }
+
             public static int prevEnty(int teacherId)//Количество строк в таблице
             {
                 ds = NDataAccess.DataAccess.GetDataSet(@"select max(id) as id from dbo.Record_Teachers where Teacher_id = " + teacherId, "Table1", connectionString);
@@ -908,57 +918,11 @@ namespace PGUTI
                 string result = "UPDATE dbo.Record_Teachers SET " + values + " where id = " + id;
                 NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
             }
-        }
 
-        public static class RecordOld
-        {
-            public static void Add(string result)
+            public static DataSet Show()
             {
-                NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
-            }
-            public static void Add(int id, bool del, DateTime experienceDate)
-            {
-                Object[] array = GetRecordTeachers(id).Tables[0].Rows[0].ItemArray;//Объект строки запроса
-                string[] cairsandjob = new string[2], date = new string[2];//массивы для даты, названия кафедры и должности
-                if (array[6].ToString() == "3") date[0] = "null";//Если нету ученой степени то даты её получения тоже нету
-                else date[0] = "'" + array[7].ToString() + "'";
-                if (array[8].ToString() == "16") date[1] = "null";//Если нету ученого звания то даты его получения тоже нету
-                else date[1] = "'" + array[9].ToString() + "'";
-                string result = "";
-                if (del)//Удаляяем?
-                {//да
-                    string[] termworks = array[10].ToString().Split('-');//разбиваем строку для получения из неё данных и изменения самой строки
-                    if (array[13].ToString() == "")//Если не декан
-                        result = "INSERT INTO dbo.Records (id,Cairs,Job_title,surname,name,middlename,titles_id,titles_date,degrees_id,degress_date,terms_of_work,date)" +
-                        "VALUES(" + (int.Parse(Count()) + 1) + "," + (int)array[1] + "," + (int)array[2] + ",'" + array[3] + "','" + array[4] + "','" + array[5] + "'," + (int)array[6] + "," + date[0] + "," + (int)array[8] + "," + date[1] + ",'" + termworks[0] + "-" + termworks[1] + "-Уволился-(" + experienceDate + ")','" + experienceDate + "')";
-                    else result = "INSERT INTO dbo.Records (id,surname,name,middlename,titles_id,titles_date,degrees_id,degress_date,terms_of_work,date)" +
-                    "VALUES(" + (int.Parse(Count()) + 1) + ",'" + array[3] + "','" + array[4] + "','" + array[5] + "'," + (int)array[6] + "," + date[0] + "," + (int)array[8] + "," + date[1] + ",'" + termworks[0] + "-" + termworks[1] + "-Уволился-(" + experienceDate + ")','" + experienceDate + "')";
-                }
-                else
-                {//нет
-                    if (array[13].ToString() == "")//Если не декан
-                        result = "INSERT INTO dbo.Records (id,Cairs,Job_title,surname,name,middlename,titles_id,titles_date,degrees_id,degress_date,terms_of_work,date)" +
-                        "VALUES(" + (int.Parse(Count()) + 1) + "," + (int)array[1] + "," + (int)array[2] + ",'" + array[3] + "','" + array[4] + "','" + array[5] + "'," + (int)array[6] + "," + date[0] + "," + (int)array[8] + "," + date[1] + ",'" + array[10] + "','" + experienceDate + "')";
-                    else result = "INSERT INTO dbo.Records (id,surname,name,middlename,titles_id,titles_date,degrees_id,degress_date,terms_of_work,date)" +
-                    "VALUES(" + (int.Parse(Count()) + 1) + ",'" + array[3] + "','" + array[4] + "','" + array[5] + "'," + (int)array[6] + "," + date[0] + "," + (int)array[8] + "," + date[1] + ",'" + array[10] + "','" + experienceDate + "')";
-                }
-                NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
-            }
-            public static string Count()
-            {
-                ds = NDataAccess.DataAccess.GetDataSet(@"select max(id) as count from dbo.Records", "Table1", connectionString);
-                string result = ds.Tables[0].Rows[0].ItemArray[0].ToString();
-                if (result == "") result = "0";
-                return (result);
-            }
-            public static DataSet Show(DateTime startDate)
-            {
-                string result = "select f.id,c.second_name as 'Кафедра',w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,d.name as 'ученое звание',titles_date as 'Дата получения ученого звания',a.second_name as 'ученая степень',f.degress_date as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.' from Record_Teachers as f  left join  Working_positions as w on w.id=f.Job_title left join Titles as d on d.id=f.titles_id left join Degrees as a on a.id=f.degrees_id left join Cairs as c on c.id = f.Cairs  where   " + between(startDate) ;//where DATEDIFF(MONTH,date,GETDATE())=0 ";
-                return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
-            }
-            public static DataSet GetDataTeachers(int id)
-            {
-                string result = "select id,Cairs,Job_title,surname,name,middlename,titles_id,titles_date,degrees_id,degress_date,terms_of_work,rate,experience_date,Dekan_Faculties,education_date from Record_Teachers where id = " + id;
+                //string result = "select f.id,c.second_name as 'Кафедра',w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,d.name as 'ученое звание',titles_date as 'Дата получения ученого звания',a.second_name as 'ученая степень',f.degress_date as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.' from Record_Teachers as f  left join  Working_positions as w on w.id=f.Job_title left join Titles as d on d.id=f.titles_id left join Degrees as a on a.id=f.degrees_id left join Cairs as c on c.id = f.Cairs  where   " + between(startDate) ;//where DATEDIFF(MONTH,date,GETDATE())=0 ";
+                string result = "select f.id,c.name as Кафедра,w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,gender as Пол,convert(VARCHAR(10),birthday,105) as 'Дата рождения',passport_serial as 'Серия паспорта',passport_number as 'Номер паспорта',passport_gives as 'Кем выдан',convert(VARCHAR(10),passport_create,105) as 'Когда выдан',registration as 'Прописка',telephone as Телефон,educational_institution as 'Образовательное учреждение',specialty_of_diplom as 'Специальность по диплому', d.name as 'ученое звание',convert(VARCHAR(10),titles_date,105) as 'Дата получения ученого звания',a.second_name as 'ученая степень',convert(VARCHAR(10),degress_date,105) as 'Дата получения ученой степени',convert(VARCHAR(10),Training_dates,105) as 'Начало повышения квалификации',convert(VARCHAR(10),Training_dates_end,105) as 'Окончание повышения квалификации',convert(VARCHAR(10),Training_place,105) as 'Место повышения квалификации',terms_of_work as 'Условия привлечения к труд. деят.',convert(VARCHAR(10),competitive_selection_start_date,105) as 'Начало кон. отб',convert(VARCHAR(10),competitive_selection_end_date,105) as 'Окончание кон. отб.',rate as 'Ставка',convert(VARCHAR(10),total_experience_date,105) as 'Стаж',convert(VARCHAR(10),experience_date,105) as 'Дата, педагогический стаж'  from Record_Teachers as f left join cairs as c on c.id=f.Cairs left join  Working_positions as w on w.id=f.Job_title left join Titles as d on d.id=f.titles_id left join Degrees as a on a.id = f.degrees_id where f.Cairs is not null";
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
             public static DataSet GetRecordTeachers(int id)
@@ -967,6 +931,65 @@ namespace PGUTI
                 return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
             }
         }
+
+        //public static class RecordOld
+        //{
+        //    public static void Add(string result)
+        //    {
+        //        NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
+        //    }
+        //    public static void Add(int id, bool del, DateTime experienceDate)
+        //    {
+        //        Object[] array = GetRecordTeachers(id).Tables[0].Rows[0].ItemArray;//Объект строки запроса
+        //        string[] cairsandjob = new string[2], date = new string[2];//массивы для даты, названия кафедры и должности
+        //        if (array[6].ToString() == "3") date[0] = "null";//Если нету ученой степени то даты её получения тоже нету
+        //        else date[0] = "'" + array[7].ToString() + "'";
+        //        if (array[8].ToString() == "16") date[1] = "null";//Если нету ученого звания то даты его получения тоже нету
+        //        else date[1] = "'" + array[9].ToString() + "'";
+        //        string result = "";
+        //        if (del)//Удаляяем?
+        //        {//да
+        //            string[] termworks = array[10].ToString().Split('-');//разбиваем строку для получения из неё данных и изменения самой строки
+        //            if (array[13].ToString() == "")//Если не декан
+        //                result = "INSERT INTO dbo.Records (id,Cairs,Job_title,surname,name,middlename,titles_id,titles_date,degrees_id,degress_date,terms_of_work,date)" +
+        //                "VALUES(" + (int.Parse(Count()) + 1) + "," + (int)array[1] + "," + (int)array[2] + ",'" + array[3] + "','" + array[4] + "','" + array[5] + "'," + (int)array[6] + "," + date[0] + "," + (int)array[8] + "," + date[1] + ",'" + termworks[0] + "-" + termworks[1] + "-Уволился-(" + experienceDate + ")','" + experienceDate + "')";
+        //            else result = "INSERT INTO dbo.Records (id,surname,name,middlename,titles_id,titles_date,degrees_id,degress_date,terms_of_work,date)" +
+        //            "VALUES(" + (int.Parse(Count()) + 1) + ",'" + array[3] + "','" + array[4] + "','" + array[5] + "'," + (int)array[6] + "," + date[0] + "," + (int)array[8] + "," + date[1] + ",'" + termworks[0] + "-" + termworks[1] + "-Уволился-(" + experienceDate + ")','" + experienceDate + "')";
+        //        }
+        //        else
+        //        {//нет
+        //            if (array[13].ToString() == "")//Если не декан
+        //                result = "INSERT INTO dbo.Records (id,Cairs,Job_title,surname,name,middlename,titles_id,titles_date,degrees_id,degress_date,terms_of_work,date)" +
+        //                "VALUES(" + (int.Parse(Count()) + 1) + "," + (int)array[1] + "," + (int)array[2] + ",'" + array[3] + "','" + array[4] + "','" + array[5] + "'," + (int)array[6] + "," + date[0] + "," + (int)array[8] + "," + date[1] + ",'" + array[10] + "','" + experienceDate + "')";
+        //            else result = "INSERT INTO dbo.Records (id,surname,name,middlename,titles_id,titles_date,degrees_id,degress_date,terms_of_work,date)" +
+        //            "VALUES(" + (int.Parse(Count()) + 1) + ",'" + array[3] + "','" + array[4] + "','" + array[5] + "'," + (int)array[6] + "," + date[0] + "," + (int)array[8] + "," + date[1] + ",'" + array[10] + "','" + experienceDate + "')";
+        //        }
+        //        NDataAccess.DataAccess.ExecuteNonQuery2(result, connectionString);
+        //    }
+        //    public static string Count()
+        //    {
+        //        ds = NDataAccess.DataAccess.GetDataSet(@"select max(id) as count from dbo.Records", "Table1", connectionString);
+        //        string result = ds.Tables[0].Rows[0].ItemArray[0].ToString();
+        //        if (result == "") result = "0";
+        //        return (result);
+        //    }
+        //    public static DataSet Show(DateTime startDate)
+        //    {
+        //        string result = "select f.id,c.second_name as 'Кафедра',w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,d.name as 'ученое звание',titles_date as 'Дата получения ученого звания',a.second_name as 'ученая степень',f.degress_date as 'Дата получения ученой степени',terms_of_work as 'Условия привлечения к труд. деят.' from Record_Teachers as f  left join  Working_positions as w on w.id=f.Job_title left join Titles as d on d.id=f.titles_id left join Degrees as a on a.id=f.degrees_id left join Cairs as c on c.id = f.Cairs  where   " + between(startDate) ;//where DATEDIFF(MONTH,date,GETDATE())=0 ";
+        //        //string result = "select f.id,c.name as Кафедра,w.name as Должность,f.surname as Фамилия,f.name as Имя,f.middlename as Отчество,gender as Пол,convert(VARCHAR(10),birthday,105) as 'Дата рождения',passport_serial as 'Серия паспорта',passport_number as 'Номер паспорта',passport_gives as 'Кем выдан',convert(VARCHAR(10),passport_create,105) as 'Когда выдан',registration as 'Прописка',telephone as Телефон,educational_institution as 'Образовательное учреждение',specialty_of_diplom as 'Специальность по диплому', d.name as 'ученое звание',convert(VARCHAR(10),titles_date,105) as 'Дата получения ученого звания',a.second_name as 'ученая степень',convert(VARCHAR(10),degress_date,105) as 'Дата получения ученой степени',convert(VARCHAR(10),Training_dates,105) as 'Начало повышения квалификации',convert(VARCHAR(10),Training_dates_end,105) as 'Окончание повышения квалификации',convert(VARCHAR(10),Training_place,105) as 'Место повышения квалификации',terms_of_work as 'Условия привлечения к труд. деят.',convert(VARCHAR(10),competitive_selection_start_date,105) as 'Начало кон. отб',convert(VARCHAR(10),competitive_selection_end_date,105) as 'Окончание кон. отб.',rate as 'Ставка',convert(VARCHAR(10),total_experience_date,105) as 'Стаж',convert(VARCHAR(10),experience_date,105) as 'Дата, педагогический стаж'  from Record_Teachers as f left join cairs as c on c.id=f.Cairs left join  Working_positions as w on w.id=f.Job_title left join Titles as d on d.id=f.titles_id left join Degrees as a on a.id = f.degrees_id where f.Cairs is not null";
+        //        return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
+        //    }
+        //    public static DataSet GetDataTeachers(int id)
+        //    {
+        //        string result = "select id,Cairs,Job_title,surname,name,middlename,titles_id,titles_date,degrees_id,degress_date,terms_of_work,rate,experience_date,Dekan_Faculties,education_date from Record_Teachers where id = " + id;
+        //        return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
+        //    }
+        //    public static DataSet GetRecordTeachers(int id)
+        //    {
+        //        string result = "select id,Cairs,Job_title,surname,name,middlename,titles_id,titles_date,degrees_id,degress_date,terms_of_work,rate,experience_date,Dekan_Faculties,education_date from Record_Teachers where id = " + id;
+        //        return NDataAccess.DataAccess.GetDataSet(@result, "Table1", connectionString);
+        //    }
+        //}
 
         public static class Users
         {

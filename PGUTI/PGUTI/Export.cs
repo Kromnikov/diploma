@@ -15,9 +15,11 @@ namespace PGUTI
             ExcelApp.Application.Workbooks.Add(Type.Missing);
             ExcelApp.Columns.ColumnWidth = 15;
             ExcelApp.Cells[1, 1] = tableName;//Передаём имя таблицы
+            ExcelApp.Cells[1, 1].HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
             for (int i = 1; i < dataGridView1.Columns.Count; i++)//Заполняем названия столбцов
             {
                 ExcelApp.Cells[2, i] = dataGridView1.Columns[i].HeaderText;
+                ExcelApp.Cells[2, i].HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
             }
 
             for (int i = 1; i < dataGridView1.ColumnCount; i++)//Заполняем таблицу
@@ -27,6 +29,7 @@ namespace PGUTI
                     try
                     {
                         ExcelApp.Cells[j + 3, i] = (dataGridView1[i, j].Value).ToString();
+                        ExcelApp.Cells[j + 3, i].HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
                     }
                     catch { }
                 }

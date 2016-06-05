@@ -76,6 +76,7 @@
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
             this.диссертацииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.среднийВозрастToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.повышениеКвалификацииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.учетСотрудниковToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.печатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,7 +89,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.DissMonthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.среднийВозрастToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -125,7 +125,6 @@
             this.dataGridView1.RowTemplate.Height = 44;
             this.dataGridView1.Size = new System.Drawing.Size(719, 307);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
             this.dataGridView1.Paint += new System.Windows.Forms.PaintEventHandler(this.dataGridView1_Paint);
             // 
@@ -478,6 +477,13 @@
             this.диссертацииToolStripMenuItem.Text = "Диссертации";
             this.диссертацииToolStripMenuItem.Click += new System.EventHandler(this.диссертацииToolStripMenuItem_Click);
             // 
+            // среднийВозрастToolStripMenuItem
+            // 
+            this.среднийВозрастToolStripMenuItem.Name = "среднийВозрастToolStripMenuItem";
+            this.среднийВозрастToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
+            this.среднийВозрастToolStripMenuItem.Text = "Средний возраст";
+            this.среднийВозрастToolStripMenuItem.Click += new System.EventHandler(this.среднийВозрастToolStripMenuItem_Click);
+            // 
             // повышениеКвалификацииToolStripMenuItem
             // 
             this.повышениеКвалификацииToolStripMenuItem.Name = "повышениеКвалификацииToolStripMenuItem";
@@ -574,13 +580,6 @@
             this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // среднийВозрастToolStripMenuItem
-            // 
-            this.среднийВозрастToolStripMenuItem.Name = "среднийВозрастToolStripMenuItem";
-            this.среднийВозрастToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
-            this.среднийВозрастToolStripMenuItem.Text = "Средний возраст";
-            this.среднийВозрастToolStripMenuItem.Click += new System.EventHandler(this.среднийВозрастToolStripMenuItem_Click);
             // 
             // ReportsForm
             // 
