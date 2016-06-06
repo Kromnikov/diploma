@@ -89,11 +89,14 @@ namespace PGUTI
                 case "0.2.0":
                     showDissertations();
                     return;
-                case "0.2.1":
-                    showRecord();
-                    return;
+                //case "0.2.1":
+                //    showRecord();
+                //    return;
                 case "0.2.2":
                     training();
+                    return;
+                case "0.2.3":
+                    ageChair();
                     return;
 
 
@@ -204,6 +207,9 @@ namespace PGUTI
                     return;
                 case "0.2.2":
                     tableName = "Повышение квалификации с " + getDateStringDiss() + " по " + getDateString();
+                    return;
+                case "0.2.3":
+                    tableName = "Распределение по возрасту: "+ getDateString();
                     return;
 
 
@@ -364,26 +370,136 @@ namespace PGUTI
         private void showDissertations()
         {
             ds = Data.Dissertation.Show(DissMonthCalendar1.SelectionStart.Date,StartMonthCalendar1.SelectionStart.Date);//В зависимости от названия кафедры, заполняем таблицу, CairsComboBox1.SelectedIndex + 1 получаем название кафедры по номеру +1 т.к. начинаеться с нуля а в базе с единицы
-            dataGridView1.DataSource = ds;//Заполняем таблицу
-            dataGridView1.DataMember = ds.Tables[0].TableName;//Имя таблицы
-            dataGridView1.Columns["id"].Visible = false;//Скрываем поле id
+            
+            dataGridView1.DataSource = null;
+            for (int i = 2; i < ds.Tables[0].Columns.Count; i++)
+            {
+                dataGridView1.Columns.Add("", ds.Tables[0].Columns[i].ColumnName);
+            }
+
+
+            int prevId = -1;
+            string prevTitle = "";
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                if (prevId != (int)ds.Tables[0].Rows[i].ItemArray[0])
+                {
+                    dataGridView1.Rows.Add();
+                    prevId = (int)ds.Tables[0].Rows[i].ItemArray[0];
+                    prevTitle = ds.Tables[0].Rows[i].ItemArray[7].ToString();
+                    for (int j = 2; j < ds.Tables[0].Columns.Count; j++)
+                    {
+                        dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[j - 2].Value = ds.Tables[0].Rows[i].ItemArray[j].ToString();
+                    }
+                }
+                else
+                {
+                    if (prevTitle != ds.Tables[0].Rows[i].ItemArray[7].ToString())
+                    {
+                        dataGridView1.Rows.Add();
+                        for (int j = 2; j < ds.Tables[0].Columns.Count; j++)
+                        {
+                            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[j - 2].Value = ds.Tables[0].Rows[i].ItemArray[j].ToString();
+                        }
+                    }
+                    prevTitle = ds.Tables[0].Rows[i].ItemArray[7].ToString();
+                }
+            }
+
         }
 
         private void training()
         {
             ds = Data.Training.Show(DissMonthCalendar1.SelectionStart.Date, StartMonthCalendar1.SelectionStart.Date);//В зависимости от названия кафедры, заполняем таблицу, CairsComboBox1.SelectedIndex + 1 получаем название кафедры по номеру +1 т.к. начинаеться с нуля а в базе с единицы
-            dataGridView1.DataSource = ds;//Заполняем таблицу
-            dataGridView1.DataMember = ds.Tables[0].TableName;//Имя таблицы
-            dataGridView1.Columns["id"].Visible = false;//Скрываем поле id
+            //dataGridView1.DataSource = ds;//Заполняем таблицу
+            //dataGridView1.DataMember = ds.Tables[0].TableName;//Имя таблицы
+            //dataGridView1.Columns["id"].Visible = false;//Скрываем поле id
+
+
+            dataGridView1.DataSource = null;
+            for (int i = 2; i < ds.Tables[0].Columns.Count; i++)
+            {
+                dataGridView1.Columns.Add("", ds.Tables[0].Columns[i].ColumnName);
+            }
+
+
+            int prevId = -1;
+            string prevTitle = "",prevStart="",prevEnd="";
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                if (prevId != (int)ds.Tables[0].Rows[i].ItemArray[0])
+                {
+                    dataGridView1.Rows.Add();
+                    prevId = (int)ds.Tables[0].Rows[i].ItemArray[0];
+                    prevTitle = ds.Tables[0].Rows[i].ItemArray[7].ToString();
+                    for (int j = 2; j < ds.Tables[0].Columns.Count; j++)
+                    {
+                        dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[j - 2].Value = ds.Tables[0].Rows[i].ItemArray[j].ToString();
+                    }
+                }
+                else
+                {
+                    if ((prevTitle != ds.Tables[0].Rows[i].ItemArray[7].ToString()) | (prevStart != ds.Tables[0].Rows[i].ItemArray[8].ToString()) | (prevEnd != ds.Tables[0].Rows[i].ItemArray[9].ToString()))
+                    {
+                        dataGridView1.Rows.Add();
+                        for (int j = 2; j < ds.Tables[0].Columns.Count; j++)
+                        {
+                            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[j - 2].Value = ds.Tables[0].Rows[i].ItemArray[j].ToString();
+                        }
+                    }
+                    prevTitle = ds.Tables[0].Rows[i].ItemArray[7].ToString();
+                    prevStart = ds.Tables[0].Rows[i].ItemArray[8].ToString();
+                    prevEnd = ds.Tables[0].Rows[i].ItemArray[9].ToString();
+                }
+            }
         }
 
-        private void showRecord()
+
+
+
+        private void ageChair()
         {
-            ds = Data.RecordOld.Show(StartMonthCalendar1.SelectionStart.Date);//В зависимости от названия кафедры, заполняем таблицу, CairsComboBox1.SelectedIndex + 1 получаем название кафедры по номеру +1 т.к. начинаеться с нуля а в базе с единицы
-            dataGridView1.DataSource = ds;//Заполняем таблицу
-            dataGridView1.DataMember = ds.Tables[0].TableName;//Имя таблицы
-            dataGridView1.Columns["id"].Visible = false;//Скрываем поле id
+            dataset = Data.Chair.Show(StartMonthCalendar1.SelectionStart.Date, "Штатный сотрудник");
+            dataGridView1.DataSource = null;
+            dataGridView1.Columns.Add("", "");
+            for (int i = 0; i < dataset.Tables[0].Rows.Count; i++)
+            {
+                dataGridView1.Columns.Add("", dataset.Tables[0].Rows[i].ItemArray[1].ToString());
+            }
+
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "Ср. возраст штатных сотрудников";
+            for (int i = 0; i < dataset.Tables[0].Rows.Count; i++)
+            {
+                dataGridView1.Rows[0].Cells[i + 1].Value = dataset.Tables[0].Rows[i].ItemArray[2].ToString();
+            }
+
+
+            dataset = Data.Chair.Show(StartMonthCalendar1.SelectionStart.Date, "Штатные совместители"); 
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "Ср. возраст штатных совместителей";
+            for (int i = 0; i < dataset.Tables[0].Rows.Count; i++)
+            {
+                dataGridView1.Rows[1].Cells[i + 1].Value = dataset.Tables[0].Rows[i].ItemArray[2].ToString();
+            }
+
+
+            dataset = Data.Chair.Show(StartMonthCalendar1.SelectionStart.Date, "Сторонние (внешние) совместители"); 
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "Ср. возраст сторонних (внешних) совместителей";
+            for (int i = 0; i < dataset.Tables[0].Rows.Count; i++)
+            {
+                dataGridView1.Rows[2].Cells[i + 1].Value = dataset.Tables[0].Rows[i].ItemArray[2].ToString();
+            }
         }
+
+        //private void showRecord()
+        //{
+        //    ds = Data.RecordOld.Show(StartMonthCalendar1.SelectionStart.Date);//В зависимости от названия кафедры, заполняем таблицу, CairsComboBox1.SelectedIndex + 1 получаем название кафедры по номеру +1 т.к. начинаеться с нуля а в базе с единицы
+        //    dataGridView1.DataSource = ds;//Заполняем таблицу
+        //    dataGridView1.DataMember = ds.Tables[0].TableName;//Имя таблицы
+        //    dataGridView1.Columns["id"].Visible = false;//Скрываем поле id
+        //}
 
         private void initAge()
         {
@@ -980,26 +1096,57 @@ namespace PGUTI
 
         private void диссертацииToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 //tableName = "Защита диссертаций c " + getDateString() + " по " + getDateStringDiss();
                 dsNum = "0.2.0";
                 dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
                 showDissertations();
-            }
-            catch { this.Close(); }
+            //}
+            //catch { this.Close(); }
         }
 
         private void учетСотрудниковToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
+            //try
+            //{
+            //    //tableName = "Учёт сотрудников с " + getDateString();
+            //    dsNum = "0.2.1";
+            //    dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+            //    showRecord();
+            //}
+            //catch { this.Close(); }
+
+            using (RecordStaff editform = new RecordStaff())
             {
-                //tableName = "Учёт сотрудников с " + getDateString();
-                dsNum = "0.2.1";
-                dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
-                showRecord();
+                editform.Closing += (sender_1, e_1) =>//Передаём объект события
+                {
+                    dataGridView1.Columns.Clear();
+                };
+                editform.ShowDialog();
             }
-            catch { this.Close(); }
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //try
+            //{
+            //    if (dsNum == "0.2.1")
+            //    {
+            //        bool dekan = false;
+            //        //using для того чтобы объект формы сам уничтожился после закрытия
+            //        //В конструкторе передаём true(bool переменная котороя означает кнопку редактирования) и строку запроса из базы (select * from faculty) 
+            //        using (EditForm editform = new EditForm(true, Data.EditForm.getRecordTeachers(int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString())), dekan))
+            //        {
+            //            editform.Closing += (sender_1, e_1) =>//Передаём объект события
+            //            {
+            //                //UpdateFacultyGridView();//обнавляем после закрытия
+            //            };
+            //            editform.ShowDialog();
+            //        }
+            //    }
+            //}
+            //catch (Exception err) { MessageBox.Show("Выберите сотрудника", "Сотрудник не выбран", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private string getDateString()
@@ -1112,6 +1259,19 @@ namespace PGUTI
                 training();
             }
             catch { this.Close(); }
+        }
+
+
+
+        private void среднийВозрастToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //try
+            //{
+                dsNum = "0.2.3";
+                dataGridView1.Columns.Clear();//Удаляем все столбцы из таблицы(отчищаем)
+                ageChair();
+            //}
+            //catch { this.Close(); }
         }
 
         private void дополнительныеТаблицыToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1313,6 +1473,8 @@ namespace PGUTI
             }
             dataset.Clear();
         }
+
+
 
     }
 }

@@ -48,3 +48,4 @@ C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.EditUsers.reso
 C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.Users.resources
 E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.ReportExcel.resources
 C:\kromnikov\gitProjects\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.ReportExcel.resources
+E:\googledrive\Универ\Диплом\PGUTI\PGUTI\obj\Debug\PGUTI.RecordStaff.resources

@@ -384,6 +384,7 @@
             this.JobTitleComboBox.Name = "JobTitleComboBox";
             this.JobTitleComboBox.Size = new System.Drawing.Size(127, 21);
             this.JobTitleComboBox.TabIndex = 1;
+            this.JobTitleComboBox.SelectedIndexChanged += new System.EventHandler(this.JobTitleComboBox_SelectedIndexChanged);
             // 
             // groupBox4
             // 
@@ -598,7 +599,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(603, 484);
+            this.ClientSize = new System.Drawing.Size(603, 485);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.TrainingcheckBox1);
